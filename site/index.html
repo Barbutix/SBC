@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0d1c2f">
-  <meta name="description" content="L'actualité, les tournois, les résultats et les bons plans des fléchettes acier et soft-tip.">
+  <meta name="description" content="Les tournois de fléchettes acier et soft-tip, les annonces des clubs et les sources à suivre avec Sullias Bull Club.">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./assets/sbc-app-192.png" type="image/png">
   <link rel="apple-touch-icon" href="./assets/sbc-app-192.png">
@@ -21,53 +21,44 @@
     <section class="hero">
       <div class="hero-glow"></div><div class="hero-copy">
         <div class="eyebrow"><span class="pulse"></span> LE RENDEZ-VOUS DES PASSIONNÉS</div>
-        <h1>Tout l’univers<br>des fléchettes.<br><em>Au même endroit.</em></h1>
-        <p>Actualités, compétitions, scores et bons plans — acier et soft-tip, en France et partout dans le monde.</p>
-        <a class="hero-cta" href="#actus">Explorer SBC <span>↓</span></a>
+        <h1>Les tournois<br>de fléchettes.<br><em>Près de chez vous.</em></h1>
+        <p>Compétitions officielles, tournois de clubs et annonces publiques — acier et soft-tip, partout en France.</p>
+        <a class="hero-cta" href="#tournois">Trouver un tournoi <span>↓</span></a>
       </div>
       <div class="hero-foot"><span>SBC · ACTUS & COMMUNAUTÉ</span><span>ACIER · ÉLECTRONIQUE · CLUBS</span></div>
     </section>
 
     <section class="quick-nav" aria-label="Rubriques SBC">
-      <a href="#actus"><span class="quick-icon">✳</span><span>Actualités</span><b>↗</b></a>
       <a href="#tournois"><span class="quick-icon">◎</span><span>Tournois</span><b>↗</b></a>
+      <a href="#actus"><span class="quick-icon">✳</span><span>Sources darts</span><b>↗</b></a>
       <a href="#live"><span class="quick-icon">◉</span><span>Scores live</span><b>↗</b></a>
-      <a href="#promos"><span class="quick-icon">％</span><span>Promos</span><b>↗</b></a>
-      <a href="#guides"><span class="quick-icon">↗</span><span>Guides</span><b>↗</b></a>
-    </section>
-
-    <section class="section" id="actus">
-      <div class="section-top"><div><span class="section-kicker">LES SOURCES À SUIVRE</span><h2>Dans le <em>jeu.</em></h2></div><p class="section-note">Les liens ouvrent les pages d’origine pour consulter les dernières publications.</p></div>
-      <div class="filter-row" id="news-filters"><button class="pill active" data-filter="Tout">Tout</button><button class="pill" data-filter="Acier">Acier</button><button class="pill" data-filter="Soft-tip">Soft-tip</button><button class="pill" data-filter="Média">Médias</button></div>
-      <div class="cards-grid" id="news-grid"></div>
     </section>
 
     <section class="event-section" id="tournois">
       <div class="section-top"><div><span class="section-kicker">OFFICIEL, CLUBS ET RÉSEAUX SOCIAUX</span><h2>Calendriers & annonces, <em>près de chez vous.</em></h2></div><span class="big-dept">FR / 101</span></div>
-      <div class="event-tools"><label class="search-field"><span>⌕</span><input id="department-search" inputmode="search" placeholder="Code département (ex. 44) ou source" aria-label="Filtrer les calendriers et sources de tournois par département"></label><div class="filter-row compact" id="event-filters"><button class="pill active" data-event-filter="Tous">Tous</button><button class="pill" data-event-filter="Fédéral / circuit">Fédéral / circuit</button><button class="pill" data-event-filter="Club / loisir">Club / loisir</button></div></div>
+      <div class="event-tools"><label class="search-field"><span>⌕</span><input id="department-search" inputmode="search" placeholder="Département (ex. 44) ou source" aria-label="Filtrer les calendriers et sources de tournois par département"></label><div class="filter-row compact" id="event-filters"><button class="pill active" data-event-filter="Tous">Tous</button><button class="pill" data-event-filter="Fédéral / circuit">Fédéral / circuit</button><button class="pill" data-event-filter="Club / loisir">Club / loisir</button></div></div>
       <div id="event-grid" class="event-grid"></div>
-      <p class="event-footnote"><span>ⓘ</span> Le champ filtre les calendriers et relais, pas une liste d’événements importée. Les annonces sociales sont à vérifier auprès de l’organisateur. Ti an Darts reprend notamment des affiches publiées par Univers Darts sur Facebook et Instagram.</p>
+      <div class="event-submit"><div><span class="section-kicker">UNE ANNONCE À PARTAGER ?</span><h3>Tu as vu un tournoi sur Facebook ?</h3><p>Envoie le lien public. L’annonce sera vérifiée avant ajout. Le formulaire GitHub demande un compte pour envoyer la proposition.</p></div><a href="https://github.com/Barbutix/SBC/issues/new?template=01-proposer-un-tournoi.yml" target="_blank" rel="noopener">Proposer un tournoi <span>↗</span></a></div>
+      <p class="event-footnote"><span>ⓘ</span> Le champ filtre les calendriers et relais, pas encore une liste d’événements importée. Les annonces publiques restent à vérifier auprès de l’organisateur.</p>
+    </section>
+
+    <section class="section" id="actus">
+      <div class="section-top"><div><span class="section-kicker">ACTUALITÉS & RÉSULTATS</span><h2>Les sources <em>darts.</em></h2></div><p class="section-note">Retrouve les publications officielles et médias spécialisés à leur source.</p></div>
+      <div class="filter-row" id="news-filters"><button class="pill active" data-filter="Tout">Tout</button><button class="pill" data-filter="Acier">Acier</button><button class="pill" data-filter="Soft-tip">Soft-tip</button><button class="pill" data-filter="Média">Médias</button></div>
+      <div class="cards-grid" id="news-grid"></div>
     </section>
 
     <section class="section live-section" id="live">
       <div class="live-card"><div class="live-signal"><i></i> TABLEAUX & RÉSULTATS EN DIRECT</div><div class="live-copy"><h2>Le match<br>se joue <em>maintenant.</em></h2><p>Retrouve les tableaux de scores, les brackets et les stats des tournois suivis par DartConnect.</p><a class="light-link" href="https://tv.dartconnect.com/" target="_blank" rel="noopener">Ouvrir DartConnect TV <span>↗</span></a></div><div class="score-art"><div class="score-frame"><span>LIVE</span><b>SBC</b><i>180</i><small>LE MATCH CONTINUE</small></div><div class="score-ring"></div></div></div>
     </section>
 
-    <section class="section deals-section" id="promos">
-      <div class="section-top"><div><span class="section-kicker">BONS PLANS MATÉRIEL</span><h2>La bonne affaire, <em>au bon moment.</em></h2></div><p class="section-note">Promotions vérifiées sur les pages officielles des boutiques.</p></div>
-      <div class="deal-grid" id="deal-grid"></div>
-      <p class="disclaimer">Les prix, stocks et codes peuvent changer. Vérifie toujours les conditions sur le site marchand avant de commander.</p>
-    </section>
-
-    <section class="guide-band" id="guides"><span class="guide-symbol">✳</span><div><span class="section-kicker">POUR PROGRESSER</span><h2>Règles, matériel & culture darts.</h2><p>Des repères simples pour les nouveaux joueurs comme pour les passionnés.</p></div><a href="https://pleinebull.fr/" target="_blank" rel="noopener">Découvrir les guides <span>↗</span></a></section>
-
-    <section class="subscribe-strip"><span class="subscribe-mark">SBC<span>.</span></span><div><h2>Le monde des fléchettes bouge.</h2><p>Garde Sullias Bull Club dans tes favoris pour suivre les tournois, les actus et les offres.</p></div><button id="share-button">Partager Sullias Bull Club ↗</button></section>
+    <section class="subscribe-strip"><span class="subscribe-mark">SBC<span>.</span></span><div><h2>Le monde des fléchettes bouge.</h2><p>Garde Sullias Bull Club dans tes favoris pour suivre les tournois et les annonces de clubs.</p></div><button id="share-button">Partager Sullias Bull Club ↗</button></section>
   </main>
 
-  <nav class="bottom-nav" aria-label="Navigation mobile"><a class="selected" href="#actus"><span>✳</span>Actus</a><a href="#tournois"><span>◎</span>Tournois</a><a href="#live"><span>◉</span>Live</a><a href="#promos"><span>％</span>Promos</a><a href="#guides"><span>↗</span>Guides</a></nav>
+  <nav class="bottom-nav" aria-label="Navigation mobile"><a class="selected" href="#tournois"><span>◎</span>Tournois</a><a href="#actus"><span>✳</span>Sources</a><a href="#live"><span>◉</span>Live</a></nav>
   <footer><a class="brand" href="#accueil"><span class="brand-mark">Sullias Bull Club</span></a><span>Acier · Soft-tip · Communauté</span><a href="./sources.html">Nos sources</a><span>© 2026 Sullias Bull Club</span></footer>
   <dialog id="discipline-dialog"><form method="dialog"><button class="close-dialog" aria-label="Fermer">×</button><span class="section-kicker">CHOISIR LES DISCIPLINES</span><h2>Tout le darts,<br><em>à ta façon.</em></h2><div class="discipline-options"><label><input type="checkbox" checked value="Acier"> Acier <small>Pointe acier · sisal</small></label><label><input type="checkbox" checked value="Soft-tip"> Soft-tip <small>Pointe plastique · cible électronique</small></label></div><button class="primary-button" id="save-disciplines">Voir ma sélection</button></form></dialog>
-  <dialog id="search-dialog"><form method="dialog"><button class="close-dialog" aria-label="Fermer">×</button><span class="section-kicker">RECHERCHER DANS SBC</span><input id="global-search" class="dialog-search" placeholder="Joueur, tournoi, boutique…"><button class="primary-button" id="run-search">Rechercher</button></form></dialog>
+  <dialog id="search-dialog"><form method="dialog"><button class="close-dialog" aria-label="Fermer">×</button><span class="section-kicker">RECHERCHER DANS SBC</span><input id="global-search" class="dialog-search" placeholder="Tournoi, club, département…"><button class="primary-button" id="run-search">Rechercher</button></form></dialog>
   <div id="toast" role="status" aria-live="polite"></div>
   <script src="./app.js"></script>
 </body>

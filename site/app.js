@@ -18,12 +18,6 @@ const eventSources = [
   {name:'Tournois de clubs et associations',format:'Acier + Soft-tip',category:'Club / loisir',area:'France · annonces et inscriptions associatives',description:'Inscriptions créées par les associations organisatrices; vérifie que l’annonce concerne bien les fléchettes.',url:'https://www.helloasso.com/',source:'HelloAsso'}
 ];
 
-const deals = [
-  {shop:'Olie’s Darts',tag:'BOUTIQUE FRANÇAISE',description:'Fléchettes, cibles et accessoires en promotion.',url:'https://www.olies-darts.com/promotions'},
-  {shop:'Pleine Bull',tag:'BOUTIQUE FRANÇAISE',description:'Bons plans et codes promo publiés par la boutique.',url:'https://pleinebull.fr/fr-be/pages/codes-promo-bons-de-reduction-pleine-bull'},
-  {shop:'Dartshopper',tag:'BOUTIQUE EN LIGNE',description:'Produits actuellement en vente et offres officielles.',url:'https://www.dartshopper.fr/vente/'}
-];
-
 let activeNewsFilter = 'Tout';
 let activeEventFilter = 'Tous';
 let selectedFormats = ['Acier','Soft-tip'];
@@ -32,7 +26,6 @@ let pendingInstall;
 const formatClass = format => format === 'Soft-tip' ? 'soft' : format === 'Média' ? 'media' : '';
 const newsGrid = document.querySelector('#news-grid');
 const eventGrid = document.querySelector('#event-grid');
-const dealGrid = document.querySelector('#deal-grid');
 
 function renderNews(){
   const rows = newsSources.filter(item => {
@@ -61,16 +54,12 @@ function renderEvents(){
   </article>`).join('') || '<div class="no-results">Aucune source ne correspond à cette recherche.</div>';
 }
 
-function renderDeals(){
-  dealGrid.innerHTML = deals.map((item,index) => `<article class="deal-card"><span class="source-badge ${index===1?'soft':''}">${item.tag}</span><div class="deal-name">${item.shop}</div><p class="deal-description">${item.description}</p><a href="${item.url}" target="_blank" rel="noopener">Voir les offres chez ${item.shop} <span>↗</span></a></article>`).join('');
-}
-
 function toast(message){
   const node = document.querySelector('#toast'); node.textContent = message; node.classList.add('show');
   clearTimeout(toast.timer); toast.timer = setTimeout(()=>node.classList.remove('show'),2600);
 }
 
-renderNews(); renderEvents(); renderDeals();
+renderNews(); renderEvents();
 document.querySelectorAll('#news-filters .pill').forEach(button=>button.addEventListener('click',()=>{
   document.querySelector('#news-filters .active')?.classList.remove('active'); button.classList.add('active'); activeNewsFilter=button.dataset.filter; renderNews();
 }));

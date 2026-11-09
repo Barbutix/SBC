@@ -1,6 +1,6 @@
 # Sullias Bull Club (SBC)
 
-Sullias Bull Club est une application web progressive (PWA) pensée pour Android et publiée sur [GitHub Pages](https://barbutix.github.io/SBC/). Elle réunit des sources d’actualités, des calendriers de tournois, du live score et des offres pour les fléchettes acier et soft-tip.
+Sullias Bull Club est une application web progressive (PWA) pensée pour Android et publiée sur [GitHub Pages](https://barbutix.github.io/SBC/). Elle met l’accent sur les tournois de fléchettes acier et soft-tip, les calendriers locaux, les annonces publiques de clubs et les sources d’actualités.
 
 ## Lancer en local
 
@@ -12,4 +12,4 @@ Le dépôt [Barbutix/SBC](https://github.com/Barbutix/SBC) publie automatiquemen
 
 Sur Android, ouvrir l’adresse Pages dans Chrome, puis choisir **Installer l’application** ou **Ajouter à l’écran d’accueil**. Le blason du club sert d’icône d’installation.
 
-Les calendriers et les offres sont des liens vers leurs sources d’origine; cette première version ne collecte pas encore automatiquement les publications sociales, prix ou stocks. Voir [SOURCES.md](SOURCES.md) pour l’inventaire et les pistes d’automatisation.
+Les calendriers renvoient vers leurs sources d’origine. Une proposition de tournoi public peut être envoyée depuis l’application et sera vérifiée avant reprise. Les publications de groupes privés ne sont pas collectées. Voir [SOURCES.md](SOURCES.md) pour l’inventaire des sources.

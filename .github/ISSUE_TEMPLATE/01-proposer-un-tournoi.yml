@@ -1,0 +1,56 @@
+name: Proposer un tournoi
+description: Partager une annonce publique de tournoi de fléchettes à vérifier
+title: "Tournoi : "
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Merci ! Ajoute les informations publiques de l'annonce. La proposition sera vérifiée avant d'être reprise dans SBC.
+        Ne partage pas d'informations personnelles ni de contenu provenant d'un groupe privé.
+  - type: input
+    id: event
+    attributes:
+      label: Nom du tournoi
+      placeholder: Open de fléchettes de ...
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Date ou période
+      placeholder: 12 octobre 2026
+    validations:
+      required: true
+  - type: input
+    id: place
+    attributes:
+      label: Ville et département
+      placeholder: Gien (45)
+    validations:
+      required: true
+  - type: dropdown
+    id: discipline
+    attributes:
+      label: Discipline
+      options:
+        - Acier
+        - Soft-tip / électronique
+        - Les deux
+        - Non précisé
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Lien public vers l'annonce originale
+      description: Un lien Facebook public, une page de club ou un autre site consultable publiquement.
+      placeholder: https://...
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Détails utiles
+      description: Inscription, organisateur, format ou autre détail publié avec l'annonce.
+    validations:
+      required: false
