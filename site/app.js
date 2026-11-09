@@ -8,12 +8,14 @@ const newsSources = [
 ];
 
 const eventSources = [
-  {name:'Calendrier FFD, ligues et comités',format:'Acier',category:'Fédéral / circuit',area:'France · départements et régions',description:'Calendriers de tournois fédéraux et d’événements de ligue ou de comité.',url:'https://compet.dartshub.fr/',source:'DartsHub'},
-  {name:'Univers Darts · annonces locales',format:'Soft-tip',category:'Club / loisir',area:'France · affiches classées par département',description:'Relais d’affiches de tournois électroniques; les organisateurs peuvent proposer leurs dates.',url:'https://tiandarts.fr/tournois-flechettes-electros/',source:'Ti an Darts'},
+  {name:'Calendrier FFD, ligues et comités',format:'Acier',category:'Fédéral / circuit',area:'France · calendrier officiel par club et par date',description:'Opens fédéraux, événements de ligue et de comité, avec le club et la ville hôtes.',url:'https://compet.dartshub.fr/',source:'DartsHub',departmentSearch:true},
+  {name:'DartsMap · carte des tournois',format:'Acier + Soft-tip',category:'Club / loisir',area:'France · recherche par région, ville et date',description:'Calendrier collaboratif qui rassemble tournois, clubs et bars; les organisateurs peuvent proposer leurs événements.',url:'https://dartsmap.fr/',source:'DartsMap',departmentSearch:true},
+  {name:'Ti an Darts · affiches par mois et département',format:'Soft-tip',category:'Club / loisir',area:'France · affiches classées par département',description:'Relais régulier d’affiches de tournois électroniques, reprises depuis les réseaux Univers Darts.',url:'https://tiandarts.fr/tournois-flechettes-electros/',source:'Ti an Darts',departmentSearch:true,socials:[{name:'Facebook · Univers Darts',url:'https://www.facebook.com/groups/869524631311158/'},{name:'Instagram · Univers Darts',url:'https://www.instagram.com/universdarts/'}]},
+  {name:'Calendrier° · filtre par département',format:'Acier + Soft-tip',category:'Club / loisir',area:'France · départements 01 à 95, 2A et 2B',description:'Calendrier communautaire avec filtres par discipline, dates et département; chacun peut y proposer un tournoi.',url:'https://calendrier.tournois-apps.com/',source:'Tournois°',departmentSearch:true},
+  {name:'Dartzen · calendrier et propositions de clubs',format:'Acier',category:'Club / loisir',area:'France · événements fédéraux et annonces de clubs',description:'Calendrier national et formulaire pour proposer un tournoi de club à vérifier avant publication.',url:'https://dartzen.com/tournois-flechettes-a-venir-france/',source:'Dartzen'},
   {name:'Championnats Phoenix',format:'Soft-tip',category:'Fédéral / circuit',area:'France · ligues et poules',description:'Calendriers et classements des championnats Phoenix, mis à jour chaque nuit.',url:'https://phoenixfrancecompetition.fr/calendriers/',source:'Phoenix France'},
   {name:'DARTSLIVE OPEN',format:'Soft-tip',category:'Fédéral / circuit',area:'International · étapes par ville',description:'Annonces d’étapes, inscriptions, tableaux et résultats des tournois DARTSLIVE OPEN.',url:'https://www.dartslive-open.jp/',source:'DARTSLIVE'},
-  {name:'Tournois de clubs et associations',format:'Acier + Soft-tip',category:'Club / loisir',area:'France · recherche par département',description:'Annonces locales et inscriptions publiées par les clubs et associations organisatrices.',url:'https://www.helloasso.com/',source:'HelloAsso'},
-  {name:'Tournois électroniques · Univers Darts',format:'Soft-tip',category:'Club / loisir',area:'France · par mois et département',description:'Voir les affiches relayées sur Facebook et Instagram. Vérifier les détails auprès de l’organisateur.',url:'https://tiandarts.fr/tournois-flechettes-electros/',source:'Réseaux sociaux'}
+  {name:'Tournois de clubs et associations',format:'Acier + Soft-tip',category:'Club / loisir',area:'France · annonces et inscriptions associatives',description:'Inscriptions créées par les associations organisatrices; vérifie que l’annonce concerne bien les fléchettes.',url:'https://www.helloasso.com/',source:'HelloAsso'}
 ];
 
 const deals = [
@@ -46,15 +48,16 @@ function renderNews(){
 
 function renderEvents(){
   const query = document.querySelector('#department-search').value.trim().toLocaleLowerCase('fr');
+  const departmentCode = /^(?:\d{2}|2a|2b|97[1-6])$/.test(query.replace(/\s/g,''));
   const rows = eventSources.filter(item => {
     const formatMatch = item.format === 'Acier + Soft-tip' || selectedFormats.includes(item.format);
     const categoryMatch = activeEventFilter === 'Tous' || item.category === activeEventFilter;
-    const queryMatch = !query || `${item.area} ${item.description} ${item.name} ${item.source}`.toLocaleLowerCase('fr').includes(query);
+    const queryMatch = !query || (departmentCode && item.departmentSearch) || `${item.area} ${item.description} ${item.name} ${item.source}`.toLocaleLowerCase('fr').includes(query);
     return formatMatch && categoryMatch && queryMatch;
   });
   eventGrid.innerHTML = rows.map(item => `<article class="event-card">
     <div class="event-card-head"><span class="event-type ${item.category === 'Club / loisir' ? 'community' : ''}">${item.category}</span><span class="verify-state">${item.format}</span></div>
-    <h3>${item.name}</h3><div class="event-place">${item.area}</div><div class="event-extra"><span>Source : ${item.source}</span><a href="${item.url}" target="_blank" rel="noopener">Consulter ↗</a></div>
+    <h3>${item.name}</h3><div class="event-place">${item.area}</div><p class="event-description">${item.description}</p><div class="event-extra"><span>Source : ${item.source}</span><a href="${item.url}" target="_blank" rel="noopener">Consulter ↗</a></div>${item.socials?.length?`<div class="social-links">${item.socials.map(link=>`<a href="${link.url}" target="_blank" rel="noopener">${link.name} ↗</a>`).join('')}</div>`:''}
   </article>`).join('') || '<div class="no-results">Aucune source ne correspond à cette recherche.</div>';
 }
 
@@ -89,7 +92,7 @@ document.querySelector('#run-search').addEventListener('click',()=>{
   renderEvents(); document.querySelector('#tournois').scrollIntoView({behavior:'smooth'});
 });
 document.querySelector('#share-button').addEventListener('click',async()=>{
-  try { if(navigator.share) await navigator.share({title:'SBC — Le monde des fléchettes',url:location.href}); else {await navigator.clipboard.writeText(location.href);toast('Lien SBC copié.');} }
+  try { if(navigator.share) await navigator.share({title:'Sullias Bull Club — Le monde des fléchettes',url:location.href}); else {await navigator.clipboard.writeText(location.href);toast('Lien Sullias Bull Club copié.');} }
   catch { toast('Tu peux partager SBC depuis le menu du navigateur.'); }
 });
 window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();pendingInstall=event;document.querySelector('#install-button').hidden=false;});

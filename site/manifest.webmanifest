@@ -1,7 +1,7 @@
 {
   "id": "./",
-  "name": "SBC — Le monde des fléchettes",
-  "short_name": "SBC",
+  "name": "Sullias Bull Club — Le monde des fléchettes",
+  "short_name": "Sullias Bull Club",
   "description": "Actualités, compétitions, scores et bons plans darts.",
   "lang": "fr-FR",
   "start_url": "./",
@@ -9,5 +9,8 @@
   "display": "standalone",
   "background_color": "#f2ede3",
   "theme_color": "#0d1c2f",
-  "icons": [{"src":"./assets/sbc-icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+  "icons": [
+    {"src":"./assets/sbc-app-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
+    {"src":"./assets/sbc-app-512.png","sizes":"512x512","type":"image/png","purpose":"any"}
+  ]
 }

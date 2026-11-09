@@ -15,8 +15,6 @@
 .search-button{background:#182c45}
 .hero{background-image:linear-gradient(90deg,rgba(5,11,20,.96) 0%,rgba(7,15,25,.86) 43%,rgba(7,15,25,.45) 100%),url('./assets/sbc-background.jpg');background-size:cover;background-position:center 57%}
 .hero-glow{background:radial-gradient(ellipse,#d4a84925 0%,transparent 68%)}
-.hero-crest{position:absolute;z-index:1;right:max(8%,calc((100% - 1080px)/2));top:50%;transform:translateY(-50%);width:min(29vw,300px);height:270px;padding:7px;border:1px solid #d4a8498a;border-radius:16px;background:#04080ebd;box-shadow:0 16px 50px #0008}
-.hero-crest img{width:100%;height:100%;display:block;object-fit:contain}
 .hero-foot{border-color:#d4a84955;color:#d0c6b3}
 .eyebrow,.section-kicker{color:#806332}
 .eyebrow{color:#e0b856}
@@ -45,5 +43,9 @@
 .bottom-nav a.selected span{color:#9b742c}
 footer{background:#081629}
 footer .club-logo{width:38px;height:36px}
-@media(max-width:850px){.hero-crest{right:4%;width:250px;height:230px;opacity:.88}}
-@media(max-width:600px){.topbar{padding:0 4%}.club-logo{width:41px;height:39px}.brand-mark{font-size:24px}.brand-sub{font-size:6px;letter-spacing:.7px}.hero{background-position:61% center;min-height:575px}.hero-copy{max-width:90%}.hero-crest{top:auto;bottom:44px;right:5%;transform:none;width:165px;height:152px;padding:4px;border-radius:11px;background:#04080ebf}.hero-foot{left:6%;right:6%;z-index:2}.hero h1 em{color:#f1ca6d}footer .club-logo{width:33px;height:31px}}
+.brand-mark{font-size:clamp(14px,1.55vw,19px);letter-spacing:-.6px;white-space:nowrap}
+.brand-sub{font-size:7px;letter-spacing:1px}
+.event-description{font-size:10px;line-height:1.55;color:#6f6a60;margin:8px 0 0}
+.social-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.social-links a{font-size:8px;font-weight:700;color:#806328}
+@media(max-width:600px){.topbar{padding:0 4%}.brand{gap:6px}.club-logo{width:36px;height:36px}.brand-mark{font-size:13px;letter-spacing:-.45px}.brand-sub{font-size:5px;letter-spacing:.55px}.hero{background-position:61% center;min-height:575px}.hero-copy{max-width:90%}.hero-foot{left:6%;right:6%;z-index:2}.hero h1 em{color:#f1ca6d}footer .club-logo{width:33px;height:31px}.event-description{font-size:9px}.social-links a{font-size:8px}}

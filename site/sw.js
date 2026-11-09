@@ -1,5 +1,5 @@
-const CACHE_NAME = 'sbc-shell-v1';
-const APP_SHELL = ['./', './index.html', './styles.css', './app.js', './manifest.webmanifest', './assets/sbc-icon.svg', './assets/sbc-logo.png', './assets/sbc-background.jpg', './sources.html'];
+const CACHE_NAME = 'sullias-bull-club-shell-v2';
+const APP_SHELL = ['./', './index.html', './styles.css', './app.js', './manifest.webmanifest', './assets/sbc-app-192.png', './assets/sbc-app-512.png', './assets/sbc-logo.png', './assets/sbc-background.jpg', './sources.html'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)));
   self.skipWaiting();
