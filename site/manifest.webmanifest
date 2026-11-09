@@ -1,0 +1,13 @@
+{
+  "id": "./",
+  "name": "SBC — Le monde des fléchettes",
+  "short_name": "SBC",
+  "description": "Actualités, compétitions, scores et bons plans darts.",
+  "lang": "fr-FR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f2ede3",
+  "theme_color": "#0d1c2f",
+  "icons": [{"src":"./assets/sbc-icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
