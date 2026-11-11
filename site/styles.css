@@ -121,3 +121,7 @@ footer{background:rgba(8,22,41,.94)}
 .club-list[hidden]{display:none}
 .club-search-hint{margin:12px 0 0;padding:15px 18px;border:1px dashed #c7bdab;border-radius:8px;color:#786f62;background:rgba(255,255,255,.55);font-size:11px;line-height:1.6}
 @media(max-width:600px){.club-search-hint{font-size:10px;padding:13px 14px}}
+/* Tournois : recherche compacte, résultats à la demande */
+#event-filters,.event-submit,.event-footnote{display:none}
+.event-grid[hidden]{display:none}
+.event-hint{margin:10px 0 0;color:#786f62;font-size:10px;line-height:1.5}
