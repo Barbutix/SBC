@@ -8,7 +8,7 @@ const newsSources = [
 ];
 
 const eventSources = [
-  {name:'Calendrier FFD, ligues et comités',format:'Acier',category:'Fédéral / circuit',area:'France · calendrier officiel par club et par date',description:'Opens fédéraux, événements de ligue et de comité, avec le club et la ville hôtes.',url:'https://compet.dartshub.fr/',source:'DartsHub',departmentSearch:true},
+  {name:'DartsHub · calendrier fédéral',format:'Acier',category:'Fédéral / circuit',area:'France · compétitions FFD, ligues et comités',description:'Calendrier des opens fédéraux et compétitions de ligues et de comités, avec le club et la ville hôtes.',url:'https://compet.dartshub.fr/',source:'DartsHub',departmentSearch:true},
   {name:'DartsMap · carte des tournois',format:'Acier + Soft-tip',category:'Club / loisir',area:'France · recherche par région, ville et date',description:'Calendrier collaboratif qui rassemble tournois, clubs et bars; les organisateurs peuvent proposer leurs événements.',url:'https://dartsmap.fr/',source:'DartsMap',departmentSearch:true},
   {name:'Ti an Darts · affiches par mois et département',format:'Soft-tip',category:'Club / loisir',area:'France · affiches classées par département',description:'Relais régulier d’affiches de tournois électroniques, reprises depuis les réseaux Univers Darts.',url:'https://tiandarts.fr/tournois-flechettes-electros/',source:'Ti an Darts',departmentSearch:true,socials:[{name:'Facebook · Univers Darts',url:'https://www.facebook.com/groups/869524631311158/'},{name:'Instagram · Univers Darts',url:'https://www.instagram.com/universdarts/'}]},
   {name:'Calendrier° · filtre par département',format:'Acier + Soft-tip',category:'Club / loisir',area:'France · départements 01 à 95, 2A et 2B',description:'Calendrier communautaire avec filtres par discipline, dates et département; chacun peut y proposer un tournoi.',url:'https://calendrier.tournois-apps.com/',source:'Tournois°',departmentSearch:true},
@@ -27,12 +27,17 @@ const featuredProducts = [
 let activeNewsFilter = 'Tout';
 let activeEventFilter = 'Tous';
 let selectedFormats = ['Acier','Soft-tip'];
+let clubData = [];
+let visibleClubLimit = 50;
 let pendingInstall;
 
 const formatClass = format => format === 'Soft-tip' ? 'soft' : format === 'Média' ? 'media' : '';
 const newsGrid = document.querySelector('#news-grid');
 const eventGrid = document.querySelector('#event-grid');
 const productGrid = document.querySelector('#product-grid');
+const clubList = document.querySelector('#club-list');
+const clubCount = document.querySelector('#club-count');
+const clubMore = document.querySelector('#club-more');
 
 function renderNews(){
   const rows = newsSources.filter(item => {
@@ -68,12 +73,54 @@ function renderProducts(){
   </article>`).join('');
 }
 
+const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+const normalizeSearch = value => String(value ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('fr').trim();
+
+function renderClubs(){
+  const query = document.querySelector('#club-search').value.trim();
+  const compactQuery = query.replace(/\s/g,'').toUpperCase();
+  const departmentQuery = /^(?:\d{1,3}|2A|2B)$/.test(compactQuery)
+    ? (compactQuery.length === 1 ? compactQuery.padStart(2,'0') : compactQuery)
+    : '';
+  const normalized = normalizeSearch(query);
+  const rows = clubData.filter(item => {
+    if (!query) return true;
+    if (departmentQuery) return item.department === departmentQuery;
+    const text = normalizeSearch([item.name,item.city,item.postalCode,item.department,item.departmentName,item.address,item.committee,item.type,item.discipline].filter(Boolean).join(' '));
+    return text.includes(normalized);
+  });
+  clubCount.textContent = `${rows.length} lieu${rows.length === 1 ? '' : 'x'}${query ? ` sur ${clubData.length}` : ''}`;
+  const shown = rows.slice(0,visibleClubLimit);
+  clubList.innerHTML = shown.map(item => {
+    const department = `${escapeHTML(item.department || '—')}${item.departmentName ? ` · ${escapeHTML(item.departmentName)}` : ''}`;
+    const location = [item.city,item.postalCode].filter(Boolean).map(escapeHTML).join(' · ');
+    const details = [item.type,item.discipline].filter(Boolean).map(escapeHTML).join(' · ');
+    const sources = (item.sources || []).map(source => `<span class="club-source-tag">${escapeHTML(source.name)}</span>`).join('');
+    const contact = /^https:\/\//i.test(item.contact || '') ? `<a class="club-entry-link" href="${escapeHTML(item.contact)}" target="_blank" rel="noopener">Fiche / contact ↗</a>` : '';
+    return `<article class="club-entry"><div class="club-entry-main"><span class="club-department">${department}</span><h3>${escapeHTML(item.name)}</h3><p class="club-location">${location || 'France'}${item.address ? ` · ${escapeHTML(item.address)}` : ''}</p>${details ? `<span class="club-detail">${details}</span>` : ''}</div><div class="club-entry-aside"><div class="club-source-tags">${sources}</div>${contact}</div></article>`;
+  }).join('') || '<p class="no-results">Aucun club ne correspond à cette recherche. Essaie un code de département comme 44, 2A ou 974.</p>';
+  clubMore.hidden = rows.length <= visibleClubLimit;
+  clubMore.textContent = `Afficher les ${Math.min(50,rows.length-visibleClubLimit)} lieux suivants`;
+}
+
+async function loadClubs(){
+  try {
+    const response = await fetch('./clubs.json');
+    if (!response.ok) throw new Error('Annuaire indisponible');
+    clubData = await response.json();
+    renderClubs();
+  } catch {
+    clubCount.textContent = 'Annuaire momentanément indisponible';
+    clubList.innerHTML = '<p class="no-results">La liste des clubs n’a pas pu être chargée. Réessaie dans quelques instants.</p>';
+  }
+}
+
 function toast(message){
   const node = document.querySelector('#toast'); node.textContent = message; node.classList.add('show');
   clearTimeout(toast.timer); toast.timer = setTimeout(()=>node.classList.remove('show'),2600);
 }
 
-renderNews(); renderEvents(); renderProducts();
+renderNews(); renderEvents(); renderProducts(); loadClubs();
 document.querySelectorAll('#news-filters .pill').forEach(button=>button.addEventListener('click',()=>{
   document.querySelector('#news-filters .active')?.classList.remove('active'); button.classList.add('active'); activeNewsFilter=button.dataset.filter; renderNews();
 }));
@@ -81,6 +128,8 @@ document.querySelectorAll('#event-filters .pill').forEach(button=>button.addEven
   document.querySelector('#event-filters .active')?.classList.remove('active'); button.classList.add('active'); activeEventFilter=button.dataset.eventFilter; renderEvents();
 }));
 document.querySelector('#department-search').addEventListener('input',renderEvents);
+document.querySelector('#club-search').addEventListener('input',()=>{visibleClubLimit=50;renderClubs();});
+clubMore.addEventListener('click',()=>{visibleClubLimit+=50;renderClubs();});
 document.querySelector('#discipline-toggle').addEventListener('click',()=>document.querySelector('#discipline-dialog').showModal());
 document.querySelector('#save-disciplines').addEventListener('click',()=>{
   selectedFormats=[...document.querySelectorAll('.discipline-options input:checked')].map(input=>input.value);
