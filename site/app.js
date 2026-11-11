@@ -74,7 +74,7 @@ function renderProducts(){
 }
 
 const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-const normalizeSearch = value => String(value ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('fr').trim();
+const normalizeSearch = value => String(value ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('fr').trim(); const loadFacebookCandidates = async () => { try { const response = await fetch('./event-candidates.json',{cache:'no-store'}); if (!response.ok) return; const data = await response.json(); const posts = (data.facebookPosts || []).filter(post => post.status === 'pending').slice(0,6); const section = document.querySelector('#facebook-candidates'); const grid = document.querySelector('#facebook-post-grid'); if (!posts.length || !section || !grid) return; section.hidden = false; grid.innerHTML = posts.map(post => { const date = post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('fr-FR') : 'Publication récente'; const url = /^https:\/\//i.test(post.url || '') ? post.url : '#'; return `<article class="event-card"><div class="event-card-head"><span class="event-type community">FACEBOOK · À VÉRIFIER</span><span class="verify-state">${escapeHTML(date)}</span></div><p class="event-description">${escapeHTML(post.message || 'Annonce à vérifier')}</p><div class="event-extra"><span>Page Facebook du club</span><a href="${escapeHTML(url)}" target="_blank" rel="noopener">Ouvrir la publication ↗</a></div></article>`; }).join(''); } catch { /* Le fichier est créé lors du scan horaire. */ } };
 
 function renderClubs(){
   const query = document.querySelector('#club-search').value.trim(); const hint = document.querySelector('#club-hint'); if (!query) { clubCount.textContent = `${clubData.length} lieux répertoriés`; hint.hidden = false; clubList.hidden = true; clubList.innerHTML = ''; clubMore.hidden = true; return; } hint.hidden = true; clubList.hidden = false;
@@ -120,7 +120,7 @@ function toast(message){
   clearTimeout(toast.timer); toast.timer = setTimeout(()=>node.classList.remove('show'),2600);
 }
 
-renderNews(); renderEvents(); renderProducts(); loadClubs();
+renderNews(); renderEvents(); renderProducts(); loadClubs(); loadFacebookCandidates();
 document.querySelectorAll('#news-filters .pill').forEach(button=>button.addEventListener('click',()=>{
   document.querySelector('#news-filters .active')?.classList.remove('active'); button.classList.add('active'); activeNewsFilter=button.dataset.filter; renderNews();
 }));
