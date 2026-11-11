@@ -50,4 +50,21 @@ footer .club-logo{width:38px;height:36px}
 .social-links a{font-size:8px;font-weight:700;color:#806328}
 @media(max-width:600px){.topbar{padding:0 4%}.brand{gap:6px}.club-logo{width:36px;height:36px}.brand-mark{font-size:13px;letter-spacing:-.45px}.brand-sub{font-size:5px;letter-spacing:.55px}.hero{background-position:61% center;min-height:575px}.hero-copy{max-width:90%}.hero-foot{left:6%;right:6%;z-index:2}.hero h1 em{color:#f1ca6d}footer .club-logo{width:33px;height:31px}.event-description{font-size:9px}.social-links a{font-size:8px}}
 
+.quick-nav{grid-template-columns:repeat(4,1fr)}
+.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}
+.product-card{overflow:hidden;background:#fff;border:1px solid #e3ddcf;border-radius:12px;display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s}
+.product-card:hover{transform:translateY(-3px);box-shadow:0 11px 26px #17211712}
+.product-visual{height:190px;padding:15px;background:#fff;display:grid;place-items:center}
+.product-visual img{width:100%;height:100%;object-fit:contain}
+.product-content{padding:17px;display:flex;flex:1;flex-direction:column}
+.product-kind{color:#87652e;font-size:8px;font-weight:700;letter-spacing:.8px;text-transform:uppercase}
+.product-content h3{font:600 17px/1.2 var(--display);margin:9px 0}
+.product-content p{color:#726d63;font-size:10px;line-height:1.6;margin:0 0 14px}
+.product-shop{font-size:9px;color:#8a8173;margin-top:auto}
+.product-link{display:block;margin-top:13px;padding:10px 12px;background:#0d1c2f;color:#f2ede3;border-radius:5px;font-size:9px;font-weight:700;text-align:center}
+.product-link span{color:#e0b856;margin-left:5px}
+.product-note{margin:16px 0 0;color:#786f62;font-size:9px;line-height:1.5}
+@media(max-width:850px){.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.product-grid{grid-template-columns:1fr;gap:10px}.product-visual{height:170px}.product-content{padding:15px}}
+
 .event-submit{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:20px;padding:18px 20px;background:#f7f3e9;border:1px solid #ddd5c6;border-radius:10px}.event-submit h3{font:600 16px var(--display);margin:6px 0}.event-submit p{font-size:10px;line-height:1.5;color:#786f62;margin:0}.event-submit>a{white-space:nowrap;background:#0d1c2f;color:#f2ede3;padding:11px 14px;border-radius:5px;font-size:9px;font-weight:700}.event-submit>a span{color:#e0b856;margin-left:8px}@media(max-width:600px){.event-submit{align-items:flex-start;flex-direction:column;padding:15px}.event-submit>a{align-self:stretch;text-align:center}}

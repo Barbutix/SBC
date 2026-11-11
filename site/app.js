@@ -18,6 +18,12 @@ const eventSources = [
   {name:'Tournois de clubs et associations',format:'Acier + Soft-tip',category:'Club / loisir',area:'France · annonces et inscriptions associatives',description:'Inscriptions créées par les associations organisatrices; vérifie que l’annonce concerne bien les fléchettes.',url:'https://www.helloasso.com/',source:'HelloAsso'}
 ];
 
+const featuredProducts = [
+  {name:'Harrows Supergrip 23 g',shop:'Olie’s Darts',kind:'Fléchettes acier · 90 % tungstène',description:'Jeu complet avec tiges, ailettes et mini étui. Barrels de 50 mm.',image:'https://www.olies-darts.com/12191-large_default/supergrip-en-23g.jpg',url:'https://www.olies-darts.com/jeux-harrows/515-supergrip-en-23g.html'},
+  {name:'Mission Torus 120°',shop:'Pleine Bull',kind:'Éclairage de cible',description:'Anneau LED 120° pour éclairer la cible et limiter les zones d’ombre.',image:'https://pleinebull.fr/cdn/shop/files/eclairage-cible-mission-torus-120deg-noir.webp?v=1778159145&width=1780',url:'https://pleinebull.fr/products/eclairage-cible-mission-torus-120deg-noir'},
+  {name:'KOTO Royal 580',shop:'Dartshopper',kind:'Cible électronique · soft-tip',description:'Jusqu’à 8 joueurs, 36 jeux et 580 variations. Fléchettes à pointe plastique uniquement.',image:'https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-lrkuDwg2-zoom.jpg',url:'https://www.dartshopper.fr/cible-flechette-electronique-koto-royal-580/'}
+];
+
 let activeNewsFilter = 'Tout';
 let activeEventFilter = 'Tous';
 let selectedFormats = ['Acier','Soft-tip'];
@@ -26,6 +32,7 @@ let pendingInstall;
 const formatClass = format => format === 'Soft-tip' ? 'soft' : format === 'Média' ? 'media' : '';
 const newsGrid = document.querySelector('#news-grid');
 const eventGrid = document.querySelector('#event-grid');
+const productGrid = document.querySelector('#product-grid');
 
 function renderNews(){
   const rows = newsSources.filter(item => {
@@ -54,12 +61,19 @@ function renderEvents(){
   </article>`).join('') || '<div class="no-results">Aucune source ne correspond à cette recherche.</div>';
 }
 
+function renderProducts(){
+  productGrid.innerHTML = featuredProducts.map(item => `<article class="product-card">
+    <a class="product-visual" href="${item.url}" target="_blank" rel="noopener" aria-label="Voir ${item.name} chez ${item.shop}"><img src="${item.image}" alt="${item.name}" loading="lazy" referrerpolicy="no-referrer" onerror="this.hidden=true"></a>
+    <div class="product-content"><span class="product-kind">${item.kind}</span><h3>${item.name}</h3><p>${item.description}</p><span class="product-shop">${item.shop}</span><a class="product-link" href="${item.url}" target="_blank" rel="noopener">Consulter chez ${item.shop} <span>↗</span></a></div>
+  </article>`).join('');
+}
+
 function toast(message){
   const node = document.querySelector('#toast'); node.textContent = message; node.classList.add('show');
   clearTimeout(toast.timer); toast.timer = setTimeout(()=>node.classList.remove('show'),2600);
 }
 
-renderNews(); renderEvents();
+renderNews(); renderEvents(); renderProducts();
 document.querySelectorAll('#news-filters .pill').forEach(button=>button.addEventListener('click',()=>{
   document.querySelector('#news-filters .active')?.classList.remove('active'); button.classList.add('active'); activeNewsFilter=button.dataset.filter; renderNews();
 }));
