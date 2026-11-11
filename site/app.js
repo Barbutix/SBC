@@ -52,7 +52,7 @@ function renderNews(){
 }
 
 function renderEvents(){
-  const query = document.querySelector('#department-search').value.trim().toLocaleLowerCase('fr');
+  const query = document.querySelector('#department-search').value.trim().toLocaleLowerCase('fr'); if (!query) { eventGrid.hidden = true; eventGrid.innerHTML = ''; return; } eventGrid.hidden = false;
   const departmentCode = /^(?:\d{2}|2a|2b|97[1-6])$/.test(query.replace(/\s/g,''));
   const rows = eventSources.filter(item => {
     const formatMatch = item.format === 'Acier + Soft-tip' || selectedFormats.includes(item.format);
