@@ -115,3 +115,9 @@ footer{background:rgba(8,22,41,.94)}
 .sofascore-unavailable>a{flex-shrink:0;padding:12px 15px;background:#d4a849;color:#0d1c2f;border-radius:5px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.6px}
 .sofascore-unavailable>a span{margin-left:8px}
 @media(max-width:640px){.sofascore-unavailable{align-items:flex-start;flex-direction:column;padding:18px}.sofascore-unavailable>a{align-self:stretch;text-align:center}}
+
+
+/* Club search: keep results hidden until a query is entered */
+.club-list[hidden]{display:none}
+.club-search-hint{margin:12px 0 0;padding:15px 18px;border:1px dashed #c7bdab;border-radius:8px;color:#786f62;background:rgba(255,255,255,.55);font-size:11px;line-height:1.6}
+@media(max-width:600px){.club-search-hint{font-size:10px;padding:13px 14px}}
