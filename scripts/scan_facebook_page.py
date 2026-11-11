@@ -32,12 +32,11 @@ def fetch_posts():
         "fields": "id,message,created_time,permalink_url",
         "limit": "100",
         "since": str(since),
-        "access_token": PAGE_TOKEN,
     }
     url = f"https://graph.facebook.com/{API_VERSION}/{urllib.parse.quote(PAGE_ID, safe='')}/published_posts?{urllib.parse.urlencode(params)}"
     posts = []
     for _ in range(10):
-        request = urllib.request.Request(url, headers={"User-Agent": "SBC-Tournament-Scout/1.0"})
+        request = urllib.request.Request(url, headers={"User-Agent": "SBC-Tournament-Scout/1.0", "Authorization": f"Bearer {PAGE_TOKEN}"})
         try:
             with urllib.request.urlopen(request, timeout=30) as response:
                 payload = json.loads(response.read().decode("utf-8"))
