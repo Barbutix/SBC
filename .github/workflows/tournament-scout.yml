@@ -14,6 +14,11 @@ jobs:
         with:
           python-version: '3.12'
       - run: python scripts/scan_tournaments.py
+      - name: Lire les publications de la Page Facebook
+        env:
+          SBC_FB_PAGE_ID: ${{ vars.SBC_FB_PAGE_ID }}
+          SBC_FB_PAGE_ACCESS_TOKEN: ${{ secrets.SBC_FB_PAGE_ACCESS_TOKEN }}
+        run: python scripts/scan_facebook_page.py
       - name: Publier la file de validation
         run: |
           git config user.name 'github-actions[bot]'
