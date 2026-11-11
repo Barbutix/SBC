@@ -20,7 +20,7 @@ def walk(x):
   typ=x.get('@type',[]); typ=typ if isinstance(typ,list) else [typ]
   if 'Event' in typ: yield x
   for k in ('@graph','itemListElement'): yield from walk(x.get(k,[]))
-def clean(x): return re.sub(r'\\s+',' ',str(x or '')).strip()
+def clean(x): return re.sub(r'\s+',' ',str(x or '')).strip()
 def main():
  old=json.loads(OUT.read_text()) if OUT.exists() else {'events':[]}; events={e.get('url'):e for e in old.get('events',[])}; errors=[]
  for name,url in SOURCES:
@@ -39,6 +39,6 @@ def main():
      loc=e.get('location') or {}; addr=loc.get('address',{}) if isinstance(loc,dict) else {}; link=clean(e.get('url')) or url
      events.setdefault(link,{'name':clean(e.get('name')) or 'Tournoi de fléchettes','date':d,'city':clean(addr.get('addressLocality')) if isinstance(addr,dict) else clean(loc),'department':'','format':'Acier + Soft-tip','url':link,'source':name,'status':'pending'})
   except Exception as ex: errors.append({'source':name,'error':str(ex)[:180]})
- OUT.parent.mkdir(exist_ok=True); OUT.write_text(json.dumps({'updatedAt':datetime.now(timezone.utc).isoformat(),'events':sorted(events.values(),key=lambda e:e.get('date','')),'sourceErrors':errors},ensure_ascii=False,indent=2)+'\\n')
+ OUT.parent.mkdir(exist_ok=True); OUT.write_text(json.dumps({'updatedAt':datetime.now(timezone.utc).isoformat(),'events':sorted(events.values(),key=lambda e:e.get('date','')),'sourceErrors':errors},ensure_ascii=False,indent=2)+'')
  print('Événements candidats:',len(events),'sources en erreur:',len(errors))
 if __name__=='__main__': main()
