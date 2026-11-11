@@ -77,7 +77,7 @@ const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&
 const normalizeSearch = value => String(value ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('fr').trim();
 
 function renderClubs(){
-  const query = document.querySelector('#club-search').value.trim();
+  const query = document.querySelector('#club-search').value.trim(); const hint = document.querySelector('#club-hint'); if (!query) { clubCount.textContent = `${clubData.length} lieux répertoriés`; hint.hidden = false; clubList.hidden = true; clubList.innerHTML = ''; clubMore.hidden = true; return; } hint.hidden = true; clubList.hidden = false;
   const compactQuery = query.replace(/\s/g,'').toUpperCase();
   const departmentQuery = /^(?:\d{1,3}|2A|2B)$/.test(compactQuery)
     ? (compactQuery.length === 1 ? compactQuery.padStart(2,'0') : compactQuery)
@@ -110,7 +110,7 @@ async function loadClubs(){
     clubData = await response.json();
     renderClubs();
   } catch {
-    clubCount.textContent = 'Annuaire momentanément indisponible';
+    clubCount.textContent = 'Annuaire momentanément indisponible'; const hint = document.querySelector('#club-hint'); hint.textContent = 'L’annuaire des clubs est momentanément indisponible. Réessaie dans quelques instants.'; hint.hidden = false; clubList.hidden = true; clubMore.hidden = true;
     clubList.innerHTML = '<p class="no-results">La liste des clubs n’a pas pu être chargée. Réessaie dans quelques instants.</p>';
   }
 }
