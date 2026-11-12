@@ -11,6 +11,7 @@ const eventSources = [
   {name:'DartsHub · calendrier fédéral',format:'Acier',category:'Fédéral / circuit',area:'France · compétitions FFD, ligues et comités',description:'Calendrier des opens fédéraux et compétitions de ligues et de comités, avec le club et la ville hôtes.',url:'https://compet.dartshub.fr/',source:'DartsHub',departmentSearch:true},
   {name:'DartsMap · carte des tournois',format:'Acier + Soft-tip',category:'Club / loisir',area:'France · recherche par région, ville et date',description:'Calendrier collaboratif qui rassemble tournois, clubs et bars; les organisateurs peuvent proposer leurs événements.',url:'https://dartsmap.fr/',source:'DartsMap',departmentSearch:true},
   {name:'Ti an Darts · affiches par mois et département',format:'Soft-tip',category:'Club / loisir',area:'France · affiches classées par département',description:'Relais régulier d’affiches de tournois électroniques, reprises depuis les réseaux Univers Darts.',url:'https://tiandarts.fr/tournois-flechettes-electros/',source:'Ti an Darts',departmentSearch:true,socials:[{name:'Facebook · Univers Darts',url:'https://www.facebook.com/groups/869524631311158/'},{name:'Instagram · Univers Darts',url:'https://www.instagram.com/universdarts/'}]},
+  {name:'Ti an Darts · affiches acier',format:'Acier',category:'Club / loisir',area:'France · affiches classées par mois et département',description:'Affiches de tournois traditionnels, avec un relais des annonces Univers Darts.',url:'https://tiandarts.fr/tournois-a-venir/',source:'Ti an Darts'},
   {name:'Calendrier° · filtre par département',format:'Acier + Soft-tip',category:'Club / loisir',area:'France · départements 01 à 95, 2A et 2B',description:'Calendrier communautaire avec filtres par discipline, dates et département; chacun peut y proposer un tournoi.',url:'https://calendrier.tournois-apps.com/',source:'Tournois°',departmentSearch:true},
   {name:'Dartzen · calendrier et propositions de clubs',format:'Acier',category:'Club / loisir',area:'France · événements fédéraux et annonces de clubs',description:'Calendrier national et formulaire pour proposer un tournoi de club à vérifier avant publication.',url:'https://dartzen.com/tournois-flechettes-a-venir-france/',source:'Dartzen'},
   {name:'Championnats Phoenix',format:'Soft-tip',category:'Fédéral / circuit',area:'France · ligues et poules',description:'Calendriers et classements des championnats Phoenix, mis à jour chaque nuit.',url:'https://phoenixfrancecompetition.fr/calendriers/',source:'Phoenix France'},
@@ -47,13 +48,10 @@ function renderNews(){
 }
 
 function renderEvents(){
-  const query = document.querySelector('#department-search').value.trim().toLocaleLowerCase('fr'); if (!query) { eventGrid.hidden = true; eventGrid.innerHTML = ''; return; } eventGrid.hidden = false;
-  const departmentCode = /^(?:\d{2}|2a|2b|97[1-6])$/.test(query.replace(/\s/g,''));
   const rows = eventSources.filter(item => {
     const formatMatch = item.format === 'Acier + Soft-tip' || selectedFormats.includes(item.format);
     const categoryMatch = activeEventFilter === 'Tous' || item.category === activeEventFilter;
-    const queryMatch = !query || (departmentCode && item.departmentSearch) || `${item.area} ${item.description} ${item.name} ${item.source}`.toLocaleLowerCase('fr').includes(query);
-    return formatMatch && categoryMatch && queryMatch;
+    return formatMatch && categoryMatch;
   });
   eventGrid.innerHTML = rows.map(item => `<article class="event-card">
     <div class="event-card-head"><span class="event-type ${item.category === 'Club / loisir' ? 'community' : ''}">${item.category}</span><span class="verify-state">${item.format}</span></div>
@@ -68,7 +66,8 @@ function renderProducts(){
 }
 
 const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-const normalizeSearch = value => String(value ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('fr').trim(); const loadFacebookCandidates = async () => { try { const response = await fetch('./event-candidates.json',{cache:'no-store'}); if (!response.ok) return; const data = await response.json(); const posts = (data.facebookPosts || []).filter(post => post.status === 'pending').slice(0,6); const section = document.querySelector('#facebook-candidates'); const grid = document.querySelector('#facebook-post-grid'); if (!posts.length || !section || !grid) return; section.hidden = false; grid.innerHTML = posts.map(post => { const date = post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('fr-FR') : 'Publication récente'; const url = /^https:\/\//i.test(post.url || '') ? post.url : '#'; return `<article class="event-card"><div class="event-card-head"><span class="event-type community">FACEBOOK · À VÉRIFIER</span><span class="verify-state">${escapeHTML(date)}</span></div><p class="event-description">${escapeHTML(post.message || 'Annonce à vérifier')}</p><div class="event-extra"><span>Page Facebook du club</span><a href="${escapeHTML(url)}" target="_blank" rel="noopener">Ouvrir la publication ↗</a></div></article>`; }).join(''); } catch { /* Le fichier est créé lors du scan horaire. */ } };
+const normalizeSearch = value => String(value ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('fr').trim();
+const tournamentSearch = window.SBCTournamentSearch.mount(document.querySelector('#tournament-search'));
 
 function renderClubs(){
   const query = document.querySelector('#club-search').value.trim(); const hint = document.querySelector('#club-hint'); if (!query) { clubCount.textContent = `${clubData.length} lieux répertoriés`; hint.hidden = false; clubList.hidden = true; clubList.innerHTML = ''; clubMore.hidden = true; return; } hint.hidden = true; clubList.hidden = false;
@@ -114,14 +113,13 @@ function toast(message){
   clearTimeout(toast.timer); toast.timer = setTimeout(()=>node.classList.remove('show'),2600);
 }
 
-renderNews(); renderEvents(); renderProducts(); loadClubs(); loadFacebookCandidates();
+renderNews(); renderEvents(); renderProducts(); loadClubs();
 document.querySelectorAll('#news-filters .pill').forEach(button=>button.addEventListener('click',()=>{
   document.querySelector('#news-filters .active')?.classList.remove('active'); button.classList.add('active'); activeNewsFilter=button.dataset.filter; renderNews();
 }));
 document.querySelectorAll('#event-filters .pill').forEach(button=>button.addEventListener('click',()=>{
   document.querySelector('#event-filters .active')?.classList.remove('active'); button.classList.add('active'); activeEventFilter=button.dataset.eventFilter; renderEvents();
 }));
-document.querySelector('#department-search').addEventListener('input',renderEvents);
 document.querySelector('#club-search').addEventListener('input',()=>{visibleClubLimit=50;renderClubs();});
 clubMore.addEventListener('click',()=>{visibleClubLimit+=50;renderClubs();});
 document.querySelector('#discipline-toggle').addEventListener('click',()=>document.querySelector('#discipline-dialog').showModal());
@@ -135,7 +133,7 @@ document.querySelector('#run-search').addEventListener('click',()=>{
   const term=document.querySelector('#global-search').value.trim();
   if(!term)return;
   document.querySelector('#department-search').value=term; activeEventFilter='Tous'; document.querySelectorAll('#event-filters .pill').forEach(p=>p.classList.toggle('active',p.dataset.eventFilter==='Tous'));
-  renderEvents(); document.querySelector('#tournois').scrollIntoView({behavior:'smooth'});
+  tournamentSearch.update(); renderEvents(); document.querySelector('#tournois').scrollIntoView({behavior:'smooth'});
 });
 document.querySelector('#share-button').addEventListener('click',async()=>{
   try { if(navigator.share) await navigator.share({title:'Sullias Bull Club — Le monde des fléchettes',url:location.href}); else {await navigator.clipboard.writeText(location.href);toast('Lien Sullias Bull Club copié.');} }

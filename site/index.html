@@ -38,10 +38,40 @@
 
     <section class="event-section" id="tournois">
       <div class="section-top"><div><span class="section-kicker">OFFICIEL, CLUBS ET RÉSEAUX SOCIAUX</span><h2>Calendriers & annonces, <em>près de chez vous.</em></h2></div><span class="big-dept">FR / 101</span></div>
-      <div class="event-tools"><label class="search-field"><span>⌕</span><input id="department-search" inputmode="search" placeholder="Département (ex. 44) ou source" aria-label="Filtrer les calendriers et sources de tournois par département"></label><div class="filter-row compact" id="event-filters"><button class="pill active" data-event-filter="Tous">Tous</button><button class="pill" data-event-filter="Fédéral / circuit">Fédéral / circuit</button><button class="pill" data-event-filter="Club / loisir">Club / loisir</button></div></div>
-      <p class="event-hint" id="event-hint">Recherche par département ou source. Les annonces récentes repérées automatiquement sur la Page du club apparaîtront ci-dessous, à vérifier.</p><div id="event-grid" class="event-grid" hidden></div><div id="facebook-candidates" class="event-candidate-section" hidden><div class="section-top"><div><span class="section-kicker">VEILLE FACEBOOK · À VÉRIFIER</span><h3>Annonces repérées sur la Page du club</h3></div></div><div id="facebook-post-grid" class="event-grid"></div></div>
-      <div class="event-submit"><div><span class="section-kicker">UNE ANNONCE À PARTAGER ?</span><h3>Tu as vu un tournoi sur Facebook ?</h3><p>Envoie le lien public. L’annonce sera vérifiée avant ajout. Le formulaire GitHub demande un compte pour envoyer la proposition.</p></div><a href="https://github.com/Barbutix/SBC/issues/new?template=01-proposer-un-tournoi.yml" target="_blank" rel="noopener">Proposer un tournoi <span>↗</span></a></div>
-      <p class="event-footnote"><span>ⓘ</span> Une publication repérée est une piste, pas un tournoi confirmé. Vérifie les détails auprès de l’organisateur.</p>
+      <div class="tournament-search" id="tournament-search">
+        <span class="section-kicker">CHERCHER UNE ANNONCE</span>
+        <h3>Le prochain tournoi est peut-être sur Facebook.</h3>
+        <div class="tournament-search-fields">
+          <label for="department-search">Ville ou département
+            <input id="department-search" type="search" list="tournament-places" maxlength="120" placeholder="Loiret, 45, Orléans…" aria-describedby="tournament-search-help">
+          </label>
+          <label for="tournament-keywords">Mots-clés
+            <input id="tournament-keywords" type="search" value="tournoi" maxlength="120" placeholder="tournoi, open, doublette 2027…">
+          </label>
+        </div>
+        <datalist id="tournament-places"></datalist>
+        <div class="tournament-shortcuts" aria-label="Lieux rapides">
+          <button type="button" data-tournament-place="45">Loiret · 45</button>
+          <button type="button" data-tournament-place="18">Cher · 18</button>
+          <button type="button" data-tournament-place="41">Loir-et-Cher · 41</button>
+          <button type="button" data-tournament-place="">Toute la France</button>
+        </div>
+        <p class="tournament-query">Recherche : <strong id="tournament-query">tournoi fléchettes France</strong></p>
+        <button type="button" class="tournament-copy" id="copy-tournament-query">Copier la recherche</button>
+        <div class="tournament-search-links">
+          <a data-tournament-search="posts" href="https://www.facebook.com/search/posts/?q=tournoi%20fl%C3%A9chettes%20France" target="_blank" rel="noopener noreferrer">Publications Facebook <span>↗</span></a>
+          <a data-tournament-search="events" href="https://www.facebook.com/search/events/?q=tournoi%20fl%C3%A9chettes%20France" target="_blank" rel="noopener noreferrer">Événements Facebook <span>↗</span></a>
+          <a data-tournament-search="indexed" href="https://www.google.com/search?q=site%3Afacebook.com%20tournoi%20fl%C3%A9chettes%20France" target="_blank" rel="noopener noreferrer">Facebook via Google <span>↗</span></a>
+          <a data-tournament-search="web" href="https://www.google.com/search?q=tournoi%20fl%C3%A9chettes%20France" target="_blank" rel="noopener noreferrer">Tout le Web <span>↗</span></a>
+        </div>
+        <p id="tournament-search-help" class="tournament-help">Les résultats s’ouvrent dans un nouvel onglet. Facebook peut demander une connexion et afficher du contenu selon ton compte ; utilise ses filtres pour les publications récentes. Google retrouve uniquement ce qu’il a indexé. SBC n’importe pas ces résultats.</p>
+        <p class="tournament-help">Vérifie la date du tournoi sur l’affiche : une publication récente peut annoncer ou rappeler un événement déjà passé.</p>
+        <p class="tournament-help">Si Facebook n’ouvre pas la recherche, copie-la puis colle-la dans sa barre de recherche.</p>
+      </div>
+      <div class="tournament-calendar-heading"><h3>Consulter les calendriers et les affiches</h3><p>Ces liens ouvrent les sources nationales. Choisis ensuite ta zone et tes dates sur leur site.</p></div>
+      <div class="filter-row compact" id="event-filters"><button class="pill active" data-event-filter="Tous">Tous</button><button class="pill" data-event-filter="Fédéral / circuit">Fédéral / circuit</button><button class="pill" data-event-filter="Club / loisir">Club / loisir</button></div>
+      <div id="event-grid" class="event-grid"></div>
+      <div class="event-submit"><div><span class="section-kicker">UNE ANNONCE À PARTAGER ?</span><h3>Tu as trouvé un tournoi ?</h3><p>Propose le lien public pour vérification. Un compte GitHub est nécessaire pour envoyer la proposition.</p></div><a href="https://github.com/Barbutix/SBC/issues/new?template=01-proposer-un-tournoi.yml" target="_blank" rel="noopener noreferrer">Proposer un tournoi <span>↗</span></a></div>
     </section>
 
     <section class="section club-section" id="jouer">
@@ -91,6 +121,7 @@
   <div id="toast" role="status" aria-live="polite"></div>
   <script src="./products.js"></script>
   <script src="./product-carousel.js"></script>
+  <script src="./tournament-search.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
