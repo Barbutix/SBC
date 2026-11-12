@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sullias-bull-club-shell-v13';
+const CACHE_NAME = 'sullias-bull-club-shell-v14';
 const APP_SHELL = ['./', './index.html', './styles.css', './app.js', './products.js', './product-carousel.js', './clubs.json', './manifest.webmanifest', './assets/sbc-app-192.png', './assets/sbc-app-512.png', './assets/sbc-logo.png', './assets/sbc-background.jpg', './sources.html'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)));

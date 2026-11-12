@@ -4,6 +4,18 @@
   const DELAY = 5000;
   const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 
+  function renderPrice(product) {
+    if (!Number.isInteger(product.priceCents) || product.priceCents < 0 || product.priceCurrency !== 'EUR') {
+      return '<div class="product-price-block"><span class="product-price-unavailable">Prix à consulter chez le vendeur</span></div>';
+    }
+    const format = value => new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR'}).format(value/100);
+    const previous = Number.isInteger(product.previousPriceCents) && product.previousPriceCents > product.priceCents
+      ? `<del class="product-old-price" aria-label="Ancien prix affiché : ${escape(format(product.previousPriceCents))}">${escape(format(product.previousPriceCents))}</del>` : '';
+    const checked = /^\d{4}-\d{2}-\d{2}$/.test(product.priceCheckedAt || '')
+      ? product.priceCheckedAt.split('-').reverse().join('/') : '';
+    return `<div class="product-price-block"><div class="product-price-row"><strong class="product-price">${escape(format(product.priceCents))}</strong>${previous}</div><small class="product-price-note">${checked ? `Relevé le ${escape(checked)} · ` : ''}Hors livraison</small></div>`;
+  }
+
   // A fresh five-second delay starts after navigation or any temporary pause.
   function createController({count, onChange, setTimer = setTimeout, clearTimer = clearTimeout, paused = false}) {
     let index = 0;
@@ -49,7 +61,7 @@
       <header class="shop-carousel-header"><div><span class="product-kind">SÉLECTION BOUTIQUE</span><h3 id="shop-${escape(shop.id)}">${escape(shop.name)}</h3></div><a href="${escape(shop.url)}" target="_blank" rel="noopener noreferrer" aria-label="Visiter la boutique ${escape(shop.name)}">Boutique ↗</a></header>
       <div class="product-slides" aria-live="off">${shop.products.map((product,index) => `<article class="product-slide" role="group" aria-roledescription="diapositive" aria-label="${index+1} sur ${shop.products.length}" ${index?'hidden':''}>
         <a class="product-visual" href="${escape(product.url)}" target="_blank" rel="noopener noreferrer" aria-label="Voir ${escape(product.name)} chez ${escape(shop.name)}"><img src="${escape(product.image)}" alt="${escape(product.name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="product-image-fallback" hidden>Photo indisponible</span></a>
-        <div class="product-content"><span class="product-kind">${escape(product.kind)}</span><h4>${escape(product.name)}</h4><a class="product-link" href="${escape(product.url)}" target="_blank" rel="noopener noreferrer">Voir l’article <span>↗</span></a></div>
+        <div class="product-content"><span class="product-kind">${escape(product.kind)}</span><h4>${escape(product.name)}</h4>${renderPrice(product)}<a class="product-link" href="${escape(product.url)}" target="_blank" rel="noopener noreferrer">Voir l’article <span>↗</span></a></div>
       </article>`).join('')}</div>
       <div class="carousel-controls"><button type="button" data-carousel="previous" aria-label="Article précédent chez ${escape(shop.name)}">←</button><button type="button" data-carousel="pause" class="carousel-pause" aria-pressed="false">Pause</button><span class="carousel-count" aria-label="Article affiché">1 / ${shop.products.length}</span><button type="button" data-carousel="next" aria-label="Article suivant chez ${escape(shop.name)}">→</button></div>
     </section>`).join('');
@@ -105,5 +117,5 @@
     return {destroy() {cleanups.forEach(cleanup => cleanup());}};
   }
 
-  global.SBCProductCarousel = {mount, createController, delay: DELAY};
+  global.SBCProductCarousel = {mount, createController, renderPrice, delay: DELAY};
 })(typeof window === 'undefined' ? globalThis : window);
