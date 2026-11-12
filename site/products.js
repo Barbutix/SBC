@@ -1,4 +1,4 @@
-// Sélection produits et prix relevés chez les vendeurs le 12 novembre 2026.
+// Prix Olie’s Darts vérifiés TTC ; prix vendeurs relevés le 12 novembre 2026.
 const equipmentShops = [
   {
     "id": "olies",
@@ -10,101 +10,111 @@ const equipmentShops = [
         "kind": "Cible de fléchettes",
         "url": "https://www.olies-darts.com/cibles-de-flechettes-pointe-acier/4593-cible-winmau-blade-6.html",
         "image": "https://www.olies-darts.com/13841-home_default/cible-winmau-blade-6.jpg",
-        "previousPriceCents": 5413,
-        "priceCents": 4330,
+        "previousPriceCents": 6495,
+        "priceCents": 5196,
         "priceCurrency": "EUR",
         "priceCheckedAt": "2026-11-12",
-        "priceSource": "https://www.olies-darts.com/"
+        "priceSource": "https://www.olies-darts.com/",
+        "priceTaxIncluded": true
       },
       {
         "name": "GranBoard 3S bleue",
         "kind": "Cible électronique connectée",
         "url": "https://www.olies-darts.com/cible-electronique-connectee/3994-cible-electronique-connectee-granboard-3s-bleu.html",
         "image": "https://www.olies-darts.com/20203-home_default/cible-electronique-connectee-granboard-3s-bleu.jpg",
-        "priceCents": 22400,
+        "priceCents": 26880,
         "priceCurrency": "EUR",
         "priceCheckedAt": "2026-11-12",
-        "priceSource": "https://www.olies-darts.com/"
+        "priceSource": "https://www.olies-darts.com/",
+        "priceTaxIncluded": true
       },
       {
         "name": "Set cible et anneau PDC bleu",
         "kind": "Cible et protection murale",
         "url": "https://www.olies-darts.com/tour-de-cible/5385-set-cible-et-anneau-de-protection-bleu-pdc.html",
         "image": "https://www.olies-darts.com/15878-home_default/set-cible-et-anneau-de-protection-bleu-pdc.jpg",
-        "priceCents": 9079,
+        "priceCents": 10895,
         "priceCurrency": "EUR",
         "priceCheckedAt": "2026-11-12",
-        "priceSource": "https://www.olies-darts.com/"
+        "priceSource": "https://www.olies-darts.com/",
+        "priceTaxIncluded": true
       },
       {
         "name": "Anneau Winmau PDC Blade 6",
         "kind": "Protection murale",
         "url": "https://www.olies-darts.com/tour-de-cible/4986-anneau-de-protection-winmau-pdc-blade-6.html",
         "image": "https://www.olies-darts.com/14972-home_default/anneau-de-protection-winmau-pdc-blade-6.jpg",
-        "priceCents": 3746,
+        "priceCents": 4495,
         "priceCurrency": "EUR",
         "priceCheckedAt": "2026-11-12",
-        "priceSource": "https://www.olies-darts.com/"
+        "priceSource": "https://www.olies-darts.com/",
+        "priceTaxIncluded": true
       },
       {
         "name": "Gran Eye 2026",
         "kind": "Scorage automatique",
         "url": "https://www.olies-darts.com/systeme-de-scorage/6227-gran-eye-2026-scoreur-automatique.html",
         "image": "https://www.olies-darts.com/18653-home_default/gran-eye-2026-scoreur-automatique.jpg",
-        "priceCents": 24917,
+        "priceCents": 29900,
         "priceCurrency": "EUR",
         "priceCheckedAt": "2026-11-12",
-        "priceSource": "https://www.olies-darts.com/"
+        "priceSource": "https://www.olies-darts.com/",
+        "priceTaxIncluded": true
       },
       {
         "name": "Cible Winmau Blade X",
         "kind": "Cible de fléchettes",
         "url": "https://www.olies-darts.com/cibles-de-flechettes-pointe-acier/6174-cible-winmau-blade-x.html",
         "image": "https://www.olies-darts.com/18378-home_default/cible-winmau-blade-x.jpg",
-        "priceCents": 12500,
+        "priceCents": 15000,
         "priceCurrency": "EUR",
         "priceCheckedAt": "2026-11-12",
-        "priceSource": "https://www.olies-darts.com/"
+        "priceSource": "https://www.olies-darts.com/",
+        "priceTaxIncluded": true
       },
       {
         "name": "Winmau Plasma Ice et tour de cible",
         "kind": "Éclairage et protection",
         "url": "https://www.olies-darts.com/eclairage-cibles/5803-eclairage-plasma-ice-avec-tour-de-cible-bundle-winmau.html",
         "image": "https://www.olies-darts.com/16953-home_default/eclairage-plasma-ice-avec-tour-de-cible-bundle-winmau.jpg",
-        "priceCents": 10413,
+        "priceCents": 12495,
         "priceCurrency": "EUR",
         "priceCheckedAt": "2026-11-12",
-        "priceSource": "https://www.olies-darts.com/"
+        "priceSource": "https://www.olies-darts.com/",
+        "priceTaxIncluded": true
       },
       {
         "name": "Jacques Labre Biko 20 g",
         "kind": "Fléchettes électroniques",
         "url": "https://www.olies-darts.com/jeux-cosmodarts-elek/4881-jacques-labre-dit-biko-elek-en-20g.html",
         "image": "https://www.olies-darts.com/14720-home_default/jacques-labre-dit-biko-elek-en-20g.jpg",
-        "priceCents": 4625,
+        "priceCents": 5550,
         "priceCurrency": "EUR",
         "priceCheckedAt": "2026-11-12",
-        "priceSource": "https://www.olies-darts.com/"
+        "priceSource": "https://www.olies-darts.com/",
+        "priceTaxIncluded": true
       },
       {
         "name": "One80 T-Core TC2 20 g",
         "kind": "Fléchettes électroniques",
         "url": "https://www.olies-darts.com/jeux-one80/6645-t-core-tc2-one80-elek-en-20g.html",
         "image": "https://www.olies-darts.com/20712-home_default/t-core-tc2-one80-elek-en-20g.jpg",
-        "priceCents": 2492,
+        "priceCents": 2990,
         "priceCurrency": "EUR",
         "priceCheckedAt": "2026-11-12",
-        "priceSource": "https://www.olies-darts.com/"
+        "priceSource": "https://www.olies-darts.com/",
+        "priceTaxIncluded": true
       },
       {
         "name": "One80 T-Core TC2 22 g",
         "kind": "Fléchettes acier",
         "url": "https://www.olies-darts.com/jeux-one80/6643-t-core-tc2-one80-en-22g.html",
         "image": "https://www.olies-darts.com/20698-home_default/t-core-tc2-one80-en-22g.jpg",
-        "priceCents": 2492,
+        "priceCents": 2990,
         "priceCurrency": "EUR",
         "priceCheckedAt": "2026-11-12",
-        "priceSource": "https://www.olies-darts.com/"
+        "priceSource": "https://www.olies-darts.com/",
+        "priceTaxIncluded": true
       }
     ]
   },

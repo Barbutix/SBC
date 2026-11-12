@@ -13,7 +13,7 @@
       ? `<del class="product-old-price" aria-label="Ancien prix affiché : ${escape(format(product.previousPriceCents))}">${escape(format(product.previousPriceCents))}</del>` : '';
     const checked = /^\d{4}-\d{2}-\d{2}$/.test(product.priceCheckedAt || '')
       ? product.priceCheckedAt.split('-').reverse().join('/') : '';
-    return `<div class="product-price-block"><div class="product-price-row"><strong class="product-price">${escape(format(product.priceCents))}</strong>${previous}</div><small class="product-price-note">${checked ? `Relevé le ${escape(checked)} · ` : ''}Hors livraison</small></div>`;
+    return `<div class="product-price-block"><div class="product-price-row"><strong class="product-price">${escape(format(product.priceCents))}</strong>${previous}</div><small class="product-price-note">${product.priceTaxIncluded === true ? 'TTC · ' : ''}${checked ? `Relevé le ${escape(checked)} · ` : ''}Hors livraison</small></div>`;
   }
 
   // A fresh five-second delay starts after navigation or any temporary pause.
