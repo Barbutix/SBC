@@ -54,9 +54,9 @@
     </section>
 
     <section class="section product-section" id="materiel">
-      <div class="section-top"><div><span class="section-kicker">MATÉRIEL · ACHATS & BONS PLANS</span><h2>S’équiper et repérer les <em>bons plans.</em></h2></div><p class="section-note">Fléchettes, éclairage et cible : une sélection d’articles chez nos boutiques partenaires. Consulte leurs sites pour les prix et promotions en cours.</p></div>
+      <div class="section-top"><div><span class="section-kicker">MATÉRIEL · ACHATS & BONS PLANS</span><h2>S’équiper et repérer les <em>bons plans.</em></h2></div><p class="section-note">Trois boutiques, dix articles chacune. Découvre leurs sélections avec un nouvel article toutes les cinq secondes.</p></div>
       <div class="product-grid" id="product-grid"></div>
-      <p class="product-note">Les prix, stocks et promotions peuvent évoluer : vérifie-les sur le site du marchand.</p>
+      <p class="product-note">Le défilement se met en pause au survol ou au clavier. Tu peux aussi utiliser les flèches et le bouton Pause. Prix et disponibilité sont à vérifier chez le vendeur.</p>
     </section>
 
     <section class="section" id="actus">
@@ -89,6 +89,8 @@
   <dialog id="discipline-dialog"><form method="dialog"><button class="close-dialog" aria-label="Fermer">×</button><span class="section-kicker">CHOISIR LES DISCIPLINES</span><h2>Tout le darts,<br><em>à ta façon.</em></h2><div class="discipline-options"><label><input type="checkbox" checked value="Acier"> Acier <small>Pointe acier · sisal</small></label><label><input type="checkbox" checked value="Soft-tip"> Soft-tip <small>Pointe plastique · cible électronique</small></label></div><button class="primary-button" id="save-disciplines">Voir ma sélection</button></form></dialog>
   <dialog id="search-dialog"><form method="dialog"><button class="close-dialog" aria-label="Fermer">×</button><span class="section-kicker">RECHERCHER DANS SBC</span><input id="global-search" class="dialog-search" placeholder="Tournoi, club, département…"><button class="primary-button" id="run-search">Rechercher</button></form></dialog>
   <div id="toast" role="status" aria-live="polite"></div>
+  <script src="./products.js"></script>
+  <script src="./product-carousel.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>

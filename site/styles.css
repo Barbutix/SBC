@@ -98,6 +98,29 @@ body{background-color:var(--paper);background-image:linear-gradient(rgba(243,243
 .section{background-color:rgba(243,243,237,.82)}
 .event-section{background:rgba(233,226,213,.84)}
 .live-card{background:rgba(11,26,43,.94)}
+
+.product-grid{align-items:stretch}
+.shop-carousel{min-width:0;overflow:hidden;background:#fff;border:1px solid #e3ddcf;border-radius:12px;box-shadow:0 6px 24px #0d1c2f08}
+.shop-carousel-header{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px;border-bottom:1px solid #eee8dc;background:#fbf9f4}
+.shop-carousel-header h3{font:600 21px/1.2 var(--display);margin:5px 0 0;letter-spacing:-.6px}
+.shop-carousel-header>a{font-size:11px;font-weight:600;color:#76551f;white-space:nowrap}
+.product-slide{animation:product-reveal .35s ease-out}
+.product-slide[hidden],.product-image-fallback[hidden],.product-visual img[hidden]{display:none}
+.shop-carousel .product-visual{height:230px;padding:20px;overflow:hidden;grid-template-rows:minmax(0,1fr);grid-template-columns:minmax(0,1fr)}
+.shop-carousel .product-visual img{min-width:0;min-height:0;max-width:100%;max-height:100%}
+.shop-carousel .product-content{min-height:176px;padding:16px 18px 18px}
+.shop-carousel h4{font:600 16px/1.35 var(--display);height:5.4em;margin:8px 0 14px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden}
+.shop-carousel .product-link{margin-top:auto;font-size:12px;min-height:40px;display:flex;align-items:center;justify-content:center}
+.product-image-fallback{font-size:13px;color:#756d5e}
+.carousel-controls{display:flex;align-items:center;gap:8px;min-height:64px;padding:10px 14px;border-top:1px solid #eee8dc;background:#fbf9f4}
+.carousel-controls button{min-width:44px;min-height:44px;border:1px solid #d8d2c5;border-radius:8px;background:#fff;color:#10263e;font-weight:600;font-size:19px;cursor:pointer}
+.carousel-controls .carousel-pause{font-size:12px;padding:0 12px}
+.carousel-controls button:hover{background:#eee8db}
+.carousel-controls button:focus-visible,.shop-carousel a:focus-visible{outline:3px solid #b68c3b;outline-offset:2px}
+.carousel-count{margin-left:auto;color:#766b59;font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap}
+@keyframes product-reveal{from{opacity:.35;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
+@media(prefers-reduced-motion:reduce){.product-slide{animation:none}}
+@media(max-width:600px){.shop-carousel .product-visual{height:220px}.shop-carousel-header{min-height:76px}.product-grid{gap:18px}}
 .guide-band{background:rgba(20,37,58,.94)}
 .subscribe-strip{background:rgba(243,243,237,.88);border-radius:10px}
 footer{background:rgba(8,22,41,.94)}
