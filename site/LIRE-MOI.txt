@@ -1,0 +1,29 @@
+SBC — Carrousels Matériel
+
+Trois vendeurs : Olie’s Darts, Pleine Bull, Dartshopper.
+Dix articles distincts par vendeur, un article affiché à la fois.
+Défilement toutes les 5 secondes, boucle, flèches et commande Pause/Lecture.
+Pause au survol, au clavier, hors écran et lorsque l’onglet est masqué.
+Le réglage « réduire les animations » désactive la lecture automatique initiale.
+
+Sélection des produits vérifiée le 11 novembre 2026.
+Prix et disponibilité restent à consulter chez le vendeur.
+
+Installation dans le dépôt Barbutix/SBC :
+1. Depuis la racine du dépôt, vérifier le correctif :
+   git apply --check SBC-carrousels.patch
+2. Appliquer :
+   git apply SBC-carrousels.patch
+3. Vérifier :
+   node tests/product-carousel.cjs
+4. Enregistrer et envoyer les modifications sur GitHub pour déclencher GitHub Pages.
+
+Le correctif part du commit cbd49c977023281183d2e8a542022e18b7c1906c.
+Les fichiers modifiés sont également fournis dans le dossier site/.
+Il porte uniquement sur les carrousels Matériel ; la modification Facebook
+précédemment discutée n’y est pas incluse.
+
+Validation : tests de temporisation, boucle, pauses, navigation et données
+(30 articles), contrôle syntaxique JavaScript et vérification dans Chrome.
+Le correctif a été vérifié sur une copie propre du dépôt.
+La publication sur GitHub n’a pas été possible : accès en écriture refusé.

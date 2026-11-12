@@ -1,0 +1,538 @@
+From 2ff0a46e593256887c8fd54d2796e2615c2d4ac1 Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.com>
+Date: Wed, 11 Nov 2026 17:44:27 +0100
+Subject: [PATCH] =?UTF-8?q?Ajouter=20trois=20carrousels=20de=20dix=20artic?=
+ =?UTF-8?q?les=20avec=20d=C3=A9filement=20de=20cinq=20secondes?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ site/app.js                |  12 +--
+ site/index.html            |   6 +-
+ site/product-carousel.js   | 109 ++++++++++++++++++++
+ site/products.js           | 204 +++++++++++++++++++++++++++++++++++++
+ site/sources.html          |   8 +-
+ site/styles.css            |  23 +++++
+ site/sw.js                 |   4 +-
+ tests/product-carousel.cjs |  59 +++++++++++
+ 8 files changed, 408 insertions(+), 17 deletions(-)
+ create mode 100644 site/product-carousel.js
+ create mode 100644 site/products.js
+ create mode 100644 tests/product-carousel.cjs
+
+diff --git a/site/app.js b/site/app.js
+index 18b024c..8e9ab1b 100644
+--- a/site/app.js
++++ b/site/app.js
+@@ -18,11 +18,6 @@ const eventSources = [
+   {name:'Tournois de clubs et associations',format:'Acier + Soft-tip',category:'Club / loisir',area:'France · annonces et inscriptions associatives',description:'Inscriptions créées par les associations organisatrices; vérifie que l’annonce concerne bien les fléchettes.',url:'https://www.helloasso.com/',source:'HelloAsso'}
+ ];
+ 
+-const featuredProducts = [
+-  {name:'Harrows Supergrip 23 g',shop:'Olie’s Darts',kind:'Fléchettes acier · 90 % tungstène',description:'Jeu complet avec tiges, ailettes et mini étui. Barrels de 50 mm.',image:'https://www.olies-darts.com/12191-large_default/supergrip-en-23g.jpg',url:'https://www.olies-darts.com/jeux-harrows/515-supergrip-en-23g.html'},
+-  {name:'Mission Torus 120°',shop:'Pleine Bull',kind:'Éclairage de cible',description:'Anneau LED 120° pour éclairer la cible et limiter les zones d’ombre.',image:'https://pleinebull.fr/cdn/shop/files/eclairage-cible-mission-torus-120deg-noir.webp?v=1778159145&width=1780',url:'https://pleinebull.fr/products/eclairage-cible-mission-torus-120deg-noir'},
+-  {name:'KOTO Royal 580',shop:'Dartshopper',kind:'Cible électronique · soft-tip',description:'Jusqu’à 8 joueurs, 36 jeux et 580 variations. Fléchettes à pointe plastique uniquement.',image:'https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-lrkuDwg2-zoom.jpg',url:'https://www.dartshopper.fr/cible-flechette-electronique-koto-royal-580/'}
+-];
+ 
+ let activeNewsFilter = 'Tout';
+ let activeEventFilter = 'Tous';
+@@ -66,11 +61,10 @@ function renderEvents(){
+   </article>`).join('') || '<div class="no-results">Aucune source ne correspond à cette recherche.</div>';
+ }
+ 
++let productCarousels;
+ function renderProducts(){
+-  productGrid.innerHTML = featuredProducts.map(item => `<article class="product-card">
+-    <a class="product-visual" href="${item.url}" target="_blank" rel="noopener" aria-label="Voir ${item.name} chez ${item.shop}"><img src="${item.image}" alt="${item.name}" loading="lazy" referrerpolicy="no-referrer" onerror="this.hidden=true"></a>
+-    <div class="product-content"><span class="product-kind">${item.kind}</span><h3>${item.name}</h3><p>${item.description}</p><span class="product-shop">${item.shop}</span><a class="product-link" href="${item.url}" target="_blank" rel="noopener">Consulter chez ${item.shop} <span>↗</span></a></div>
+-  </article>`).join('');
++  productCarousels?.destroy();
++  productCarousels = window.SBCProductCarousel.mount(productGrid, equipmentShops);
+ }
+ 
+ const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+diff --git a/site/index.html b/site/index.html
+index 327901d..9f98891 100644
+--- a/site/index.html
++++ b/site/index.html
+@@ -54,9 +54,9 @@
+     </section>
+ 
+     <section class="section product-section" id="materiel">
+-      <div class="section-top"><div><span class="section-kicker">MATÉRIEL · ACHATS & BONS PLANS</span><h2>S’équiper et repérer les <em>bons plans.</em></h2></div><p class="section-note">Fléchettes, éclairage et cible : une sélection d’articles chez nos boutiques partenaires. Consulte leurs sites pour les prix et promotions en cours.</p></div>
++      <div class="section-top"><div><span class="section-kicker">MATÉRIEL · ACHATS & BONS PLANS</span><h2>S’équiper et repérer les <em>bons plans.</em></h2></div><p class="section-note">Trois boutiques, dix articles chacune. Découvre leurs sélections avec un nouvel article toutes les cinq secondes.</p></div>
+       <div class="product-grid" id="product-grid"></div>
+-      <p class="product-note">Les prix, stocks et promotions peuvent évoluer : vérifie-les sur le site du marchand.</p>
++      <p class="product-note">Le défilement se met en pause au survol ou au clavier. Tu peux aussi utiliser les flèches et le bouton Pause. Prix et disponibilité sont à vérifier chez le vendeur.</p>
+     </section>
+ 
+     <section class="section" id="actus">
+@@ -89,6 +89,8 @@
+   <dialog id="discipline-dialog"><form method="dialog"><button class="close-dialog" aria-label="Fermer">×</button><span class="section-kicker">CHOISIR LES DISCIPLINES</span><h2>Tout le darts,<br><em>à ta façon.</em></h2><div class="discipline-options"><label><input type="checkbox" checked value="Acier"> Acier <small>Pointe acier · sisal</small></label><label><input type="checkbox" checked value="Soft-tip"> Soft-tip <small>Pointe plastique · cible électronique</small></label></div><button class="primary-button" id="save-disciplines">Voir ma sélection</button></form></dialog>
+   <dialog id="search-dialog"><form method="dialog"><button class="close-dialog" aria-label="Fermer">×</button><span class="section-kicker">RECHERCHER DANS SBC</span><input id="global-search" class="dialog-search" placeholder="Tournoi, club, département…"><button class="primary-button" id="run-search">Rechercher</button></form></dialog>
+   <div id="toast" role="status" aria-live="polite"></div>
++  <script src="./products.js"></script>
++  <script src="./product-carousel.js"></script>
+   <script src="./app.js"></script>
+ </body>
+ </html>
+diff --git a/site/product-carousel.js b/site/product-carousel.js
+new file mode 100644
+index 0000000..ec90f26
+--- /dev/null
++++ b/site/product-carousel.js
+@@ -0,0 +1,109 @@
++(function (global) {
++  'use strict';
++
++  const DELAY = 5000;
++  const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
++
++  // A fresh five-second delay starts after navigation or any temporary pause.
++  function createController({count, onChange, setTimer = setTimeout, clearTimer = clearTimeout, paused = false}) {
++    let index = 0;
++    let userPaused = paused;
++    let timer = null;
++    let destroyed = false;
++    const holds = new Set();
++    const state = () => ({index, userPaused, playing: !destroyed && !userPaused && !holds.size && count > 1});
++    const clear = () => { if (timer !== null) clearTimer(timer); timer = null; };
++    function schedule() {
++      clear();
++      if (state().playing) timer = setTimer(() => {timer = null; move(1);}, DELAY);
++    }
++    function notify() { onChange(state()); }
++    function move(delta) {
++      if (destroyed || count < 1) return;
++      index = (index + delta + count) % count;
++      notify();
++      schedule();
++    }
++    function hold(reason, value) {
++      if (destroyed) return;
++      if (value) holds.add(reason); else holds.delete(reason);
++      notify();
++      schedule();
++    }
++    notify();
++    schedule();
++    return {
++      next: () => move(1),
++      previous: () => move(-1),
++      toggle() {if (destroyed) return; userPaused = !userPaused; notify(); schedule();},
++      pause() {if (destroyed) return; userPaused = true; notify(); schedule();},
++      hold,
++      state,
++      destroy() {destroyed = true; clear();}
++    };
++  }
++
++  function mount(root, shops) {
++    const reducedMotion = global.matchMedia('(prefers-reduced-motion: reduce)');
++    root.innerHTML = shops.map(shop => `<section class="shop-carousel" role="region" aria-roledescription="carrousel" aria-labelledby="shop-${escape(shop.id)}">
++      <header class="shop-carousel-header"><div><span class="product-kind">SÉLECTION BOUTIQUE</span><h3 id="shop-${escape(shop.id)}">${escape(shop.name)}</h3></div><a href="${escape(shop.url)}" target="_blank" rel="noopener noreferrer" aria-label="Visiter la boutique ${escape(shop.name)}">Boutique ↗</a></header>
++      <div class="product-slides" aria-live="off">${shop.products.map((product,index) => `<article class="product-slide" role="group" aria-roledescription="diapositive" aria-label="${index+1} sur ${shop.products.length}" ${index?'hidden':''}>
++        <a class="product-visual" href="${escape(product.url)}" target="_blank" rel="noopener noreferrer" aria-label="Voir ${escape(product.name)} chez ${escape(shop.name)}"><img src="${escape(product.image)}" alt="${escape(product.name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="product-image-fallback" hidden>Photo indisponible</span></a>
++        <div class="product-content"><span class="product-kind">${escape(product.kind)}</span><h4>${escape(product.name)}</h4><a class="product-link" href="${escape(product.url)}" target="_blank" rel="noopener noreferrer">Voir l’article <span>↗</span></a></div>
++      </article>`).join('')}</div>
++      <div class="carousel-controls"><button type="button" data-carousel="previous" aria-label="Article précédent chez ${escape(shop.name)}">←</button><button type="button" data-carousel="pause" class="carousel-pause" aria-pressed="false">Pause</button><span class="carousel-count" aria-label="Article affiché">1 / ${shop.products.length}</span><button type="button" data-carousel="next" aria-label="Article suivant chez ${escape(shop.name)}">→</button></div>
++    </section>`).join('');
++
++    const cleanups = [];
++    root.querySelectorAll('.shop-carousel').forEach((card, shopIndex) => {
++      const slides = [...card.querySelectorAll('.product-slide')];
++      const pause = card.querySelector('[data-carousel="pause"]');
++      const counter = card.querySelector('.carousel-count');
++      const controller = createController({
++        count: slides.length,
++        paused: reducedMotion.matches,
++        onChange({index,userPaused}) {
++          slides.forEach((slide,i) => { slide.hidden = i !== index; });
++          counter.textContent = `${index+1} / ${slides.length}`;
++          pause.textContent = userPaused ? 'Lecture' : 'Pause';
++          pause.setAttribute('aria-pressed', String(userPaused));
++          pause.setAttribute('aria-label', `${userPaused?'Lancer':'Mettre en pause'} le défilement chez ${shops[shopIndex].name}`);
++        }
++      });
++      function listen(target, event, callback) {
++        target.addEventListener(event, callback);
++        cleanups.push(() => target.removeEventListener(event, callback));
++      }
++      listen(card.querySelector('[data-carousel="previous"]'),'click',controller.previous);
++      listen(card.querySelector('[data-carousel="next"]'),'click',controller.next);
++      listen(pause,'click',controller.toggle);
++      listen(card,'mouseenter',() => controller.hold('hover',true));
++      listen(card,'mouseleave',() => controller.hold('hover',false));
++      listen(card,'focusin',() => controller.hold('focus',true));
++      listen(card,'focusout',event => {
++        if (!card.contains(event.relatedTarget)) controller.hold('focus',false);
++      });
++      const visibility = () => controller.hold('document',document.hidden);
++      listen(document,'visibilitychange',visibility);
++      visibility();
++      listen(reducedMotion,'change',event => {if (event.matches) controller.pause();});
++      if ('IntersectionObserver' in global) {
++        controller.hold('viewport',true);
++        const observer = new IntersectionObserver(entries => {
++          controller.hold('viewport',!entries[0].isIntersecting);
++        },{threshold:0.15});
++        observer.observe(card);
++        cleanups.push(() => observer.disconnect());
++      }
++      card.querySelectorAll('.product-visual img').forEach(image => {
++        const fallback = () => {image.hidden = true; image.nextElementSibling.hidden = false;};
++        listen(image,'error',fallback);
++        if (image.complete && !image.naturalWidth) fallback();
++      });
++      cleanups.push(() => controller.destroy());
++    });
++    return {destroy() {cleanups.forEach(cleanup => cleanup());}};
++  }
++
++  global.SBCProductCarousel = {mount, createController, delay: DELAY};
++})(typeof window === 'undefined' ? globalThis : window);
+diff --git a/site/products.js b/site/products.js
+new file mode 100644
+index 0000000..0b0b40d
+--- /dev/null
++++ b/site/products.js
+@@ -0,0 +1,204 @@
++// Sélection vérifiée sur les boutiques le 11 novembre 2026.
++const equipmentShops = [
++  {
++    "id": "olies",
++    "name": "Olie’s Darts",
++    "url": "https://www.olies-darts.com/",
++    "products": [
++      {
++        "name": "Cible Winmau Blade 6",
++        "kind": "Cible de fléchettes",
++        "url": "https://www.olies-darts.com/cibles-de-flechettes-pointe-acier/4593-cible-winmau-blade-6.html",
++        "image": "https://www.olies-darts.com/13841-home_default/cible-winmau-blade-6.jpg"
++      },
++      {
++        "name": "GranBoard 3S bleue",
++        "kind": "Cible électronique connectée",
++        "url": "https://www.olies-darts.com/cible-electronique-connectee/3994-cible-electronique-connectee-granboard-3s-bleu.html",
++        "image": "https://www.olies-darts.com/20203-home_default/cible-electronique-connectee-granboard-3s-bleu.jpg"
++      },
++      {
++        "name": "Set cible et anneau PDC bleu",
++        "kind": "Cible et protection murale",
++        "url": "https://www.olies-darts.com/tour-de-cible/5385-set-cible-et-anneau-de-protection-bleu-pdc.html",
++        "image": "https://www.olies-darts.com/15878-home_default/set-cible-et-anneau-de-protection-bleu-pdc.jpg"
++      },
++      {
++        "name": "Anneau Winmau PDC Blade 6",
++        "kind": "Protection murale",
++        "url": "https://www.olies-darts.com/tour-de-cible/4986-anneau-de-protection-winmau-pdc-blade-6.html",
++        "image": "https://www.olies-darts.com/14972-home_default/anneau-de-protection-winmau-pdc-blade-6.jpg"
++      },
++      {
++        "name": "Gran Eye 2026",
++        "kind": "Scorage automatique",
++        "url": "https://www.olies-darts.com/systeme-de-scorage/6227-gran-eye-2026-scoreur-automatique.html",
++        "image": "https://www.olies-darts.com/18653-home_default/gran-eye-2026-scoreur-automatique.jpg"
++      },
++      {
++        "name": "Cible Winmau Blade X",
++        "kind": "Cible de fléchettes",
++        "url": "https://www.olies-darts.com/cibles-de-flechettes-pointe-acier/6174-cible-winmau-blade-x.html",
++        "image": "https://www.olies-darts.com/18378-home_default/cible-winmau-blade-x.jpg"
++      },
++      {
++        "name": "Winmau Plasma Ice et tour de cible",
++        "kind": "Éclairage et protection",
++        "url": "https://www.olies-darts.com/eclairage-cibles/5803-eclairage-plasma-ice-avec-tour-de-cible-bundle-winmau.html",
++        "image": "https://www.olies-darts.com/16953-home_default/eclairage-plasma-ice-avec-tour-de-cible-bundle-winmau.jpg"
++      },
++      {
++        "name": "Jacques Labre Biko 20 g",
++        "kind": "Fléchettes électroniques",
++        "url": "https://www.olies-darts.com/jeux-cosmodarts-elek/4881-jacques-labre-dit-biko-elek-en-20g.html",
++        "image": "https://www.olies-darts.com/14720-home_default/jacques-labre-dit-biko-elek-en-20g.jpg"
++      },
++      {
++        "name": "One80 T-Core TC2 20 g",
++        "kind": "Fléchettes électroniques",
++        "url": "https://www.olies-darts.com/jeux-one80/6645-t-core-tc2-one80-elek-en-20g.html",
++        "image": "https://www.olies-darts.com/20712-home_default/t-core-tc2-one80-elek-en-20g.jpg"
++      },
++      {
++        "name": "One80 T-Core TC2 22 g",
++        "kind": "Fléchettes acier",
++        "url": "https://www.olies-darts.com/jeux-one80/6643-t-core-tc2-one80-en-22g.html",
++        "image": "https://www.olies-darts.com/20698-home_default/t-core-tc2-one80-en-22g.jpg"
++      }
++    ]
++  },
++  {
++    "id": "pleine-bull",
++    "name": "Pleine Bull",
++    "url": "https://pleinebull.fr/",
++    "products": [
++      {
++        "name": "Mission Torus 120° noir",
++        "kind": "Éclairage de cible",
++        "url": "https://pleinebull.fr/products/eclairage-cible-mission-torus-120deg-noir",
++        "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/eclairage-cible-mission-torus-120deg-noir.jpg?v=1793452810"
++      },
++      {
++        "name": "Fléchettes acier Bull's Dirk van Duijvenbode 80 % 24 g",
++        "kind": "Fléchettes acier",
++        "url": "https://pleinebull.fr/products/flechettes-acier-bulls-dirk-van-duijvenbode-80-24g",
++        "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/flechettes-acier-bulls-dirk-van-duijvenbode-80-24g.jpg?v=1793975324"
++      },
++      {
++        "name": "Ailettes fléchettes Robson Plus No.2 Rouge",
++        "kind": "Ailettes",
++        "url": "https://pleinebull.fr/products/ailettes-robson-plus-rouge-no2",
++        "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/ailettes-robson-plus-rouge-no2_78b2d4d2-6b28-4224-b432-fa56850842e2.jpg?v=1793975296"
++      },
++      {
++        "name": "Fléchettes soft One80 Night Hunter Velocity 90% Tungstène - 18 g",
++        "kind": "Fléchettes électroniques",
++        "url": "https://pleinebull.fr/products/flechettes-soft-one80-night-hunter-velocity-90-tungstene-18g",
++        "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/flechettes-soft-one80-night-hunter-velocity-90-tungstene-18g.jpg?v=1793696749"
++      },
++      {
++        "name": "Fléchettes soft Target Buzz 11 90% Noir et jaune – 18g",
++        "kind": "Fléchettes électroniques",
++        "url": "https://pleinebull.fr/products/flechettes-soft-target-buzz-11-90-tungstene-18g",
++        "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/flechettes-soft-target-buzz-11-90-tungstene-18g.jpg?v=1793696727"
++      },
++      {
++        "name": "Fléchettes acier Target Buzz SP03 Swiss Point 90% Noir et jaune - 23g",
++        "kind": "Fléchettes acier",
++        "url": "https://pleinebull.fr/products/flechettes-acier-target-buzz-sp03-swiss-point-90-tungstene-23g",
++        "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/flechettes-acier-target-buzz-sp03-swiss-point-90-tungstene-23g.jpg?v=1793696693"
++      },
++      {
++        "name": "Target K-Flex Neon No.2 Orange fluo – Short 19 mm",
++        "kind": "Ensemble tiges et ailettes",
++        "url": "https://pleinebull.fr/products/target-k-flex-neon-no2-orange-fluo-short-19-mm",
++        "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/target-k-flex-neon-no2-orange-fluo-short-19-mm.jpg?v=1793696633"
++      },
++      {
++        "name": "Pointes acier Bull's CP Smooth 40 mm Argent",
++        "kind": "Pointes et accessoires",
++        "url": "https://pleinebull.fr/products/pointes-acier-bulls-cp-smooth-40mm-argent",
++        "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/pointes-acier-bulls-cp-smooth-40mm-argent.jpg?v=1793382031"
++      },
++      {
++        "name": "Outil pour pointes Bull's CP Points Tool",
++        "kind": "Outil et entretien",
++        "url": "https://pleinebull.fr/products/outil-pointes-bulls-cp-points-tool",
++        "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/outil-pointes-bulls-cp-points-tool.jpg?v=1793380131"
++      },
++      {
++        "name": "Pointes acier Bull's CP Micro Grip 36 mm Noir",
++        "kind": "Pointes et accessoires",
++        "url": "https://pleinebull.fr/products/pointes-acier-bulls-cp-micro-grip-36mm-noir",
++        "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/pointes-acier-bulls-cp-micro-grip-36mm-noir.jpg?v=1793380090"
++      }
++    ]
++  },
++  {
++    "id": "dartshopper",
++    "name": "Dartshopper",
++    "url": "https://www.dartshopper.fr/",
++    "products": [
++      {
++        "name": "KOTO Royal 580",
++        "kind": "Cible électronique",
++        "url": "https://www.dartshopper.fr/cible-flechette-electronique-koto-royal-580/",
++        "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-lrkuDwg2-zoom.jpg"
++      },
++      {
++        "name": "Shot One - Cible de Fléchettes Professionnelle",
++        "kind": "Cible de fléchettes",
++        "url": "https://www.dartshopper.fr/shot-one-cible-de-flechettes-professionnelle/",
++        "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-crEL1gYW-zoom.jpg"
++      },
++      {
++        "name": "Winmau Fallon Sherrock 90% - Fléchettes pointe Acier",
++        "kind": "Fléchettes acier",
++        "url": "https://www.dartshopper.fr/winmau-fallon-sherrock-90-percent-flechettes-pointe-acier/",
++        "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-e03PQiec-zoom.jpg"
++      },
++      {
++        "name": "Scolia Flow - Cible de Fléchettes Professionnelle",
++        "kind": "Cible de fléchettes",
++        "url": "https://www.dartshopper.fr/scolia-flow-cible-de-flechettes-professionnelle/",
++        "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-VBZWcbRZ-zoom.jpg"
++      },
++      {
++        "name": "Red Dragon Gerwyn Price Ultra Switch Point 90 % - Fléchettes pointe Acier",
++        "kind": "Fléchettes acier",
++        "url": "https://www.dartshopper.fr/red-dragon-gerwyn-price-ultra-switch-point-90-percent-flechettes-pointe-acier/",
++        "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-IdoQUUBH-zoom.jpg"
++      },
++      {
++        "name": "Red Dragon Gerwyn Price Pro Switch Point 90% - Fléchettes pointe Acier",
++        "kind": "Fléchettes acier",
++        "url": "https://www.dartshopper.fr/red-dragon-gerwyn-price-pro-switch-point-90-percent-flechettes-pointe-acier/",
++        "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-alImRwxP-zoom.jpg"
++      },
++      {
++        "name": "Red Dragon Gerwyn Price ADV Switch Point 90% - Fléchettes pointe Acier",
++        "kind": "Fléchettes acier",
++        "url": "https://www.dartshopper.fr/red-dragon-gerwyn-price-adv-switch-point-90-percent-flechettes-pointe-acier/",
++        "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-FckTQ_Yz-zoom.jpg"
++      },
++      {
++        "name": "Red Dragon Gerwyn Price Core Brass - Fléchettes pointe Acier",
++        "kind": "Fléchettes acier",
++        "url": "https://www.dartshopper.fr/red-dragon-gerwyn-price-core-brass-flechettes-pointe-acier/",
++        "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-sjedgyUg-zoom.jpg"
++      },
++      {
++        "name": "Red Dragon Gerwyn Price Ultra 90% - Fléchettes pointe Plastique",
++        "kind": "Fléchettes électroniques",
++        "url": "https://www.dartshopper.fr/red-dragon-gerwyn-price-ultra-90-percent-flechettes-pointe-plastique/",
++        "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-8KOw34sN-zoom.jpg"
++      },
++      {
++        "name": "Red Dragon Gerwyn Price ADV 90% - Soft Tip Darts",
++        "kind": "Fléchettes électroniques",
++        "url": "https://www.dartshopper.fr/red-dragon-gerwyn-price-adv-90-percent-soft-tip-darts/",
++        "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-NDj2aPJL-zoom.jpg"
++      }
++    ]
++  }
++];
+diff --git a/site/sources.html b/site/sources.html
+index cdf30a5..a6bf619 100644
+--- a/site/sources.html
++++ b/site/sources.html
+@@ -56,11 +56,11 @@
+ 
+     <h2>Matériel présenté dans SBC</h2>
+     <ul>
+-      <li><a href="https://www.olies-darts.com/jeux-harrows/515-supergrip-en-23g.html">Olie’s Darts — Harrows Supergrip 23 g</a></li>
+-      <li><a href="https://pleinebull.fr/products/eclairage-cible-mission-torus-120deg-noir">Pleine Bull — Mission Torus 120°</a></li>
+-      <li><a href="https://www.dartshopper.fr/cible-flechette-electronique-koto-royal-580/">Dartshopper — cible électronique KOTO Royal 580</a></li>
++      <li><a href="https://www.olies-darts.com/">Olie’s Darts</a> — dix articles de fléchettes, cibles et accessoires</li>
++      <li><a href="https://pleinebull.fr/collections/nouveautes-flechettes">Pleine Bull</a> — dix articles de fléchettes, éclairage et accessoires</li>
++      <li><a href="https://www.dartshopper.fr/nouveaute/">Dartshopper</a> — dix articles de fléchettes, cibles et accessoires</li>
+     </ul>
+-    <p class="event-footnote">Les cartes montrent quelques articles avec leurs caractéristiques. Prix et disponibilité sont à vérifier sur le site du vendeur.</p>
++    <p class="event-footnote">Sélection vérifiée sur les boutiques le 11 novembre 2026. Chaque article renvoie vers sa fiche d’origine. Les carrousels changent d’article toutes les cinq secondes et disposent de commandes manuelles. Prix et disponibilité sont à vérifier sur le site du vendeur.</p>
+ 
+     <div class="event-footnote">Les publications Facebook et Instagram ne sont pas toutes publiques ou indexées. Tu peux proposer une annonce publique depuis la rubrique Tournois ; elle sera vérifiée auprès de l’organisateur avant publication.</div>
+   </main>
+diff --git a/site/styles.css b/site/styles.css
+index 6be4cf3..1977ddf 100644
+--- a/site/styles.css
++++ b/site/styles.css
+@@ -98,6 +98,29 @@ body{background-color:var(--paper);background-image:linear-gradient(rgba(243,243
+ .section{background-color:rgba(243,243,237,.82)}
+ .event-section{background:rgba(233,226,213,.84)}
+ .live-card{background:rgba(11,26,43,.94)}
++
++.product-grid{align-items:stretch}
++.shop-carousel{min-width:0;overflow:hidden;background:#fff;border:1px solid #e3ddcf;border-radius:12px;box-shadow:0 6px 24px #0d1c2f08}
++.shop-carousel-header{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px;border-bottom:1px solid #eee8dc;background:#fbf9f4}
++.shop-carousel-header h3{font:600 21px/1.2 var(--display);margin:5px 0 0;letter-spacing:-.6px}
++.shop-carousel-header>a{font-size:11px;font-weight:600;color:#76551f;white-space:nowrap}
++.product-slide{animation:product-reveal .35s ease-out}
++.product-slide[hidden],.product-image-fallback[hidden],.product-visual img[hidden]{display:none}
++.shop-carousel .product-visual{height:230px;padding:20px;overflow:hidden;grid-template-rows:minmax(0,1fr);grid-template-columns:minmax(0,1fr)}
++.shop-carousel .product-visual img{min-width:0;min-height:0;max-width:100%;max-height:100%}
++.shop-carousel .product-content{min-height:176px;padding:16px 18px 18px}
++.shop-carousel h4{font:600 16px/1.35 var(--display);height:5.4em;margin:8px 0 14px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden}
++.shop-carousel .product-link{margin-top:auto;font-size:12px;min-height:40px;display:flex;align-items:center;justify-content:center}
++.product-image-fallback{font-size:13px;color:#756d5e}
++.carousel-controls{display:flex;align-items:center;gap:8px;min-height:64px;padding:10px 14px;border-top:1px solid #eee8dc;background:#fbf9f4}
++.carousel-controls button{min-width:44px;min-height:44px;border:1px solid #d8d2c5;border-radius:8px;background:#fff;color:#10263e;font-weight:600;font-size:19px;cursor:pointer}
++.carousel-controls .carousel-pause{font-size:12px;padding:0 12px}
++.carousel-controls button:hover{background:#eee8db}
++.carousel-controls button:focus-visible,.shop-carousel a:focus-visible{outline:3px solid #b68c3b;outline-offset:2px}
++.carousel-count{margin-left:auto;color:#766b59;font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap}
++@keyframes product-reveal{from{opacity:.35;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
++@media(prefers-reduced-motion:reduce){.product-slide{animation:none}}
++@media(max-width:600px){.shop-carousel .product-visual{height:220px}.shop-carousel-header{min-height:76px}.product-grid{gap:18px}}
+ .guide-band{background:rgba(20,37,58,.94)}
+ .subscribe-strip{background:rgba(243,243,237,.88);border-radius:10px}
+ footer{background:rgba(8,22,41,.94)}
+diff --git a/site/sw.js b/site/sw.js
+index f388d97..0f7a59c 100644
+--- a/site/sw.js
++++ b/site/sw.js
+@@ -1,5 +1,5 @@
+-const CACHE_NAME = 'sullias-bull-club-shell-v11';
+-const APP_SHELL = ['./', './index.html', './styles.css', './app.js', './clubs.json', './manifest.webmanifest', './assets/sbc-app-192.png', './assets/sbc-app-512.png', './assets/sbc-logo.png', './assets/sbc-background.jpg', './sources.html'];
++const CACHE_NAME = 'sullias-bull-club-shell-v13';
++const APP_SHELL = ['./', './index.html', './styles.css', './app.js', './products.js', './product-carousel.js', './clubs.json', './manifest.webmanifest', './assets/sbc-app-192.png', './assets/sbc-app-512.png', './assets/sbc-logo.png', './assets/sbc-background.jpg', './sources.html'];
+ self.addEventListener('install', event => {
+   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)));
+   self.skipWaiting();
+diff --git a/tests/product-carousel.cjs b/tests/product-carousel.cjs
+new file mode 100644
+index 0000000..d0385dd
+--- /dev/null
++++ b/tests/product-carousel.cjs
+@@ -0,0 +1,59 @@
++const assert = require('node:assert/strict');
++const fs = require('node:fs');
++const vm = require('node:vm');
++const context = vm.createContext({setTimeout, clearTimeout});
++vm.runInContext(fs.readFileSync('site/product-carousel.js','utf8'),context);
++vm.runInContext(fs.readFileSync('site/products.js','utf8'),context);
++const {createController, delay} = context.SBCProductCarousel;
++const shops = vm.runInContext('equipmentShops',context);
++assert.equal(delay,5000);
++assert.equal(shops.length,3);
++for (const shop of shops) {
++  assert.equal(shop.products.length,10);
++  assert.equal(new Set(shop.products.map(p=>p.url)).size,10);
++  for (const p of shop.products) {
++    assert.equal(new URL(p.url).hostname,new URL(shop.url).hostname);
++    assert.equal(new URL(p.image).protocol,'https:');
++    assert.ok(p.name && p.kind);
++  }
++}
++function clock() {
++  let time = 0, sequence = 0;
++  const tasks = new Map();
++  return {
++    set(callback,ms) {const id=++sequence;tasks.set(id,{at:time+ms,callback});return id;},
++    clear(id) {tasks.delete(id);},
++    tick(ms) {
++      const end=time+ms;
++      while(true) {
++        const next=[...tasks].sort((a,b)=>a[1].at-b[1].at)[0];
++        if(!next || next[1].at>end)break;
++        tasks.delete(next[0]);time=next[1].at;next[1].callback();
++      }
++      time=end;
++    },
++    size:()=>tasks.size
++  };
++}
++const timer=clock();
++const carousel=createController({count:10,onChange(){},setTimer:timer.set,clearTimer:timer.clear});
++timer.tick(4999);assert.equal(carousel.state().index,0);
++timer.tick(1);assert.equal(carousel.state().index,1);
++timer.tick(45000);assert.equal(carousel.state().index,0);
++carousel.previous();assert.equal(carousel.state().index,9);
++timer.tick(4999);assert.equal(carousel.state().index,9);
++timer.tick(1);assert.equal(carousel.state().index,0);
++carousel.hold('hover',true);timer.tick(20000);assert.equal(carousel.state().index,0);
++carousel.hold('focus',true);carousel.hold('hover',false);timer.tick(10000);assert.equal(carousel.state().index,0);
++carousel.hold('focus',false);timer.tick(4999);assert.equal(carousel.state().index,0);
++timer.tick(1);assert.equal(carousel.state().index,1);
++carousel.toggle();timer.tick(20000);assert.equal(carousel.state().index,1);
++carousel.hold('viewport',true);carousel.hold('viewport',false);
++assert.equal(carousel.state().userPaused,true);
++assert.equal(timer.size(),0);
++carousel.toggle();timer.tick(5000);assert.equal(carousel.state().index,2);
++carousel.destroy();assert.equal(timer.size(),0);
++carousel.next();timer.tick(10000);assert.equal(carousel.state().index,2);
++const reduced=createController({count:10,onChange(){},paused:true,setTimer:timer.set,clearTimer:timer.clear});
++assert.equal(timer.size(),0);reduced.toggle();timer.tick(5000);assert.equal(reduced.state().index,1);reduced.destroy();
++console.log('Carrousels : 30 articles, délai de 5 s, boucle, navigation, pauses et arrêt vérifiés.');
+-- 
+2.52.0
+
