@@ -11,14 +11,14 @@
     const format = value => new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR'}).format(value/100);
     const previous = Number.isInteger(product.previousPriceCents) && product.previousPriceCents > product.priceCents
       ? `<del class="product-old-price" aria-label="Ancien prix affiché : ${escape(format(product.previousPriceCents))}">${escape(format(product.previousPriceCents))}</del>` : '';
-    const checked = /^\d{4}-\d{2}-\d{2}$/.test(product.priceCheckedAt || '')
-      ? product.priceCheckedAt.split('-').reverse().join('/') : '';
+    const timestamp = Date.parse(product.priceCheckedAt || '');
+    const checked = Number.isFinite(timestamp) ? new Intl.DateTimeFormat('fr-FR', {dateStyle:'short',timeStyle:'short',timeZone:'Europe/Paris'}).format(timestamp) : '';
     return `<div class="product-price-block"><div class="product-price-row"><strong class="product-price">${escape(format(product.priceCents))}</strong>${previous}</div><small class="product-price-note">${product.priceTaxIncluded === true ? 'TTC · ' : ''}${checked ? `Relevé le ${escape(checked)} · ` : ''}Hors livraison</small></div>`;
   }
 
   // A fresh five-second delay starts after navigation or any temporary pause.
-  function createController({count, onChange, setTimer = setTimeout, clearTimer = clearTimeout, paused = false}) {
-    let index = 0;
+  function createController({count, onChange, setTimer = setTimeout, clearTimer = clearTimeout, paused = false, initialIndex = 0}) {
+    let index = Math.max(0, Math.min(initialIndex, count - 1));
     let userPaused = paused;
     let timer = null;
     let destroyed = false;
@@ -55,10 +55,11 @@
     };
   }
 
-  function mount(root, shops) {
+  function mount(root, shops, saved = {}) {
     const reducedMotion = global.matchMedia('(prefers-reduced-motion: reduce)');
     root.innerHTML = shops.map(shop => `<section class="shop-carousel" role="region" aria-roledescription="carrousel" aria-labelledby="shop-${escape(shop.id)}">
       <header class="shop-carousel-header"><div><span class="product-kind">SÉLECTION BOUTIQUE</span><h3 id="shop-${escape(shop.id)}">${escape(shop.name)}</h3></div><a href="${escape(shop.url)}" target="_blank" rel="noopener noreferrer" aria-label="Visiter la boutique ${escape(shop.name)}">Boutique ↗</a></header>
+      ${shop.promotion && Date.parse(shop.promotion.endsAt) > Date.now() ? `<p class="shop-promotion"><a href="${escape(shop.promotion.url)}" target="_blank" rel="noopener noreferrer">${escape(shop.promotion.text)} ↗</a></p>` : ''}
       <div class="product-slides" aria-live="off">${shop.products.map((product,index) => `<article class="product-slide" role="group" aria-roledescription="diapositive" aria-label="${index+1} sur ${shop.products.length}" ${index?'hidden':''}>
         <a class="product-visual" href="${escape(product.url)}" target="_blank" rel="noopener noreferrer" aria-label="Voir ${escape(product.name)} chez ${escape(shop.name)}"><img src="${escape(product.image)}" alt="${escape(product.name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="product-image-fallback" hidden>Photo indisponible</span></a>
         <div class="product-content"><span class="product-kind">${escape(product.kind)}</span><h4>${escape(product.name)}</h4>${renderPrice(product)}<a class="product-link" href="${escape(product.url)}" target="_blank" rel="noopener noreferrer">Voir l’article <span>↗</span></a></div>
@@ -67,13 +68,15 @@
     </section>`).join('');
 
     const cleanups = [];
+    const controllers = [];
     root.querySelectorAll('.shop-carousel').forEach((card, shopIndex) => {
       const slides = [...card.querySelectorAll('.product-slide')];
       const pause = card.querySelector('[data-carousel="pause"]');
       const counter = card.querySelector('.carousel-count');
       const controller = createController({
         count: slides.length,
-        paused: reducedMotion.matches,
+        paused: saved[shops[shopIndex].id]?.userPaused ?? reducedMotion.matches,
+        initialIndex: Math.max(0, shops[shopIndex].products.findIndex(product => product.url === saved[shops[shopIndex].id]?.url)),
         onChange({index,userPaused}) {
           slides.forEach((slide,i) => { slide.hidden = i !== index; });
           counter.textContent = `${index+1} / ${slides.length}`;
@@ -82,6 +85,8 @@
           pause.setAttribute('aria-label', `${userPaused?'Lancer':'Mettre en pause'} le défilement chez ${shops[shopIndex].name}`);
         }
       });
+      controllers.push(controller);
+      if (card.matches(':hover')) controller.hold('hover',true);
       function listen(target, event, callback) {
         target.addEventListener(event, callback);
         cleanups.push(() => target.removeEventListener(event, callback));
@@ -114,7 +119,10 @@
       });
       cleanups.push(() => controller.destroy());
     });
-    return {destroy() {cleanups.forEach(cleanup => cleanup());}};
+    return {
+      snapshot() {return Object.fromEntries(shops.map((shop,i) => {const state = controllers[i].state(); return [shop.id,{userPaused:state.userPaused,url:shop.products[state.index]?.url}];}));},
+      destroy() {cleanups.forEach(cleanup => cleanup());}
+    };
   }
 
   global.SBCProductCarousel = {mount, createController, renderPrice, delay: DELAY};

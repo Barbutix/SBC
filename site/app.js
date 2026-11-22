@@ -62,7 +62,7 @@ function renderEvents(){
 let productCarousels;
 function renderProducts(){
   productCarousels?.destroy();
-  productCarousels = window.SBCProductCarousel.mount(productGrid, equipmentShops);
+  productCarousels = window.SBCProductRefresh.start(productGrid, equipmentShops, document.querySelector('#product-refresh-status'));
 }
 
 const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
