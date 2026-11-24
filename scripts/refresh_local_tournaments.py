@@ -6,6 +6,7 @@ import json
 import math
 from pathlib import Path
 import re
+import unicodedata
 from urllib.parse import urlencode, urlparse
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
@@ -81,6 +82,21 @@ def get(url):
         return response.read(4_000_000).decode('utf-8')
 
 
+def target_type(value):
+    if isinstance(value, list):
+        value = ' '.join(str(part) for part in value)
+    normalized = ''.join(c for c in unicodedata.normalize('NFD', str(value or '').lower()) if not unicodedata.combining(c))
+    steel = bool(re.search(r'\b(?:acier|traditionnel(?:le)?s?|steel(?:[ -]?tip)?)\b', normalized))
+    soft = bool(re.search(r'\b(?:electroniques?|electros?|soft(?:[ -]?tip)?|nylon|plastique)\b', normalized))
+    if (steel and soft) or normalized.strip() in ('mixte', 'mixed', 'both'):
+        return 'Acier + Soft-tip'
+    if steel:
+        return 'Acier'
+    if soft:
+        return 'Soft-tip'
+    return 'À confirmer'
+
+
 def dartsmap(getter=get, checked_at=None):
     # Read the same public configuration and listing used by the site's map.
     source = getter('https://dartsmap.fr/')
@@ -103,7 +119,7 @@ def dartsmap(getter=get, checked_at=None):
         if not slug:
             continue
         url = 'https://dartsmap.fr/?' + urlencode({'fiche': 'event-' + slug})
-        kind = {'electronique': 'Soft-tip', 'traditionnelle': 'Acier'}.get(pin.get('dart_type'), 'À confirmer')
+        kind = target_type(pin.get('dart_type'))
         modalities = ' · '.join(text(x).capitalize() for x in pin.get('modalities', []) if isinstance(x, str))
         events.append(dict(
             id='dartsmap-' + str(pin.get('id')), name=text(pin.get('title')),
