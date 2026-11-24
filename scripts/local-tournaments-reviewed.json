@@ -1,0 +1,41 @@
+{
+  "note": "Annonces publiques relevées le 24/11/2026. Ne pas changer checkedAt sans relire la publication. Les coordonnées des communes proviennent de geo.api.gouv.fr ; la distance est indicative, à vol d’oiseau.",
+  "events": [
+    {
+      "id": "bar-du-port-2026-12-05",
+      "name": "Concours de fléchettes au Bar du Port",
+      "date": "2026-12-05",
+      "location": "Marseilles-lès-Aubigny · Bar du Port",
+      "latitude": 47.07,
+      "longitude": 2.9895,
+      "coordinatePrecision": "commune",
+      "format": "À confirmer",
+      "details": "Débutants bienvenus · 2 € la partie annoncés",
+      "access": "Ouvert à tous selon l’annonce",
+      "image": "",
+      "url": "https://www.bourges.infoptimum.com/fiche-evenement-concours-de-flechettes-93829.html",
+      "source": "Infoptimum · agenda du Cher",
+      "sourceKey": "reviewed",
+      "checkedAt": "2026-11-24",
+      "status": "published"
+    },
+    {
+      "id": "smoc-apero-club-2026-12-12",
+      "name": "Fléchettes · Soirée Apéro Club SMOC",
+      "date": "2026-12-12",
+      "location": "Saint-Jean-de-Braye · Parc du Petit Bois",
+      "latitude": 47.9216,
+      "longitude": 1.9695,
+      "coordinatePrecision": "commune",
+      "format": "À confirmer",
+      "details": "À 19 h · Tournoi de fléchettes dans une soirée de club",
+      "access": "Réservé aux adhérents SMOC et à leur famille",
+      "image": "",
+      "url": "https://www.helloasso.com/associations/smoc-tennis-de-table/evenements/soiree-apero-club-12-decembre-2026",
+      "source": "SMOC · HelloAsso",
+      "sourceKey": "reviewed",
+      "checkedAt": "2026-11-24",
+      "status": "published"
+    }
+  ]
+}
