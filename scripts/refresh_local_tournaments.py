@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Public tournament announcements within 100 km of Viglain; no account or token."""
+"""French public tournament announcements, for local or nationwide discovery."""
+from functools import lru_cache
 from datetime import datetime
 from html import unescape
 import json
@@ -16,7 +17,6 @@ OUT = ROOT / 'site/local-tournaments.json'
 EXTRA = ROOT / 'scripts/local-tournaments-reviewed.json'
 # Commune centre published by geo.api.gouv.fr (INSEE 45336), not a visitor location.
 ORIGIN = {'name': 'Viglain', 'latitude': 47.7329, 'longitude': 2.2885}
-RADIUS = 100
 
 
 def text(value):
@@ -49,7 +49,7 @@ def iso_date(value):
     return datetime.strptime(value, '%Y-%m-%d').date()
 
 
-def select(events, today):
+def select(events, today, radius=100, limit=10):
     result, seen = [], set()
     for event in events:
         try:
@@ -60,7 +60,7 @@ def select(events, today):
             if event.get('status') in ('cancelled', 'postponed', 'pending', 'rejected'):
                 continue
             km = distance(event.get('latitude'), event.get('longitude'))
-            if km > RADIUS:
+            if radius is not None and km > radius:
                 continue
             # One card per dated announcement, even when the same URL is supplied twice.
             key = (event['date'], event['url'].rstrip('/'))
@@ -73,7 +73,47 @@ def select(events, today):
             result.append(row)
         except (ValueError, KeyError, TypeError):
             continue
-    return sorted(result, key=lambda e: (e['date'], e['distanceKm'], e['name']))[:10]
+    return sorted(result, key=lambda e: (e['date'], e['distanceKm'], e['name']))[:limit]
+
+
+@lru_cache(maxsize=1)
+def france_polygons():
+    """Local, attributed region contours include metropolitan France and the DROM."""
+    data = json.loads((ROOT / 'scripts/france-regions.geojson').read_text())
+    polygons = []
+    for feature in data['features']:
+        geometry = feature['geometry']
+        coordinates = geometry['coordinates']
+        for rings in ([coordinates] if geometry['type'] == 'Polygon' else coordinates):
+            outer = rings[0]
+            bounds = (min(p[0] for p in outer), min(p[1] for p in outer), max(p[0] for p in outer), max(p[1] for p in outer))
+            polygons.append((bounds, rings))
+    return polygons
+
+
+def in_ring(x, y, ring):
+    inside = False
+    previous = ring[-1]
+    for current in ring:
+        x1, y1 = previous
+        x2, y2 = current
+        if ((y1 > y) != (y2 > y)) and x < (x2 - x1) * (y - y1) / (y2 - y1) + x1:
+            inside = not inside
+        previous = current
+    return inside
+
+
+def in_france(event):
+    try:
+        distance(event.get('latitude'), event.get('longitude'))  # validate before conversion
+        x, y = float(event['longitude']), float(event['latitude'])
+        for bounds, rings in france_polygons():
+            left, bottom, right, top = bounds
+            if left <= x <= right and bottom <= y <= top and in_ring(x, y, rings[0]) and not any(in_ring(x, y, hole) for hole in rings[1:]):
+                return True
+    except (ValueError, KeyError, TypeError):
+        return False
+    return False
 
 
 def get(url):
@@ -141,8 +181,9 @@ def refresh(previous, reviewed, now, loader=dartsmap):
         automatic = [e for e in previous.get('events', []) if e.get('sourceKey') == 'dartsmap']
         collected_at = previous.get('collectedAt')
         errors.append({'source': 'DartsMap', 'error': type(error).__name__})
-    events = select(automatic + reviewed, now.date())
-    return dict(schemaVersion=1, origin=ORIGIN, radiusKm=RADIUS,
+    french = [dict(event, countryCode='FR') for event in automatic + reviewed if in_france(event)]
+    events = select(french, now.date(), radius=None, limit=None)
+    return dict(schemaVersion=1, origin=ORIGIN, coverage='FR', radiusKm=None,
                 attemptedAt=now.isoformat(timespec='seconds'), collectedAt=collected_at,
                 events=events, sourceErrors=errors)
 
@@ -153,7 +194,7 @@ def main():
     reviewed = json.loads(EXTRA.read_text())['events'] if EXTRA.exists() else []
     result = refresh(previous, reviewed, now)
     OUT.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
-    print(f"{len(result['events'])} annonces à venir à moins de {RADIUS} km de Viglain")
+    print(f"{len(result['events'])} annonces à venir en France (rayons filtrés dans l’application)")
     if result['sourceErrors']:
         print('DartsMap indisponible : dernier relevé conservé, dates inchangées.')
 

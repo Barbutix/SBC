@@ -8,6 +8,9 @@ from html.parser import HTMLParser
 import json
 from pathlib import Path
 import re
+import unicodedata
+from itertools import zip_longest
+from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 
@@ -197,57 +200,119 @@ def parse_campaign(source, now):
                 url='https://pleinebull.fr/pages/black-friday', startsAt=start.isoformat(), endsAt=end.isoformat())
 
 
-def select(items):
+def select(items, limit=10):
     result, seen = [], set()
     for item in items:
         if item and item['url'] not in seen:
             seen.add(item['url'])
             result.append(item)
-    return result[:10]
+    return result[:limit]
 
 
-def collect(shop_id, now, get=fetch):
-    promotion = None
-    warning = None
-    if shop_id == 'olies':
-        items = parse_olies(get('https://www.olies-darts.com/promotions'))
-    elif shop_id == 'pleinebull':
-        items = parse_shopify(get('https://pleinebull.fr/collections/soldes-flechettes-promos/products.json?limit=40'))
-        if len(select(items)) < 10:
-            items += parse_shopify(get('https://pleinebull.fr/collections/nouveautes-flechettes/products.json?limit=40'))
-        try:
-            promotion = parse_campaign(get('https://pleinebull.fr/pages/black-friday'), now)
-        except Exception:
-            warning = 'Offres panier indisponibles lors de ce relevé.'
-    else:
-        items = parse_dartshopper(get('https://www.dartshopper.fr/vente/'))
-    items = select(items)
-    if len(items) != 10:
-        raise ValueError(f'{len(items)} articles valides au lieu de 10')
+FAMILIES = ('cible', 'flechettes', 'pack', 'promo')
+FAMILY_URLS = {
+    'olies': {
+        'cible': ['https://www.olies-darts.com/54-cibles-de-flechettes-pointe-acier', 'https://www.olies-darts.com/290-cible-electronique-connectee'],
+        'flechettes': ['https://www.olies-darts.com/37-flechettes-pointe-acier', 'https://www.olies-darts.com/38-flechettes-pointe-nylon'],
+        'pack': ['https://www.olies-darts.com/315-pack-cible-et-armoire'],
+        'promo': ['https://www.olies-darts.com/promotions']},
+    'pleinebull': {
+        'cible': ['https://pleinebull.fr/collections/cibles-sisal', 'https://pleinebull.fr/collections/cibles-electroniques'],
+        'flechettes': ['https://pleinebull.fr/collections/flechettes-acier-steeltip', 'https://pleinebull.fr/collections/flechettes-plastique-softtip'],
+        'pack': ['https://pleinebull.fr/collections/packs-kits-flechettes'],
+        'promo': ['https://pleinebull.fr/collections/soldes-flechettes-promos']},
+    'dartshopper': {
+        'cible': ['https://www.dartshopper.fr/cibles/'],
+        'flechettes': ['https://www.dartshopper.fr/pointe-acier/', 'https://www.dartshopper.fr/pointe-plastique/'],
+        'pack': ['https://www.dartshopper.fr/sets/'],
+        'promo': ['https://www.dartshopper.fr/vente/']}}
+
+
+def family(item, hint=None):
+    raw = item.get('name', '')
+    name = ''.join(c for c in unicodedata.normalize('NFD', raw.lower()) if not unicodedata.combining(c))
+    pack = bool(re.search(r'\b(?:pack|kit|bundle|dartset|offre groupee|ensemble)\b|\+|\bcoffret\b.*\bcible\b|\bset cible\b', name))
+    # A pack of flights is a pack, never a complete set of darts.
+    accessory = bool(re.search(r'\b(?:ailettes?|tiges?|shafts?|flights?|pointes?|surround|tour de cible|tours de cible|support|trepied|holder|eclairage|plasma|polaris|corona|tapis|armoires?|protection|scorage|scoring|compteur)\b', name))
+    if pack or hint == 'pack':
+        return 'pack'
+    # "Fléchettes pointe acier" denotes full darts, despite the word "pointe".
+    if hint == 'flechettes' and not re.match(r'^(?:pointes?|tiges?|ailettes?|shafts?|flights?|etuis?)\b', name):
+        return 'flechettes'
+    if re.match(r'^flechettes?\b', name) and not re.match(r'^flechettes?.*\b(?:ailettes?|tiges?)\b', name):
+        return 'flechettes'
+    if accessory:
+        return 'accessoires'
+    if re.search(r'\bcible\b|\bdartboard\b', name):
+        return 'cible'
+    return hint if hint in ('cible', 'flechettes') else 'accessoires'
+
+
+def discounted(item):
+    return isinstance(item.get('previousPriceCents'), int) and item['previousPriceCents'] > item['priceCents']
+
+
+def collect_families(shop_id, now, previous, getter=fetch):
     checked = now.isoformat(timespec='seconds')
-    for item in items:
-        item['priceCheckedAt'] = checked
-    return dict(products=items, updatedAt=checked, promotion=promotion, warning=warning)
-
-
-def refresh(previous, now, collector=collect):
-    previous = {shop['id']: shop for shop in previous.get('shops', [])}
-    shops, successes = [], 0
-    with ThreadPoolExecutor(max_workers=3) as executor:
-        futures = {sid: executor.submit(collector, sid, now) for sid, _, _ in SHOPS}
-        for sid, name, url in SHOPS:
-            base = dict(id=sid, name=name, url=url)
+    families, errors, dates = {}, {}, {}
+    promotion, warning = None, None
+    if shop_id == 'pleinebull':
+        try:
+            promotion = parse_campaign(getter('https://pleinebull.fr/pages/black-friday'), now)
+        except Exception:
+            promotion = previous.get('promotion')
+            if promotion and datetime.fromisoformat(promotion['endsAt']) < now:
+                promotion = None
+            warning = 'Offre panier non revérifiée : consulte les conditions du vendeur.'
+    rate_limited = False
+    successes = 0
+    for category in FAMILIES:
+        groups, failures = [], []
+        for url in FAMILY_URLS[shop_id][category]:
             try:
-                base.update(futures[sid].result())
-                successes += 1
-                base['error'] = None
+                if rate_limited:
+                    raise ValueError('rate limit: retaining last catalog')
+                endpoint = url + '/products.json?limit=40' if shop_id == 'pleinebull' else url
+                source = getter(endpoint)
+                parser = {'olies': parse_olies, 'pleinebull': parse_shopify, 'dartshopper': parse_dartshopper}[shop_id]
+                parsed = parser(source)
+                group = []
+                for item in parsed:
+                    item['family'] = family(item, category if category != 'promo' else None)
+                    item['priceCheckedAt'] = checked
+                    if category == 'promo' or item['family'] == category:
+                        group.append(item)
+                if category != 'promo' and not group:
+                    raise ValueError('No valid items in category')
+                groups.append(group)
             except Exception as error:
-                base.update(previous.get(sid, {}))
-                base['error'] = 'Boutique indisponible : dernier relevé conservé.'
-                base.setdefault('products', [])
-                print(f'{sid}: {type(error).__name__}: {error}')
-            shops.append(base)
-    return dict(schemaVersion=1, attemptedAt=now.isoformat(timespec='seconds'), shops=shops), successes
+                if isinstance(error, HTTPError) and error.code == 429:
+                    rate_limited = True
+                failures.append(type(error).__name__)
+        items = select(item for chunk in zip_longest(*groups) for item in chunk if item)
+        if groups:
+            successes += 1
+            families[category], dates[category] = items, checked
+            if failures:
+                errors[category] = 'Une partie de la sélection est indisponible.'
+        else:
+            old = previous.get('families', {}).get(category)
+            if old is None:
+                old = [dict(item, family=family(item)) for item in previous.get('products', []) if (discounted(item) if category == 'promo' else family(item) == category)]
+            families[category] = old[:10]
+            dates[category] = previous.get('familyUpdatedAt', {}).get(category) or previous.get('updatedAt')
+            errors[category] = 'Collecte indisponible : dernier relevé conservé.'
+    # PROMO is a real price reduction, or an explicitly conditional basket offer.
+    families['promo'] = select([p for p in families['promo'] if discounted(p)] + [p for category in FAMILIES[:-1] for p in families[category] if discounted(p)])
+    promo_kind = 'article'
+    if not families['promo'] and promotion:
+        families['promo'] = select(p for category in FAMILIES[:-1] for p in families[category])
+        promo_kind = 'basket'
+    return dict(families=families, familyErrors=errors, familyUpdatedAt=dates,
+                familyUrls={key: urls[0] for key, urls in FAMILY_URLS[shop_id].items()},
+                products=families['promo'] or families['cible'] or families['flechettes'] or families['pack'],
+                updatedAt=min((date for date in dates.values() if date), default=previous.get('updatedAt')),
+                promotion=promotion, promoKind=promo_kind, warning=warning, error=None if successes else 'Boutique indisponible.'), successes
 
 
 def main():
@@ -255,7 +320,16 @@ def main():
     parser.add_argument('--output', type=Path, default=ROOT / 'site/equipment.json')
     args = parser.parse_args()
     previous = json.loads(args.output.read_text()) if args.output.exists() else {}
-    data, successes = refresh(previous, datetime.now(timezone.utc))
+    now = datetime.now(timezone.utc)
+    old = {shop['id']: shop for shop in previous.get('shops', [])}
+    shops, successes = [], 0
+    with ThreadPoolExecutor(max_workers=3) as executor:
+        futures = {sid: executor.submit(collect_families, sid, now, old.get(sid, {})) for sid, _, _ in SHOPS}
+        for sid, name, url in SHOPS:
+            result, count = futures[sid].result()
+            successes += int(count > 0)
+            shops.append(dict(id=sid, name=name, url=url, **result))
+    data = dict(schemaVersion=2, attemptedAt=now.isoformat(timespec='seconds'), shops=shops)
     args.output.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
     # Also update the immediate/offline fallback from the same checked catalog.
     (args.output.parent / 'products.js').write_text('// Dernier catalogue collecté ; equipment.json est rechargé à l’ouverture et toutes les 30 minutes.\nconst equipmentShops = ' + json.dumps(data['shops'], ensure_ascii=False, indent=2) + ';\n')
