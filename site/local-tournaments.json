@@ -6,8 +6,8 @@
     "longitude": 2.2885
   },
   "radiusKm": 100,
-  "attemptedAt": "2026-11-24T23:51:43+01:00",
-  "collectedAt": "2026-11-24T23:51:43+01:00",
+  "attemptedAt": "2026-11-25T00:01:36+01:00",
+  "collectedAt": "2026-11-25T00:01:36+01:00",
   "events": [
     {
       "id": "bar-du-port-2026-12-05",
@@ -61,7 +61,7 @@
       "url": "https://dartsmap.fr/?fiche=event-open-de-comite-darts-smfe91",
       "source": "DartsMap",
       "sourceKey": "dartsmap",
-      "checkedAt": "2026-11-24T23:51:43+01:00",
+      "checkedAt": "2026-11-25T00:01:36+01:00",
       "access": "Conditions sur l’annonce",
       "status": "published",
       "distanceKm": 99.5
@@ -80,7 +80,7 @@
       "url": "https://dartsmap.fr/?fiche=event-tournoi-de-lentre-2-tours3",
       "source": "DartsMap",
       "sourceKey": "dartsmap",
-      "checkedAt": "2026-11-24T23:51:43+01:00",
+      "checkedAt": "2026-11-25T00:01:36+01:00",
       "access": "Conditions sur l’annonce",
       "status": "published",
       "distanceKm": 74.8
