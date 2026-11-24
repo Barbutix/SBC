@@ -1,7 +1,9 @@
 (function (global) {
   'use strict';
   const ORIGIN = {latitude:47.7329, longitude:2.2885};
-  const RADIUS = 100;
+  const RADII = ['50','100','150','200','300','500','all'];
+  const RANGE_KEY = 'sbc-tournament-radius-v1';
+  const normalizeRadius = value => RADII.includes(String(value)) ? String(value) : '100';
   const REFRESH = 30 * 60 * 1000;
   const KEY = 'sbc-local-tournaments-v1';
   const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
@@ -21,20 +23,21 @@
     return 2 * 6371.0088 * Math.asin(Math.sqrt(Math.min(1,a)));
   }
   // Local discovery always includes both target types, regardless of the news filter.
-  function select(events, today = day()) {
+  function select(events, today = day(), radius = '100', limit = 10) {
+    radius = normalizeRadius(radius);
     const seen = new Set();
     return events.filter(event => {
       if (!event || !validDate(event.date) || !validDate(event.endDate || event.date) || (event.endDate || event.date) < event.date || (event.endDate || event.date) < today ||
           !['published','verified'].includes(event.status) || typeof event.name !== 'string' || !event.name.trim() || !https(event.url) || typeof event.source !== 'string' ||
-          distance(event.latitude,event.longitude)>RADIUS) return false;
+          !Number.isFinite(distance(event.latitude,event.longitude)) || (event.countryCode && event.countryCode !== 'FR') || (radius === 'all' ? event.countryCode !== 'FR' : distance(event.latitude,event.longitude)>Number(radius))) return false;
       const key = event.date + '|' + event.url.replace(/\/$/,'');
       if (seen.has(key)) return false;
       seen.add(key);
       return true;
     }).map(event => ({...event,distanceKm:distance(event.latitude,event.longitude)}))
-      .sort((a,b) => a.date.localeCompare(b.date) || a.distanceKm-b.distanceKm || a.name.localeCompare(b.name,'fr')).slice(0,10);
+      .sort((a,b) => a.date.localeCompare(b.date) || a.distanceKm-b.distanceKm || a.name.localeCompare(b.name,'fr')).slice(0,limit);
   }
-  function valid(data) {return data?.schemaVersion === 1 && Array.isArray(data.events) && data.events.length <= 1000;}
+  function valid(data) {return data?.schemaVersion === 1 && Array.isArray(data.events) && data.events.length <= 5000;}
   function formatLabel(value) {
     return ({'Acier':'Traditionnelles · pointe acier','Soft-tip':'Électroniques · pointe plastique','Acier + Soft-tip':'Acier et électroniques'})[value] || 'Type de cible à confirmer';
   }
@@ -63,28 +66,37 @@
     const controls = root.querySelector('[data-nearby-controls]');
     const count = root.querySelector('[data-nearby-count]');
     const pause = root.querySelector('[data-nearby-pause]');
+    const radiusControl = root.querySelector('[data-nearby-radius]');
+    const heading = root.querySelector('#nearby-title');
+    let radius = '100', total = 0;
     let data = null, rows = [], controller = null;
     let timer, inFlight, stopped = false, lastAttempt = -Infinity, pending = false, offline = false;
     let activeUrl, userPaused = reduced.matches;
     let inViewport = !('IntersectionObserver' in global);
     const listeners = [], slideListeners = [];
     let storage;
-    try {storage = options.storage || global.localStorage;} catch { /* Storage optional. */ }
+    try {storage = options.storage || global.localStorage; radius = normalizeRadius(storage?.getItem(RANGE_KEY));} catch { /* Storage optional. */ }
+    if(radiusControl) radiusControl.value = radius;
     function listen(target, type, callback, list = listeners) {target.addEventListener(type,callback);list.push(()=>target.removeEventListener(type,callback));}
     function report() {
-      status.textContent = `${rows.length} annonce${rows.length===1?'':'s'} à venir · acier et électroniques · 100 km à vol d’oiseau.`;
+      const area = radius === 'all' ? 'France entière' : `${radius} km à vol d’oiseau autour de Viglain`;
+      status.textContent = `${rows.length}${total>rows.length?` sur ${total}`:''} annonce${total===1?'':'s'} à venir · acier et électroniques · ${area}.`;
+      if(heading)heading.textContent = radius === 'all' ? 'Les tournois en France' : 'Les tournois autour de Viglain';
+      if(data && data.coverage !== 'FR' && (radius === 'all' || Number(radius)>100))status.textContent += ' Catalogue national en attente d’actualisation.';
       if (data?.sourceErrors?.length) status.textContent += ' Source indisponible : dernier relevé conservé.';
       if (offline) status.textContent += ' Actualisation indisponible.';
       const dates = rows.map(event => Date.parse(event.checkedAt)).filter(Number.isFinite);
       if (dates.length && now()-Math.min(...dates)>2*86400000) status.textContent += ' Certaines annonces sont anciennes : confirme auprès de l’organisateur.';
     }
-    function redraw() {
-      const selected = select(data?.events || [],day(new Date(now())));
+    function redraw(force = false, reset = false) {
+      const matches = select(data?.events || [],day(new Date(now())),radius,5000);
+      total = matches.length;
+      const selected = matches.slice(0,10);
       // Do not remove a link while someone is using it with the keyboard.
-      if (root.contains(doc.activeElement)) {pending = true; return;}
+      if (!force && root.contains(doc.activeElement)) {pending = true; return;}
       pending = false;
       if (JSON.stringify(selected) === JSON.stringify(rows) && controller) {report();return;}
-      if (controller) {const state=controller.state();userPaused=state.userPaused;activeUrl=rows[state.index]?.url;controller.destroy();}
+      if (controller) {const state=controller.state();userPaused=state.userPaused;activeUrl=reset ? null : rows[state.index]?.url;controller.destroy();}
       slideListeners.splice(0).forEach(remove=>remove());
       rows = selected;
       slidesRoot.innerHTML = rows.length ? rows.map((event,index)=>renderCard(event,index,rows.length)).join('') : '<p class="nearby-empty">Aucune annonce à venir disponible dans ce rayon pour cette sélection. La recherche ci-dessous reste accessible.</p>';
@@ -131,6 +143,7 @@
     }
     function schedule() {clearTimer(timer);timer=setTimer(()=>{if(!doc.hidden)refresh();if(!stopped)schedule();},REFRESH);}
     function resume() {controller?.hold('document',doc.hidden);if(!doc.hidden){redraw();if(now()-lastAttempt>=REFRESH){refresh();schedule();}}}
+    if(radiusControl)listen(radiusControl,'change',()=>{radius=normalizeRadius(radiusControl.value);try{storage?.setItem(RANGE_KEY,radius);}catch{}redraw(true,true);});
     listen(root.querySelector('[data-nearby-previous]'),'click',()=>controller?.previous());
     listen(root.querySelector('[data-nearby-next]'),'click',()=>controller?.next());
     listen(pause,'click',()=>controller?.toggle());
@@ -153,5 +166,5 @@
       setFormats(){},
       destroy(){stopped=true;clearTimer(timer);controller?.destroy();listeners.concat(slideListeners).forEach(remove=>remove());}};
   }
-  global.SBCTournamentCarousel={mount,select,distance,validDate,renderCard,formatLabel,day,interval:REFRESH};
+  global.SBCTournamentCarousel={mount,select,distance,validDate,renderCard,formatLabel,day,normalizeRadius,interval:REFRESH};
 })(typeof window==='undefined'?globalThis:window);

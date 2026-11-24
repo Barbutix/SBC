@@ -64,7 +64,18 @@ let productCarousels;
 function renderProducts(){
   productCarousels?.destroy();
   productCarousels = window.SBCProductRefresh.start(productGrid, equipmentShops, document.querySelector('#product-refresh-status'));
+  updateProductFamilyButtons();
 }
+
+function updateProductFamilyButtons(){
+  document.querySelectorAll('[data-product-family]').forEach(button=>{
+    const active=button.dataset.productFamily===productCarousels.getFamily();
+    button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));
+  });
+}
+document.querySelectorAll('[data-product-family]').forEach(button=>button.addEventListener('click',()=>{
+  productCarousels.setFamily(button.dataset.productFamily);updateProductFamilyButtons();
+}));
 
 const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const normalizeSearch = value => String(value ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('fr').trim();

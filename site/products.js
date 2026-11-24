@@ -4,6 +4,503 @@ const equipmentShops = [
     "id": "olies",
     "name": "Olie’s Darts",
     "url": "https://www.olies-darts.com/",
+    "families": {
+      "cible": [
+        {
+          "name": "Cible Gladiator III Pro",
+          "kind": "Matériel de fléchettes",
+          "url": "https://www.olies-darts.com/cibles-de-flechettes-pointe-acier/6666-cible-gladiator-iii-pro.html",
+          "image": "https://www.olies-darts.com/20866-home_default/cible-gladiator-iii-pro.jpg",
+          "priceCents": 4950,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/cibles-de-flechettes-pointe-acier/6666-cible-gladiator-iii-pro.html",
+          "priceTaxIncluded": true,
+          "family": "cible",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "Cible électronique lit board V2",
+          "kind": "Matériel de fléchettes",
+          "url": "https://www.olies-darts.com/cible-electronique-connectee/5867-cible-electronique-lit-board-v2.html",
+          "image": "https://www.olies-darts.com/17109-home_default/cible-electronique-lit-board-v2.jpg",
+          "priceCents": 34900,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/cible-electronique-connectee/5867-cible-electronique-lit-board-v2.html",
+          "priceTaxIncluded": true,
+          "family": "cible",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "Gran Eye 2026 Scoreur Automatique",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/systeme-de-scorage/6227-gran-eye-2026-scoreur-automatique.html",
+          "image": "https://www.olies-darts.com/18653-home_default/gran-eye-2026-scoreur-automatique.jpg",
+          "priceCents": 25415,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/systeme-de-scorage/6227-gran-eye-2026-scoreur-automatique.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 29900,
+          "family": "cible",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "Cible électronique connectée GranBoard 132 blanche",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/cible-electronique-connectee/4301-cible-electronique-connectee-granboard-132-blanche.html",
+          "image": "https://www.olies-darts.com/20205-home_default/cible-electronique-connectee-granboard-132-blanche.jpg",
+          "priceCents": 22848,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/cible-electronique-connectee/4301-cible-electronique-connectee-granboard-132-blanche.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 26880,
+          "family": "cible",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "Camera Fliq pour Scolia",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/systeme-de-scorage/6175-camera-fliq-pour-scolia.html",
+          "image": "https://www.olies-darts.com/18383-home_default/camera-fliq-pour-scolia.jpg",
+          "priceCents": 13410,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/systeme-de-scorage/6175-camera-fliq-pour-scolia.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 14900,
+          "family": "cible",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "Cible Winmau Blade X",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/cibles-de-flechettes-pointe-acier/6174-cible-winmau-blade-x.html",
+          "image": "https://www.olies-darts.com/18378-home_default/cible-winmau-blade-x.jpg",
+          "priceCents": 9900,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/cibles-de-flechettes-pointe-acier/6174-cible-winmau-blade-x.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 15000,
+          "family": "cible",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "Cible Winmau Equalizer",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/cibles-de-flechettes-pointe-acier/6165-cible-winmau-equalizer.html",
+          "image": "https://www.olies-darts.com/18314-home_default/cible-winmau-equalizer.jpg",
+          "priceCents": 8100,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/cibles-de-flechettes-pointe-acier/6165-cible-winmau-equalizer.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 9000,
+          "family": "cible",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "Cible Winmau Blade 360",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/cibles-de-flechettes-pointe-acier/6151-cible-winmau-blade-360.html",
+          "image": "https://www.olies-darts.com/18241-home_default/cible-winmau-blade-360.jpg",
+          "priceCents": 9900,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/cibles-de-flechettes-pointe-acier/6151-cible-winmau-blade-360.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 11000,
+          "family": "cible",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        }
+      ],
+      "flechettes": [
+        {
+          "name": "Charlie Manby Champagne SP Target en 25g",
+          "kind": "Matériel de fléchettes",
+          "url": "https://www.olies-darts.com/jeux-target/6673-charlie-manby-champagne-sp-target-en-25g.html",
+          "image": "https://www.olies-darts.com/20910-home_default/charlie-manby-champagne-sp-target-en-25g.jpg",
+          "priceCents": 11495,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/jeux-target/6673-charlie-manby-champagne-sp-target-en-25g.html",
+          "priceTaxIncluded": true,
+          "family": "flechettes",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "Strike X SX04 elek one80 en 18g",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/jeux-one80/6670-strike-x-sx04-elek-one80-en-18g.html",
+          "image": "https://www.olies-darts.com/20897-home_default/strike-x-sx04-elek-one80-en-18g.jpg",
+          "priceCents": 5391,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/jeux-one80/6670-strike-x-sx04-elek-one80-en-18g.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 5990,
+          "family": "flechettes",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "Charlie Manby Champagne SP Target en 23g",
+          "kind": "Matériel de fléchettes",
+          "url": "https://www.olies-darts.com/jeux-target/6672-charlie-manby-champagne-sp-target-en-23g.html",
+          "image": "https://www.olies-darts.com/20906-home_default/charlie-manby-champagne-sp-target-en-23g.jpg",
+          "priceCents": 11495,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/jeux-target/6672-charlie-manby-champagne-sp-target-en-23g.html",
+          "priceTaxIncluded": true,
+          "family": "flechettes",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "Strike X SX03 elek one80 en 18g",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/jeux-one80/6669-strike-x-sx03-elek-one80-en-18g.html",
+          "image": "https://www.olies-darts.com/20889-home_default/strike-x-sx03-elek-one80-en-18g.jpg",
+          "priceCents": 5391,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/jeux-one80/6669-strike-x-sx03-elek-one80-en-18g.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 5990,
+          "family": "flechettes",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "Charlie Manby Champagne SP Target en 22g",
+          "kind": "Matériel de fléchettes",
+          "url": "https://www.olies-darts.com/jeux-target/6671-charlie-manby-champagne-sp-target-en-22g.html",
+          "image": "https://www.olies-darts.com/20902-home_default/charlie-manby-champagne-sp-target-en-22g.jpg",
+          "priceCents": 11495,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/jeux-target/6671-charlie-manby-champagne-sp-target-en-22g.html",
+          "priceTaxIncluded": true,
+          "family": "flechettes",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "Strike X SX02 elek one80 en 18g",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/jeux-one80/6668-strike-x-sx02-elek-one80-en-18g.html",
+          "image": "https://www.olies-darts.com/20881-home_default/strike-x-sx02-elek-one80-en-18g.jpg",
+          "priceCents": 5391,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/jeux-one80/6668-strike-x-sx02-elek-one80-en-18g.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 5990,
+          "family": "flechettes",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "Marvel Spiderman 95% SP target en 22g",
+          "kind": "Matériel de fléchettes",
+          "url": "https://www.olies-darts.com/jeux-swiss-point-target/6665-marvel-spiderman-95-sp-target-en-22g.html",
+          "image": "https://www.olies-darts.com/20856-home_default/marvel-spiderman-95-sp-target-en-22g.jpg",
+          "priceCents": 30995,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/jeux-swiss-point-target/6665-marvel-spiderman-95-sp-target-en-22g.html",
+          "priceTaxIncluded": true,
+          "family": "flechettes",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "Strike X SX01 elek one80 en 18g",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/jeux-one80/6667-strike-x-sx01-elek-one80-en-18g.html",
+          "image": "https://www.olies-darts.com/20873-home_default/strike-x-sx01-elek-one80-en-18g.jpg",
+          "priceCents": 5391,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/jeux-one80/6667-strike-x-sx01-elek-one80-en-18g.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 5990,
+          "family": "flechettes",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "Marvel Iron Man 90% SP target en 23g",
+          "kind": "Matériel de fléchettes",
+          "url": "https://www.olies-darts.com/jeux-swiss-point-target/6664-marvel-iron-man-90-sp-target-en-23g.html",
+          "image": "https://www.olies-darts.com/20850-home_default/marvel-iron-man-90-sp-target-en-23g.jpg",
+          "priceCents": 17995,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/jeux-swiss-point-target/6664-marvel-iron-man-90-sp-target-en-23g.html",
+          "priceTaxIncluded": true,
+          "family": "flechettes",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "T-Core TC2 one80 elek en 20g",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/jeux-one80/6645-t-core-tc2-one80-elek-en-20g.html",
+          "image": "https://www.olies-darts.com/20712-home_default/t-core-tc2-one80-elek-en-20g.jpg",
+          "priceCents": 2691,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/jeux-one80/6645-t-core-tc2-one80-elek-en-20g.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 2990,
+          "family": "flechettes",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        }
+      ],
+      "pack": [
+        {
+          "name": "coffret winmau iron maiden trooper et cible blade 6",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/pack-cible-et-armoire/4647-coffret-winmau-iron-maiden-trooper-et-cible-blade-6.html",
+          "image": "https://www.olies-darts.com/14960-home_default/coffret-winmau-iron-maiden-trooper-et-cible-blade-6.jpg",
+          "priceCents": 12690,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/pack-cible-et-armoire/4647-coffret-winmau-iron-maiden-trooper-et-cible-blade-6.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 13990,
+          "family": "pack",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "coffret winmau motorhead ace of spades et cible blade 6",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/pack-cible-et-armoire/4616-coffret-winmau-motorhead-ace-of-spades-et-cible-blade-6.html",
+          "image": "https://www.olies-darts.com/14959-home_default/coffret-winmau-motorhead-ace-of-spades-et-cible-blade-6.jpg",
+          "priceCents": 12690,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/pack-cible-et-armoire/4616-coffret-winmau-motorhead-ace-of-spades-et-cible-blade-6.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 13990,
+          "family": "pack",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "coffret winmau blade 6 et cible blade 6",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/pack-cible-et-armoire/4602-coffret-winmau-blade-6-et-cible-blade-6.html",
+          "image": "https://www.olies-darts.com/13884-home_default/coffret-winmau-blade-6-et-cible-blade-6.jpg",
+          "priceCents": 11890,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/pack-cible-et-armoire/4602-coffret-winmau-blade-6-et-cible-blade-6.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 13190,
+          "family": "pack",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "coffret winmau biere et cible blade 6",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/pack-cible-et-armoire/4601-coffret-winmau-biere-et-cible-blade-6.html",
+          "image": "https://www.olies-darts.com/14951-home_default/coffret-winmau-biere-et-cible-blade-6.jpg",
+          "priceCents": 11890,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/pack-cible-et-armoire/4601-coffret-winmau-biere-et-cible-blade-6.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 13190,
+          "family": "pack",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "coffret winmau pro line et cible blade 6",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/pack-cible-et-armoire/4350-coffret-winmau-pro-line-et-cible-blade-6.html",
+          "image": "https://www.olies-darts.com/14943-home_default/coffret-winmau-pro-line-et-cible-blade-6.jpg",
+          "priceCents": 11890,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/pack-cible-et-armoire/4350-coffret-winmau-pro-line-et-cible-blade-6.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 13190,
+          "family": "pack",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "coffret winmau rosewood et cible blade 6",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/pack-cible-et-armoire/3607-coffret-winmau-rosewood-et-cible-blade-6.html",
+          "image": "https://www.olies-darts.com/14936-home_default/coffret-winmau-rosewood-et-cible-blade-6.jpg",
+          "priceCents": 11490,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/pack-cible-et-armoire/3607-coffret-winmau-rosewood-et-cible-blade-6.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 12790,
+          "family": "pack",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "coffret winmau man cave et cible blade 6",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/pack-cible-et-armoire/3606-coffret-winmau-man-cave-et-cible-blade-6.html",
+          "image": "https://www.olies-darts.com/14935-home_default/coffret-winmau-man-cave-et-cible-blade-6.jpg",
+          "priceCents": 11890,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/pack-cible-et-armoire/3606-coffret-winmau-man-cave-et-cible-blade-6.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 13190,
+          "family": "pack",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "coffret winmau noir et cible blade 6",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/pack-cible-et-armoire/3535-coffret-winmau-noir-et-cible-blade-6.html",
+          "image": "https://www.olies-darts.com/14928-home_default/coffret-winmau-noir-et-cible-blade-6.jpg",
+          "priceCents": 11490,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/pack-cible-et-armoire/3535-coffret-winmau-noir-et-cible-blade-6.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 12790,
+          "family": "pack",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "professional darts set noir",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/pack-cible-et-armoire/2637-professional-darts-set-noir.html",
+          "image": "https://www.olies-darts.com/9350-home_default/professional-darts-set-noir.jpg",
+          "priceCents": 8186,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/pack-cible-et-armoire/2637-professional-darts-set-noir.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 9095,
+          "family": "pack",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        }
+      ],
+      "promo": [
+        {
+          "name": "8 flight ailette fine bleu",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/promotion-accessoires/3900-8-flight-ailette-fine-bleu.html",
+          "image": "https://www.olies-darts.com/11864-home_default/8-flight-ailette-fine-bleu.jpg",
+          "priceCents": 520,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/promotion-accessoires/3900-8-flight-ailette-fine-bleu.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 650,
+          "family": "accessoires",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "8 flight ailette fine rouge",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/promotion-accessoires/3899-8-flight-ailette-fine-rouge.html",
+          "image": "https://www.olies-darts.com/11862-home_default/8-flight-ailette-fine-rouge.jpg",
+          "priceCents": 520,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/promotion-accessoires/3899-8-flight-ailette-fine-rouge.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 650,
+          "family": "accessoires",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "8 flight ailette poire blanc",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/promotion-accessoires/3998-8-flight-ailette-poire-blanc.html",
+          "image": "https://www.olies-darts.com/12204-home_default/8-flight-ailette-poire-blanc.jpg",
+          "priceCents": 520,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/promotion-accessoires/3998-8-flight-ailette-poire-blanc.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 650,
+          "family": "accessoires",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "8 flight ailette poire bleu",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/promotion-accessoires/3997-8-flight-ailette-poire-bleu.html",
+          "image": "https://www.olies-darts.com/12202-home_default/8-flight-ailette-poire-bleu.jpg",
+          "priceCents": 520,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/promotion-accessoires/3997-8-flight-ailette-poire-bleu.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 650,
+          "family": "accessoires",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "8 flight ailette poire rouge",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/promotion-accessoires/3996-8-flight-ailette-poire-rouge.html",
+          "image": "https://www.olies-darts.com/12200-home_default/8-flight-ailette-poire-rouge.jpg",
+          "priceCents": 520,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/promotion-accessoires/3996-8-flight-ailette-poire-rouge.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 650,
+          "family": "accessoires",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "8 flight tige nylon blanc fixe",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/promotion-accessoires/3723-2904-8-flight-tige-nylon-blanc-fixe.html#/2546-choississez_la_taille-19_mm",
+          "image": "https://www.olies-darts.com/11267-home_default/8-flight-tige-nylon-blanc-fixe.jpg",
+          "priceCents": 520,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/promotion-accessoires/3723-2904-8-flight-tige-nylon-blanc-fixe.html#/2546-choississez_la_taille-19_mm",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 650,
+          "family": "accessoires",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "8 flight tige slim titanium fixe",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/promotion-accessoires/4722-8807-8-flight-tige-slim-titanium-fixe.html#/2569-choisissez_le_modele-33_mm",
+          "image": "https://www.olies-darts.com/14244-home_default/8-flight-tige-slim-titanium-fixe.jpg",
+          "priceCents": 1916,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/promotion-accessoires/4722-8807-8-flight-tige-slim-titanium-fixe.html#/2569-choisissez_le_modele-33_mm",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 2395,
+          "family": "accessoires",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "Adrenalin Michael Van Gerwen elek en 22g",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/jeux-winmau/3979-adenalin-michael-van-gerwen-elek-en-22g.html",
+          "image": "https://www.olies-darts.com/12096-home_default/adenalin-michael-van-gerwen-elek-en-22g.jpg",
+          "priceCents": 9446,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/jeux-winmau/3979-adenalin-michael-van-gerwen-elek-en-22g.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 10495,
+          "family": "accessoires",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "Adrenalin Michael Van Gerwen en 22g",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/jeux-winmau/3976-adrenalin-michael-van-gerwen-en-22g.html",
+          "image": "https://www.olies-darts.com/12087-home_default/adrenalin-michael-van-gerwen-en-22g.jpg",
+          "priceCents": 9446,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/jeux-winmau/3976-adrenalin-michael-van-gerwen-en-22g.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 10495,
+          "family": "accessoires",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        },
+        {
+          "name": "Adrenalin Michael Van Gerwen en 23g",
+          "kind": "Promotion",
+          "url": "https://www.olies-darts.com/jeux-winmau/3977-adrenalin-michael-van-gerwen-en-23g.html",
+          "image": "https://www.olies-darts.com/12090-home_default/adrenalin-michael-van-gerwen-en-23g.jpg",
+          "priceCents": 9446,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.olies-darts.com/jeux-winmau/3977-adrenalin-michael-van-gerwen-en-23g.html",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 10495,
+          "family": "accessoires",
+          "priceCheckedAt": "2026-11-24T23:11:58+00:00"
+        }
+      ]
+    },
+    "familyErrors": {},
+    "familyUpdatedAt": {
+      "cible": "2026-11-24T23:11:58+00:00",
+      "flechettes": "2026-11-24T23:11:58+00:00",
+      "pack": "2026-11-24T23:11:58+00:00",
+      "promo": "2026-11-24T23:11:58+00:00"
+    },
+    "familyUrls": {
+      "cible": "https://www.olies-darts.com/54-cibles-de-flechettes-pointe-acier",
+      "flechettes": "https://www.olies-darts.com/37-flechettes-pointe-acier",
+      "pack": "https://www.olies-darts.com/315-pack-cible-et-armoire",
+      "promo": "https://www.olies-darts.com/promotions"
+    },
     "products": [
       {
         "name": "8 flight ailette fine bleu",
@@ -15,7 +512,8 @@ const equipmentShops = [
         "priceSource": "https://www.olies-darts.com/promotion-accessoires/3900-8-flight-ailette-fine-bleu.html",
         "priceTaxIncluded": true,
         "previousPriceCents": 650,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "family": "accessoires",
+        "priceCheckedAt": "2026-11-24T23:11:58+00:00"
       },
       {
         "name": "8 flight ailette fine rouge",
@@ -27,7 +525,8 @@ const equipmentShops = [
         "priceSource": "https://www.olies-darts.com/promotion-accessoires/3899-8-flight-ailette-fine-rouge.html",
         "priceTaxIncluded": true,
         "previousPriceCents": 650,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "family": "accessoires",
+        "priceCheckedAt": "2026-11-24T23:11:58+00:00"
       },
       {
         "name": "8 flight ailette poire blanc",
@@ -39,7 +538,8 @@ const equipmentShops = [
         "priceSource": "https://www.olies-darts.com/promotion-accessoires/3998-8-flight-ailette-poire-blanc.html",
         "priceTaxIncluded": true,
         "previousPriceCents": 650,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "family": "accessoires",
+        "priceCheckedAt": "2026-11-24T23:11:58+00:00"
       },
       {
         "name": "8 flight ailette poire bleu",
@@ -51,7 +551,8 @@ const equipmentShops = [
         "priceSource": "https://www.olies-darts.com/promotion-accessoires/3997-8-flight-ailette-poire-bleu.html",
         "priceTaxIncluded": true,
         "previousPriceCents": 650,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "family": "accessoires",
+        "priceCheckedAt": "2026-11-24T23:11:58+00:00"
       },
       {
         "name": "8 flight ailette poire rouge",
@@ -63,7 +564,8 @@ const equipmentShops = [
         "priceSource": "https://www.olies-darts.com/promotion-accessoires/3996-8-flight-ailette-poire-rouge.html",
         "priceTaxIncluded": true,
         "previousPriceCents": 650,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "family": "accessoires",
+        "priceCheckedAt": "2026-11-24T23:11:58+00:00"
       },
       {
         "name": "8 flight tige nylon blanc fixe",
@@ -75,7 +577,8 @@ const equipmentShops = [
         "priceSource": "https://www.olies-darts.com/promotion-accessoires/3723-2904-8-flight-tige-nylon-blanc-fixe.html#/2546-choississez_la_taille-19_mm",
         "priceTaxIncluded": true,
         "previousPriceCents": 650,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "family": "accessoires",
+        "priceCheckedAt": "2026-11-24T23:11:58+00:00"
       },
       {
         "name": "8 flight tige slim titanium fixe",
@@ -87,7 +590,8 @@ const equipmentShops = [
         "priceSource": "https://www.olies-darts.com/promotion-accessoires/4722-8807-8-flight-tige-slim-titanium-fixe.html#/2569-choisissez_le_modele-33_mm",
         "priceTaxIncluded": true,
         "previousPriceCents": 2395,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "family": "accessoires",
+        "priceCheckedAt": "2026-11-24T23:11:58+00:00"
       },
       {
         "name": "Adrenalin Michael Van Gerwen elek en 22g",
@@ -99,7 +603,8 @@ const equipmentShops = [
         "priceSource": "https://www.olies-darts.com/jeux-winmau/3979-adenalin-michael-van-gerwen-elek-en-22g.html",
         "priceTaxIncluded": true,
         "previousPriceCents": 10495,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "family": "accessoires",
+        "priceCheckedAt": "2026-11-24T23:11:58+00:00"
       },
       {
         "name": "Adrenalin Michael Van Gerwen en 22g",
@@ -111,7 +616,8 @@ const equipmentShops = [
         "priceSource": "https://www.olies-darts.com/jeux-winmau/3976-adrenalin-michael-van-gerwen-en-22g.html",
         "priceTaxIncluded": true,
         "previousPriceCents": 10495,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "family": "accessoires",
+        "priceCheckedAt": "2026-11-24T23:11:58+00:00"
       },
       {
         "name": "Adrenalin Michael Van Gerwen en 23g",
@@ -123,11 +629,13 @@ const equipmentShops = [
         "priceSource": "https://www.olies-darts.com/jeux-winmau/3977-adrenalin-michael-van-gerwen-en-23g.html",
         "priceTaxIncluded": true,
         "previousPriceCents": 10495,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "family": "accessoires",
+        "priceCheckedAt": "2026-11-24T23:11:58+00:00"
       }
     ],
-    "updatedAt": "2026-11-22T08:48:58+00:00",
+    "updatedAt": "2026-11-24T23:11:58+00:00",
     "promotion": null,
+    "promoKind": "article",
     "warning": null,
     "error": null
   },
@@ -135,6 +643,176 @@ const equipmentShops = [
     "id": "pleinebull",
     "name": "Pleine Bull",
     "url": "https://pleinebull.fr/",
+    "families": {
+      "cible": [],
+      "flechettes": [
+        {
+          "name": "Fléchettes acier Mission Dead Shot 95% tungstène - Bronze 25g",
+          "kind": "Matériel de fléchettes",
+          "url": "https://pleinebull.fr/products/flechettes-acier-mission-dead-shot-95-tungstene-25g?variant=54168106696970",
+          "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/flechettes-acier-mission-dead-shot-95-tungstene-25g.jpg?v=1795001649",
+          "priceCents": 8595,
+          "priceCurrency": "EUR",
+          "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-dead-shot-95-tungstene-25g?variant=54168106696970",
+          "priceTaxIncluded": true,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "flechettes"
+        },
+        {
+          "name": "Fléchettes acier Mission Dead Shot 95% tungstène - Bronze 23g",
+          "kind": "Matériel de fléchettes",
+          "url": "https://pleinebull.fr/products/flechettes-acier-mission-dead-shot-95-tungstene-23g?variant=54168105058570",
+          "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/flechettes-acier-mission-dead-shot-95-tungstene-23g.jpg?v=1795001632",
+          "priceCents": 8595,
+          "priceCurrency": "EUR",
+          "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-dead-shot-95-tungstene-23g?variant=54168105058570",
+          "priceTaxIncluded": true,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "flechettes"
+        },
+        {
+          "name": "Fléchettes acier Mission Occult 90% tungstène - Noir et Corail 23g",
+          "kind": "Matériel de fléchettes",
+          "url": "https://pleinebull.fr/products/flechettes-acier-mission-occult-90-tungstene-23g?variant=54168103584010",
+          "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/flechettes-acier-mission-occult-90-tungstene-23g.jpg?v=1795001614",
+          "priceCents": 6995,
+          "priceCurrency": "EUR",
+          "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-occult-90-tungstene-23g?variant=54168103584010",
+          "priceTaxIncluded": true,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "flechettes"
+        },
+        {
+          "name": "Fléchettes acier Mission Crypt M1 90% tungstène - Noir et Or 22g",
+          "kind": "Matériel de fléchettes",
+          "url": "https://pleinebull.fr/products/flechettes-acier-mission-crypt-m1-90-tungstene-22g?variant=54168101847306",
+          "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/flechettes-acier-mission-crypt-m1-90-tungstene-22g.jpg?v=1795001593",
+          "priceCents": 8695,
+          "priceCurrency": "EUR",
+          "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-crypt-m1-90-tungstene-22g?variant=54168101847306",
+          "priceTaxIncluded": true,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "flechettes"
+        },
+        {
+          "name": "Fléchettes acier Mission Saturn Fenrir 90% tungstène - Argent 23g",
+          "kind": "Matériel de fléchettes",
+          "url": "https://pleinebull.fr/products/flechettes-acier-mission-saturn-fenrir-90-tungstene-23g?variant=54168100110602",
+          "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/flechettes-acier-mission-saturn-fenrir-90-tungstene-23g-2.jpg?v=1795001567",
+          "priceCents": 7295,
+          "priceCurrency": "EUR",
+          "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-saturn-fenrir-90-tungstene-23g?variant=54168100110602",
+          "priceTaxIncluded": true,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "flechettes"
+        },
+        {
+          "name": "Fléchettes acier Mission Precision 90% tungstène - Noir 23g",
+          "kind": "Matériel de fléchettes",
+          "url": "https://pleinebull.fr/products/flechettes-acier-mission-precision-90-tungstene-23g?variant=54168099782922",
+          "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/flechettes-acier-mission-precision-90-tungstene-23g.jpg?v=1795001540",
+          "priceCents": 8795,
+          "priceCurrency": "EUR",
+          "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-precision-90-tungstene-23g?variant=54168099782922",
+          "priceTaxIncluded": true,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "flechettes"
+        }
+      ],
+      "pack": [],
+      "promo": [
+        {
+          "name": "Fléchettes acier Mission Dead Shot 95% tungstène - Bronze 25g",
+          "kind": "Matériel de fléchettes",
+          "url": "https://pleinebull.fr/products/flechettes-acier-mission-dead-shot-95-tungstene-25g?variant=54168106696970",
+          "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/flechettes-acier-mission-dead-shot-95-tungstene-25g.jpg?v=1795001649",
+          "priceCents": 8595,
+          "priceCurrency": "EUR",
+          "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-dead-shot-95-tungstene-25g?variant=54168106696970",
+          "priceTaxIncluded": true,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "flechettes"
+        },
+        {
+          "name": "Fléchettes acier Mission Dead Shot 95% tungstène - Bronze 23g",
+          "kind": "Matériel de fléchettes",
+          "url": "https://pleinebull.fr/products/flechettes-acier-mission-dead-shot-95-tungstene-23g?variant=54168105058570",
+          "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/flechettes-acier-mission-dead-shot-95-tungstene-23g.jpg?v=1795001632",
+          "priceCents": 8595,
+          "priceCurrency": "EUR",
+          "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-dead-shot-95-tungstene-23g?variant=54168105058570",
+          "priceTaxIncluded": true,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "flechettes"
+        },
+        {
+          "name": "Fléchettes acier Mission Occult 90% tungstène - Noir et Corail 23g",
+          "kind": "Matériel de fléchettes",
+          "url": "https://pleinebull.fr/products/flechettes-acier-mission-occult-90-tungstene-23g?variant=54168103584010",
+          "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/flechettes-acier-mission-occult-90-tungstene-23g.jpg?v=1795001614",
+          "priceCents": 6995,
+          "priceCurrency": "EUR",
+          "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-occult-90-tungstene-23g?variant=54168103584010",
+          "priceTaxIncluded": true,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "flechettes"
+        },
+        {
+          "name": "Fléchettes acier Mission Crypt M1 90% tungstène - Noir et Or 22g",
+          "kind": "Matériel de fléchettes",
+          "url": "https://pleinebull.fr/products/flechettes-acier-mission-crypt-m1-90-tungstene-22g?variant=54168101847306",
+          "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/flechettes-acier-mission-crypt-m1-90-tungstene-22g.jpg?v=1795001593",
+          "priceCents": 8695,
+          "priceCurrency": "EUR",
+          "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-crypt-m1-90-tungstene-22g?variant=54168101847306",
+          "priceTaxIncluded": true,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "flechettes"
+        },
+        {
+          "name": "Fléchettes acier Mission Saturn Fenrir 90% tungstène - Argent 23g",
+          "kind": "Matériel de fléchettes",
+          "url": "https://pleinebull.fr/products/flechettes-acier-mission-saturn-fenrir-90-tungstene-23g?variant=54168100110602",
+          "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/flechettes-acier-mission-saturn-fenrir-90-tungstene-23g-2.jpg?v=1795001567",
+          "priceCents": 7295,
+          "priceCurrency": "EUR",
+          "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-saturn-fenrir-90-tungstene-23g?variant=54168100110602",
+          "priceTaxIncluded": true,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "flechettes"
+        },
+        {
+          "name": "Fléchettes acier Mission Precision 90% tungstène - Noir 23g",
+          "kind": "Matériel de fléchettes",
+          "url": "https://pleinebull.fr/products/flechettes-acier-mission-precision-90-tungstene-23g?variant=54168099782922",
+          "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/flechettes-acier-mission-precision-90-tungstene-23g.jpg?v=1795001540",
+          "priceCents": 8795,
+          "priceCurrency": "EUR",
+          "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-precision-90-tungstene-23g?variant=54168099782922",
+          "priceTaxIncluded": true,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "flechettes"
+        }
+      ]
+    },
+    "familyErrors": {
+      "cible": "Collecte indisponible : dernier relevé conservé.",
+      "flechettes": "Collecte indisponible : dernier relevé conservé.",
+      "pack": "Collecte indisponible : dernier relevé conservé.",
+      "promo": "Collecte indisponible : dernier relevé conservé."
+    },
+    "familyUpdatedAt": {
+      "cible": "2026-11-22T08:48:58+00:00",
+      "flechettes": "2026-11-22T08:48:58+00:00",
+      "pack": "2026-11-22T08:48:58+00:00",
+      "promo": "2026-11-22T08:48:58+00:00"
+    },
+    "familyUrls": {
+      "cible": "https://pleinebull.fr/collections/cibles-sisal",
+      "flechettes": "https://pleinebull.fr/collections/flechettes-acier-steeltip",
+      "pack": "https://pleinebull.fr/collections/packs-kits-flechettes",
+      "promo": "https://pleinebull.fr/collections/soldes-flechettes-promos"
+    },
     "products": [
       {
         "name": "Fléchettes acier Mission Dead Shot 95% tungstène - Bronze 25g",
@@ -145,7 +823,8 @@ const equipmentShops = [
         "priceCurrency": "EUR",
         "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-dead-shot-95-tungstene-25g?variant=54168106696970",
         "priceTaxIncluded": true,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+        "family": "flechettes"
       },
       {
         "name": "Fléchettes acier Mission Dead Shot 95% tungstène - Bronze 23g",
@@ -156,7 +835,8 @@ const equipmentShops = [
         "priceCurrency": "EUR",
         "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-dead-shot-95-tungstene-23g?variant=54168105058570",
         "priceTaxIncluded": true,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+        "family": "flechettes"
       },
       {
         "name": "Fléchettes acier Mission Occult 90% tungstène - Noir et Corail 23g",
@@ -167,7 +847,8 @@ const equipmentShops = [
         "priceCurrency": "EUR",
         "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-occult-90-tungstene-23g?variant=54168103584010",
         "priceTaxIncluded": true,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+        "family": "flechettes"
       },
       {
         "name": "Fléchettes acier Mission Crypt M1 90% tungstène - Noir et Or 22g",
@@ -178,7 +859,8 @@ const equipmentShops = [
         "priceCurrency": "EUR",
         "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-crypt-m1-90-tungstene-22g?variant=54168101847306",
         "priceTaxIncluded": true,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+        "family": "flechettes"
       },
       {
         "name": "Fléchettes acier Mission Saturn Fenrir 90% tungstène - Argent 23g",
@@ -189,7 +871,8 @@ const equipmentShops = [
         "priceCurrency": "EUR",
         "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-saturn-fenrir-90-tungstene-23g?variant=54168100110602",
         "priceTaxIncluded": true,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+        "family": "flechettes"
       },
       {
         "name": "Fléchettes acier Mission Precision 90% tungstène - Noir 23g",
@@ -200,51 +883,8 @@ const equipmentShops = [
         "priceCurrency": "EUR",
         "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-precision-90-tungstene-23g?variant=54168099782922",
         "priceTaxIncluded": true,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
-      },
-      {
-        "name": "Ailette L-Style - Champagne Flight L3 - Pro Shape - France V Series Transparent Blanc",
-        "kind": "Matériel de fléchettes",
-        "url": "https://pleinebull.fr/products/ailette-l-style-champagne-flight-l3-pro-shape-france-v-series-blanc-transparent?variant=54154583736586",
-        "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/ailette-l-style-champagne-flight-l3-pro-shape-france-v-series-blanc-transparent.png?v=1794923626",
-        "priceCents": 875,
-        "priceCurrency": "EUR",
-        "priceSource": "https://pleinebull.fr/products/ailette-l-style-champagne-flight-l3-pro-shape-france-v-series-blanc-transparent?variant=54154583736586",
-        "priceTaxIncluded": true,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
-      },
-      {
-        "name": "Target Swiss Point Firepoint Argent - 40 mm",
-        "kind": "Matériel de fléchettes",
-        "url": "https://pleinebull.fr/products/target-swiss-firepoint-argent-40-mm?variant=54152132296970",
-        "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/target-swiss-firepoint-argent-40-mm.png?v=1794915625",
-        "priceCents": 895,
-        "priceCurrency": "EUR",
-        "priceSource": "https://pleinebull.fr/products/target-swiss-firepoint-argent-40-mm?variant=54152132296970",
-        "priceTaxIncluded": true,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
-      },
-      {
-        "name": "Target Swiss Point Firepoint Argent - 35 mm",
-        "kind": "Matériel de fléchettes",
-        "url": "https://pleinebull.fr/products/target-swiss-firepoint-argent-35-mm?variant=54152128758026",
-        "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/target-swiss-firepoint-argent-35-mm.png?v=1794915602",
-        "priceCents": 895,
-        "priceCurrency": "EUR",
-        "priceSource": "https://pleinebull.fr/products/target-swiss-firepoint-argent-35-mm?variant=54152128758026",
-        "priceTaxIncluded": true,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
-      },
-      {
-        "name": "Target Swiss Point Firepoint Argent - 30 mm",
-        "kind": "Matériel de fléchettes",
-        "url": "https://pleinebull.fr/products/target-swiss-firepoint-argent-30-mm?variant=54152128463114",
-        "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/target-swiss-firepoint-argent-30-mm.png?v=1794915601",
-        "priceCents": 895,
-        "priceCurrency": "EUR",
-        "priceSource": "https://pleinebull.fr/products/target-swiss-firepoint-argent-30-mm?variant=54152128463114",
-        "priceTaxIncluded": true,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+        "family": "flechettes"
       }
     ],
     "updatedAt": "2026-11-22T08:48:58+00:00",
@@ -254,13 +894,196 @@ const equipmentShops = [
       "startsAt": "2026-11-11T00:00:00+01:00",
       "endsAt": "2026-11-30T23:59:59+01:00"
     },
+    "promoKind": "basket",
     "warning": null,
-    "error": null
+    "error": "Boutique indisponible."
   },
   {
     "id": "dartshopper",
     "name": "Dartshopper",
     "url": "https://www.dartshopper.fr/",
+    "families": {
+      "cible": [],
+      "flechettes": [],
+      "pack": [
+        {
+          "name": "Set Cible de Fléchettes Winmau Rebel - Cible de Fléchettes",
+          "kind": "Promotion",
+          "url": "https://www.dartshopper.fr/winmau-rebel-dartboard-set",
+          "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-xnrK39LJ.jpg",
+          "priceCents": 7596,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.dartshopper.fr/winmau-rebel-dartboard-set",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 9495,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "pack"
+        },
+        {
+          "name": "Winmau Plasma Ice + Winmau Pro Line Blade 6 Original White Surround Pack Combo - Dartset",
+          "kind": "Promotion",
+          "url": "https://www.dartshopper.fr/eclairage-cible-winmau-plasma-ice-winmau-pro-line",
+          "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-UU6A05-B.jpg",
+          "priceCents": 9825,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.dartshopper.fr/eclairage-cible-winmau-plasma-ice-winmau-pro-line",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 13100,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "pack"
+        }
+      ],
+      "promo": [
+        {
+          "name": "Winmau Surround Pro-Line Blade 6",
+          "kind": "Promotion",
+          "url": "https://www.dartshopper.fr/winmau-surround-pro-line-blade-6",
+          "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-HJqL_M-P.png",
+          "priceCents": 4200,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.dartshopper.fr/winmau-surround-pro-line-blade-6",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 5600,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "accessoires"
+        },
+        {
+          "name": "Ailette Target K-Flex Luke Littler NO6",
+          "kind": "Promotion",
+          "url": "https://www.dartshopper.fr/ailette-target-k-flex-luke-littler-no6/?id=410112",
+          "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-xghRN2DI.png",
+          "priceCents": 1299,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.dartshopper.fr/ailette-target-k-flex-luke-littler-no6/?id=410112",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 1999,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "accessoires"
+        },
+        {
+          "name": "Set Cible de Fléchettes Winmau Rebel - Cible de Fléchettes",
+          "kind": "Promotion",
+          "url": "https://www.dartshopper.fr/winmau-rebel-dartboard-set",
+          "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-xnrK39LJ.jpg",
+          "priceCents": 7596,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.dartshopper.fr/winmau-rebel-dartboard-set",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 9495,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "pack"
+        },
+        {
+          "name": "Ailette Target K-Flex Luke Littler NO2",
+          "kind": "Promotion",
+          "url": "https://www.dartshopper.fr/ailette-target-k-flex-luke-littler-no2/?id=410115",
+          "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-J3alKpP-.png",
+          "priceCents": 1199,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.dartshopper.fr/ailette-target-k-flex-luke-littler-no2/?id=410115",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 1999,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "accessoires"
+        },
+        {
+          "name": "Winmau Surround Black Impression",
+          "kind": "Promotion",
+          "url": "https://www.dartshopper.fr/winmau-surround-black-impression",
+          "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-oQ8U5VjN.png",
+          "priceCents": 3900,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.dartshopper.fr/winmau-surround-black-impression",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 5200,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "accessoires"
+        },
+        {
+          "name": "Winmau Plasma Ice + Winmau Pro Line Blade 6 Original White Surround Pack Combo - Dartset",
+          "kind": "Promotion",
+          "url": "https://www.dartshopper.fr/eclairage-cible-winmau-plasma-ice-winmau-pro-line",
+          "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-UU6A05-B.jpg",
+          "priceCents": 9825,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.dartshopper.fr/eclairage-cible-winmau-plasma-ice-winmau-pro-line",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 13100,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "pack"
+        },
+        {
+          "name": "Bullet Radion 300 - Éclairage cible Fléchettes",
+          "kind": "Promotion",
+          "url": "https://www.dartshopper.fr/bullet-radion-300-eclairage-cible-flechettes",
+          "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-hKtdEAsg.jpg",
+          "priceCents": 5096,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.dartshopper.fr/bullet-radion-300-eclairage-cible-flechettes",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 5995,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "accessoires"
+        },
+        {
+          "name": "Target Cult SP01 90% - Fléchettes pointe Acier",
+          "kind": "Promotion",
+          "url": "https://www.dartshopper.fr/target-cult-sp01-90/?id=190202",
+          "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-nVOkPMia.jpg",
+          "priceCents": 4800,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.dartshopper.fr/target-cult-sp01-90/?id=190202",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 11999,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "accessoires"
+        },
+        {
+          "name": "Ailette Winmau Fusion Smokey Grey",
+          "kind": "Promotion",
+          "url": "https://www.dartshopper.fr/ailette-winmau-fusion-smokey-grey/?id=8791",
+          "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-KA4sWEQu.jpg",
+          "priceCents": 522,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.dartshopper.fr/ailette-winmau-fusion-smokey-grey/?id=8791",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 950,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "accessoires"
+        },
+        {
+          "name": "Ailette Winmau Fusion Clear NO2",
+          "kind": "Promotion",
+          "url": "https://www.dartshopper.fr/ailette-winmau-fusion-clear-no2/?id=8799",
+          "image": "https://images.cdn.europe-west1.gcp.commercetools.com/7c0e4c3f-dc4f-43e6-99b2-3f02d41d5df2/img-peFJIAyD.jpg",
+          "priceCents": 522,
+          "priceCurrency": "EUR",
+          "priceSource": "https://www.dartshopper.fr/ailette-winmau-fusion-clear-no2/?id=8799",
+          "priceTaxIncluded": true,
+          "previousPriceCents": 950,
+          "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+          "family": "accessoires"
+        }
+      ]
+    },
+    "familyErrors": {
+      "cible": "Collecte indisponible : dernier relevé conservé.",
+      "flechettes": "Collecte indisponible : dernier relevé conservé.",
+      "pack": "Collecte indisponible : dernier relevé conservé.",
+      "promo": "Collecte indisponible : dernier relevé conservé."
+    },
+    "familyUpdatedAt": {
+      "cible": "2026-11-22T08:48:58+00:00",
+      "flechettes": "2026-11-22T08:48:58+00:00",
+      "pack": "2026-11-22T08:48:58+00:00",
+      "promo": "2026-11-22T08:48:58+00:00"
+    },
+    "familyUrls": {
+      "cible": "https://www.dartshopper.fr/cibles/",
+      "flechettes": "https://www.dartshopper.fr/pointe-acier/",
+      "pack": "https://www.dartshopper.fr/sets/",
+      "promo": "https://www.dartshopper.fr/vente/"
+    },
     "products": [
       {
         "name": "Winmau Surround Pro-Line Blade 6",
@@ -272,7 +1095,8 @@ const equipmentShops = [
         "priceSource": "https://www.dartshopper.fr/winmau-surround-pro-line-blade-6",
         "priceTaxIncluded": true,
         "previousPriceCents": 5600,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+        "family": "accessoires"
       },
       {
         "name": "Ailette Target K-Flex Luke Littler NO6",
@@ -284,7 +1108,8 @@ const equipmentShops = [
         "priceSource": "https://www.dartshopper.fr/ailette-target-k-flex-luke-littler-no6/?id=410112",
         "priceTaxIncluded": true,
         "previousPriceCents": 1999,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+        "family": "accessoires"
       },
       {
         "name": "Set Cible de Fléchettes Winmau Rebel - Cible de Fléchettes",
@@ -296,7 +1121,8 @@ const equipmentShops = [
         "priceSource": "https://www.dartshopper.fr/winmau-rebel-dartboard-set",
         "priceTaxIncluded": true,
         "previousPriceCents": 9495,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+        "family": "pack"
       },
       {
         "name": "Ailette Target K-Flex Luke Littler NO2",
@@ -308,7 +1134,8 @@ const equipmentShops = [
         "priceSource": "https://www.dartshopper.fr/ailette-target-k-flex-luke-littler-no2/?id=410115",
         "priceTaxIncluded": true,
         "previousPriceCents": 1999,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+        "family": "accessoires"
       },
       {
         "name": "Winmau Surround Black Impression",
@@ -320,7 +1147,8 @@ const equipmentShops = [
         "priceSource": "https://www.dartshopper.fr/winmau-surround-black-impression",
         "priceTaxIncluded": true,
         "previousPriceCents": 5200,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+        "family": "accessoires"
       },
       {
         "name": "Winmau Plasma Ice + Winmau Pro Line Blade 6 Original White Surround Pack Combo - Dartset",
@@ -332,7 +1160,8 @@ const equipmentShops = [
         "priceSource": "https://www.dartshopper.fr/eclairage-cible-winmau-plasma-ice-winmau-pro-line",
         "priceTaxIncluded": true,
         "previousPriceCents": 13100,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+        "family": "pack"
       },
       {
         "name": "Bullet Radion 300 - Éclairage cible Fléchettes",
@@ -344,7 +1173,8 @@ const equipmentShops = [
         "priceSource": "https://www.dartshopper.fr/bullet-radion-300-eclairage-cible-flechettes",
         "priceTaxIncluded": true,
         "previousPriceCents": 5995,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+        "family": "accessoires"
       },
       {
         "name": "Target Cult SP01 90% - Fléchettes pointe Acier",
@@ -356,7 +1186,8 @@ const equipmentShops = [
         "priceSource": "https://www.dartshopper.fr/target-cult-sp01-90/?id=190202",
         "priceTaxIncluded": true,
         "previousPriceCents": 11999,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+        "family": "accessoires"
       },
       {
         "name": "Ailette Winmau Fusion Smokey Grey",
@@ -368,7 +1199,8 @@ const equipmentShops = [
         "priceSource": "https://www.dartshopper.fr/ailette-winmau-fusion-smokey-grey/?id=8791",
         "priceTaxIncluded": true,
         "previousPriceCents": 950,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+        "family": "accessoires"
       },
       {
         "name": "Ailette Winmau Fusion Clear NO2",
@@ -380,12 +1212,14 @@ const equipmentShops = [
         "priceSource": "https://www.dartshopper.fr/ailette-winmau-fusion-clear-no2/?id=8799",
         "priceTaxIncluded": true,
         "previousPriceCents": 950,
-        "priceCheckedAt": "2026-11-22T08:48:58+00:00"
+        "priceCheckedAt": "2026-11-22T08:48:58+00:00",
+        "family": "accessoires"
       }
     ],
     "updatedAt": "2026-11-22T08:48:58+00:00",
     "promotion": null,
+    "promoKind": "article",
     "warning": null,
-    "error": null
+    "error": "Boutique indisponible."
   }
 ];

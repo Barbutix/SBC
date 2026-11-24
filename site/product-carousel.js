@@ -58,13 +58,14 @@
   function mount(root, shops, saved = {}) {
     const reducedMotion = global.matchMedia('(prefers-reduced-motion: reduce)');
     root.innerHTML = shops.map(shop => `<section class="shop-carousel" role="region" aria-roledescription="carrousel" aria-labelledby="shop-${escape(shop.id)}">
-      <header class="shop-carousel-header"><div><span class="product-kind">SÉLECTION BOUTIQUE</span><h3 id="shop-${escape(shop.id)}">${escape(shop.name)}</h3></div><a href="${escape(shop.url)}" target="_blank" rel="noopener noreferrer" aria-label="Visiter la boutique ${escape(shop.name)}">Boutique ↗</a></header>
+      <header class="shop-carousel-header"><div><span class="product-kind">${escape(shop.selectionLabel || 'SÉLECTION BOUTIQUE')} · ${shop.products.length} ARTICLE${shop.products.length===1?'':'S'}</span><h3 id="shop-${escape(shop.id)}">${escape(shop.name)}</h3></div><a href="${escape(shop.url)}" target="_blank" rel="noopener noreferrer" aria-label="Visiter la boutique ${escape(shop.name)}">Boutique ↗</a></header>
       ${shop.promotion && Date.parse(shop.promotion.endsAt) > Date.now() ? `<p class="shop-promotion"><a href="${escape(shop.promotion.url)}" target="_blank" rel="noopener noreferrer">${escape(shop.promotion.text)} ↗</a></p>` : ''}
-      <div class="product-slides" aria-live="off">${shop.products.map((product,index) => `<article class="product-slide" role="group" aria-roledescription="diapositive" aria-label="${index+1} sur ${shop.products.length}" ${index?'hidden':''}>
+      ${shop.selectionNote ? `<p class="product-category-note">${escape(shop.selectionNote)}</p>` : ''}
+      <div class="product-slides" aria-live="off">${!shop.products.length ? `<p class="product-family-empty">Aucun article de cette famille disponible dans le dernier relevé. <a href="${escape(shop.url)}" target="_blank" rel="noopener noreferrer">Consulter la rubrique du vendeur</a></p>` : ''}${shop.products.map((product,index) => `<article class="product-slide" role="group" aria-roledescription="diapositive" aria-label="${index+1} sur ${shop.products.length}" ${index?'hidden':''}>
         <a class="product-visual" href="${escape(product.url)}" target="_blank" rel="noopener noreferrer" aria-label="Voir ${escape(product.name)} chez ${escape(shop.name)}"><img src="${escape(product.image)}" alt="${escape(product.name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="product-image-fallback" hidden>Photo indisponible</span></a>
         <div class="product-content"><span class="product-kind">${escape(product.kind)}</span><h4>${escape(product.name)}</h4>${renderPrice(product)}<a class="product-link" href="${escape(product.url)}" target="_blank" rel="noopener noreferrer">Voir l’article <span>↗</span></a></div>
       </article>`).join('')}</div>
-      <div class="carousel-controls"><button type="button" data-carousel="previous" aria-label="Article précédent chez ${escape(shop.name)}">←</button><button type="button" data-carousel="pause" class="carousel-pause" aria-pressed="false">Pause</button><span class="carousel-count" aria-label="Article affiché">1 / ${shop.products.length}</span><button type="button" data-carousel="next" aria-label="Article suivant chez ${escape(shop.name)}">→</button></div>
+      <div class="carousel-controls" ${shop.products.length<2?'hidden':''}><button type="button" data-carousel="previous" aria-label="Article précédent chez ${escape(shop.name)}">←</button><button type="button" data-carousel="pause" class="carousel-pause" aria-pressed="false">Pause</button><span class="carousel-count" aria-label="Article affiché">1 / ${shop.products.length}</span><button type="button" data-carousel="next" aria-label="Article suivant chez ${escape(shop.name)}">→</button></div>
     </section>`).join('');
 
     const cleanups = [];
@@ -79,7 +80,7 @@
         initialIndex: Math.max(0, shops[shopIndex].products.findIndex(product => product.url === saved[shops[shopIndex].id]?.url)),
         onChange({index,userPaused}) {
           slides.forEach((slide,i) => { slide.hidden = i !== index; });
-          counter.textContent = `${index+1} / ${slides.length}`;
+          counter.textContent = `${slides.length?index+1:0} / ${slides.length}`;
           pause.textContent = userPaused ? 'Lecture' : 'Pause';
           pause.setAttribute('aria-pressed', String(userPaused));
           pause.setAttribute('aria-label', `${userPaused?'Lancer':'Mettre en pause'} le défilement chez ${shops[shopIndex].name}`);

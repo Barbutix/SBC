@@ -39,7 +39,10 @@
     <section class="event-section" id="tournois">
       <div class="section-top"><div><span class="section-kicker">OFFICIEL, CLUBS ET RÉSEAUX SOCIAUX</span><h2>Calendriers & annonces, <em>près de chez vous.</em></h2></div><span class="big-dept">FR / 101</span></div>
       <section class="nearby-tournaments" id="nearby-tournaments" role="region" aria-roledescription="carrousel" aria-labelledby="nearby-title">
-        <div class="nearby-heading"><h3 id="nearby-title">Les tournois près de Viglain</h3><span class="nearby-radius">100 km</span></div>
+        <div class="nearby-heading"><h3 id="nearby-title">Les tournois près de Viglain</h3><label class="nearby-range" for="nearby-radius">Rayon autour de Viglain
+          <select id="nearby-radius" data-nearby-radius>
+            <option value="50">50 km</option><option value="100" selected>100 km</option><option value="150">150 km</option><option value="200">200 km</option><option value="300">300 km</option><option value="500">500 km</option><option value="all">France entière</option>
+          </select></label></div>
         <p class="nearby-status" data-nearby-status role="status">Chargement des annonces à venir…</p>
         <div data-nearby-slides aria-live="off"></div>
         <div class="nearby-controls" data-nearby-controls hidden>
@@ -102,7 +105,10 @@
     </section>
 
     <section class="section product-section" id="materiel">
-      <div class="section-top"><div><span class="section-kicker">MATÉRIEL · ACHATS & BONS PLANS</span><h2>S’équiper et repérer les <em>bons plans.</em></h2></div><p class="section-note">Trois boutiques, dix articles chacune. Découvre leurs sélections avec un nouvel article toutes les cinq secondes.</p></div>
+      <div class="section-top"><div><span class="section-kicker">MATÉRIEL · ACHATS & BONS PLANS</span><h2>S’équiper et repérer les <em>bons plans.</em></h2></div><p class="section-note">Trois boutiques, jusqu’à dix articles par famille et par vendeur. Un nouvel article toutes les cinq secondes.</p></div>
+      <div class="filter-row product-families" id="product-family-filters" role="group" aria-label="Famille d’articles">
+        <button type="button" class="pill" data-product-family="cible" aria-pressed="false">CIBLE</button><button type="button" class="pill" data-product-family="flechettes" aria-pressed="false">FLÉCHETTES</button><button type="button" class="pill" data-product-family="pack" aria-pressed="false">PACK</button><button type="button" class="pill active" data-product-family="promo" aria-pressed="true">PROMO</button>
+      </div>
       <p class="product-note" id="product-refresh-status" role="status">Chargement du dernier relevé…</p>
       <div class="product-grid" id="product-grid"></div>
       <p class="product-note">Le défilement se met en pause au survol ou au clavier. Tu peux aussi utiliser les flèches et le bouton Pause. Articles et prix rechargés à l’ouverture, puis toutes les 30 minutes. Promotions selon les conditions des boutiques ; frais de livraison en supplément. Le prix confirmé chez le vendeur fait foi.</p>
