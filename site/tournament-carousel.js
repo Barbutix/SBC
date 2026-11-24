@@ -20,12 +20,13 @@
     const a = Math.sin((latitude-ORIGIN.latitude)*rad/2)**2 + Math.cos(ORIGIN.latitude*rad)*Math.cos(latitude*rad)*Math.sin((longitude-ORIGIN.longitude)*rad/2)**2;
     return 2 * 6371.0088 * Math.asin(Math.sqrt(Math.min(1,a)));
   }
-  function select(events, today = day(), formats = ['Acier','Soft-tip']) {
+  // Local discovery always includes both target types, regardless of the news filter.
+  function select(events, today = day()) {
     const seen = new Set();
     return events.filter(event => {
       if (!event || !validDate(event.date) || !validDate(event.endDate || event.date) || (event.endDate || event.date) < event.date || (event.endDate || event.date) < today ||
           !['published','verified'].includes(event.status) || typeof event.name !== 'string' || !event.name.trim() || !https(event.url) || typeof event.source !== 'string' ||
-          distance(event.latitude,event.longitude)>RADIUS || (['Acier','Soft-tip'].includes(event.format) && !formats.includes(event.format))) return false;
+          distance(event.latitude,event.longitude)>RADIUS) return false;
       const key = event.date + '|' + event.url.replace(/\/$/,'');
       if (seen.has(key)) return false;
       seen.add(key);
@@ -34,13 +35,16 @@
       .sort((a,b) => a.date.localeCompare(b.date) || a.distanceKm-b.distanceKm || a.name.localeCompare(b.name,'fr')).slice(0,10);
   }
   function valid(data) {return data?.schemaVersion === 1 && Array.isArray(data.events) && data.events.length <= 1000;}
+  function formatLabel(value) {
+    return ({'Acier':'Traditionnelles · pointe acier','Soft-tip':'Électroniques · pointe plastique','Acier + Soft-tip':'Acier et électroniques'})[value] || 'Type de cible à confirmer';
+  }
   function dateLabel(value) {return new Intl.DateTimeFormat('fr-FR',{day:'numeric',month:'long',year:'numeric',timeZone:'Europe/Paris'}).format(new Date(value+'T12:00:00+01:00'));}
   function renderCard(event, index, count) {
     const checked = typeof event.checkedAt === 'string' ? event.checkedAt.slice(0,10) : '';
     const poster = https(event.image) ? `<img class="nearby-poster" src="${escape(event.image)}" alt="Affiche : ${escape(event.name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer">` : '';
     return `<article class="nearby-slide" role="group" aria-roledescription="diapositive" aria-label="${index+1} sur ${count}" ${index?'hidden':''}>
       <div class="nearby-visual">${poster}<div class="nearby-date-visual" ${poster?'hidden':''}><span>${escape(event.date.slice(8))}</span><span>${escape(new Intl.DateTimeFormat('fr-FR',{month:'short',timeZone:'Europe/Paris'}).format(new Date(event.date+'T12:00:00Z')))}</span><span>${escape(event.date.slice(0,4))}</span></div></div>
-      <div class="nearby-content"><div class="nearby-tags"><span>${escape(event.format || 'Discipline à confirmer')}</span><span>≈ ${new Intl.NumberFormat('fr-FR',{maximumFractionDigits:1}).format(event.distanceKm)} km</span></div>
+      <div class="nearby-content"><div class="nearby-tags"><span>${escape(formatLabel(event.format))}</span><span>≈ ${new Intl.NumberFormat('fr-FR',{maximumFractionDigits:1}).format(event.distanceKm)} km</span></div>
       <h4>${escape(event.name)}</h4><p class="nearby-date"><time datetime="${escape(event.date)}">${escape(dateLabel(event.date))}</time>${event.endDate && event.endDate !== event.date ? ` – ${escape(dateLabel(event.endDate))}` : ''}</p>
       <p class="nearby-place">${escape(event.location || 'Lieu sur l’annonce')}</p>${event.details?`<p class="nearby-details">${escape(event.details)}</p>`:''}
       <p class="nearby-access">${escape(event.access || 'Conditions sur l’annonce')}</p>
@@ -59,7 +63,7 @@
     const controls = root.querySelector('[data-nearby-controls]');
     const count = root.querySelector('[data-nearby-count]');
     const pause = root.querySelector('[data-nearby-pause]');
-    let data = null, rows = [], controller = null, formats = ['Acier','Soft-tip'];
+    let data = null, rows = [], controller = null;
     let timer, inFlight, stopped = false, lastAttempt = -Infinity, pending = false, offline = false;
     let activeUrl, userPaused = reduced.matches;
     let inViewport = !('IntersectionObserver' in global);
@@ -68,14 +72,14 @@
     try {storage = options.storage || global.localStorage;} catch { /* Storage optional. */ }
     function listen(target, type, callback, list = listeners) {target.addEventListener(type,callback);list.push(()=>target.removeEventListener(type,callback));}
     function report() {
-      status.textContent = `${rows.length} annonce${rows.length===1?'':'s'} à venir · 100 km à vol d’oiseau.`;
+      status.textContent = `${rows.length} annonce${rows.length===1?'':'s'} à venir · acier et électroniques · 100 km à vol d’oiseau.`;
       if (data?.sourceErrors?.length) status.textContent += ' Source indisponible : dernier relevé conservé.';
       if (offline) status.textContent += ' Actualisation indisponible.';
       const dates = rows.map(event => Date.parse(event.checkedAt)).filter(Number.isFinite);
       if (dates.length && now()-Math.min(...dates)>2*86400000) status.textContent += ' Certaines annonces sont anciennes : confirme auprès de l’organisateur.';
     }
     function redraw() {
-      const selected = select(data?.events || [],day(new Date(now())),formats);
+      const selected = select(data?.events || [],day(new Date(now())));
       // Do not remove a link while someone is using it with the keyboard.
       if (root.contains(doc.activeElement)) {pending = true; return;}
       pending = false;
@@ -144,7 +148,10 @@
     }
     try {const saved=JSON.parse(storage?.getItem(KEY)||'null');if(valid(saved))data=saved;}catch{/* No cached announcements. */}
     redraw();refresh();schedule();
-    return {refresh,setFormats(value){formats=value;redraw();},destroy(){stopped=true;clearTimer(timer);controller?.destroy();listeners.concat(slideListeners).forEach(remove=>remove());}};
+    return {refresh,
+      // Keep compatibility with app.js: its global discipline filter must not hide local tournaments.
+      setFormats(){},
+      destroy(){stopped=true;clearTimer(timer);controller?.destroy();listeners.concat(slideListeners).forEach(remove=>remove());}};
   }
-  global.SBCTournamentCarousel={mount,select,distance,validDate,renderCard,day,interval:REFRESH};
+  global.SBCTournamentCarousel={mount,select,distance,validDate,renderCard,formatLabel,day,interval:REFRESH};
 })(typeof window==='undefined'?globalThis:window);
