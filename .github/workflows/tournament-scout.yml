@@ -8,6 +8,7 @@ on:
     paths:
       - scripts/refresh_local_tournaments.py
       - scripts/local-tournaments-reviewed.json
+      - scripts/france-regions.geojson
       - .github/workflows/tournament-scout.yml
 concurrency:
   group: tournament-scout
@@ -26,7 +27,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: python scripts/scan_tournaments.py
-      - name: Relever les tournois à moins de 100 km de Viglain
+      - name: Relever les tournois en France pour tous les rayons
         run: python scripts/refresh_local_tournaments.py
       - name: Lire les publications de la Page Facebook
         env:
