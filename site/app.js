@@ -57,6 +57,7 @@ function renderEvents(){
     <div class="event-card-head"><span class="event-type ${item.category === 'Club / loisir' ? 'community' : ''}">${item.category}</span><span class="verify-state">${item.format}</span></div>
     <h3>${item.name}</h3><div class="event-place">${item.area}</div><p class="event-description">${item.description}</p><div class="event-extra"><span>Source : ${item.source}</span><a href="${item.url}" target="_blank" rel="noopener">Consulter ↗</a></div>${item.socials?.length?`<div class="social-links">${item.socials.map(link=>`<a href="${link.url}" target="_blank" rel="noopener">${link.name} ↗</a>`).join('')}</div>`:''}
   </article>`).join('') || '<div class="no-results">Aucune source ne correspond à cette recherche.</div>';
+  tournamentCarousel.setFormats(selectedFormats);
 }
 
 let productCarousels;
@@ -68,6 +69,7 @@ function renderProducts(){
 const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const normalizeSearch = value => String(value ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('fr').trim();
 const tournamentSearch = window.SBCTournamentSearch.mount(document.querySelector('#tournament-search'));
+const tournamentCarousel = window.SBCTournamentCarousel.mount(document.querySelector('#nearby-tournaments'));
 
 function renderClubs(){
   const query = document.querySelector('#club-search').value.trim(); const hint = document.querySelector('#club-hint'); if (!query) { clubCount.textContent = `${clubData.length} lieux répertoriés`; hint.hidden = false; clubList.hidden = true; clubList.innerHTML = ''; clubMore.hidden = true; return; } hint.hidden = true; clubList.hidden = false;

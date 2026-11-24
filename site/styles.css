@@ -187,3 +187,36 @@ footer{background:rgba(8,22,41,.94)}
 .shop-promotion{margin:0;padding:12px 18px;font-size:14px;line-height:1.5;background:rgba(240,190,40,.12);border-bottom:1px solid var(--line,rgba(255,255,255,.12))}
 .shop-promotion a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 #product-refresh-status{margin-bottom:16px;font-size:14px}
+
+/* Tournois locaux : une annonce compacte, la recherche reste indépendante. */
+.nearby-tournaments{margin:0 0 20px;padding:20px;background:#fff;border:1px solid #e3ddcf;border-radius:12px;box-shadow:0 6px 24px #0d1c2f08}
+.nearby-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.nearby-heading h3{font:600 22px/1.2 var(--display);margin:0;color:#0d1c2f;letter-spacing:-.5px}
+.nearby-radius{background:#0d1c2f;color:#fff;border-radius:30px;padding:6px 12px;white-space:nowrap;font-size:14px}
+.nearby-status{font-size:14px;line-height:1.5;color:#655c4e;margin:10px 0 16px}
+.nearby-slide{display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;align-items:start;min-height:210px}
+.nearby-slide[hidden],.nearby-controls[hidden],.nearby-poster[hidden],.nearby-date-visual[hidden]{display:none}
+.nearby-visual{width:120px;min-height:165px;border-radius:8px;overflow:hidden;background:#f6f3eb}
+.nearby-poster{display:block;width:100%;height:170px;object-fit:contain}
+.nearby-date-visual{min-height:170px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:#0d1c2f;color:#e9c35d}
+.nearby-date-visual span:first-child{font:600 45px/1 var(--display)}
+.nearby-date-visual span{font-size:16px}
+.nearby-content{min-width:0}
+.nearby-content h4{font:600 20px/1.3 var(--display);margin:8px 0;color:#0d1c2f;overflow-wrap:anywhere}
+.nearby-tags{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;font-weight:600;color:#75551e}
+.nearby-tags span{padding:4px 9px;border-radius:20px;background:#f6f1e5}
+.nearby-date{margin:0 0 5px;font-size:16px;font-weight:600;color:#0d1c2f}
+.nearby-place{margin:0;font-size:16px;line-height:1.5;overflow-wrap:anywhere}
+.nearby-details,.nearby-access{margin:5px 0 0;font-size:14px;line-height:1.45;overflow-wrap:anywhere}
+.nearby-access{color:#75551e;font-weight:600}
+.nearby-source{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-top:12px}
+.nearby-source span{font-size:12px;line-height:1.5;color:#655c4e}
+.nearby-source a{font-size:14px;font-weight:600;color:#0d1c2f;text-decoration:underline;text-underline-offset:3px;padding:8px 0}
+.nearby-controls{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:12px}
+.nearby-controls button{min-height:44px;min-width:44px;background:#fff;border:1px solid #cfc5b4;border-radius:7px;color:#0d1c2f;cursor:pointer;font-size:16px;padding:8px 12px}
+.nearby-controls [data-nearby-pause]{min-width:90px;font-size:14px}
+.nearby-controls span{font-size:14px;min-width:45px;text-align:center;font-variant-numeric:tabular-nums}
+.nearby-tournaments a:focus-visible,.nearby-controls button:focus-visible{outline:3px solid #b68c3b;outline-offset:3px}
+.nearby-footnote{font-size:12px;line-height:1.5;color:#655c4e;margin:12px 0 0}
+.nearby-empty{font-size:16px;line-height:1.5;margin:12px 0}
+@media(max-width:600px){.nearby-tournaments{padding:16px}.nearby-slide{grid-template-columns:76px minmax(0,1fr);gap:12px;min-height:240px}.nearby-visual{width:76px;min-height:110px}.nearby-poster{height:110px}.nearby-date-visual{min-height:110px}.nearby-date-visual span:first-child{font-size:32px}.nearby-heading h3{font-size:20px}.nearby-content h4{font-size:18px}.nearby-radius{font-size:14px}}

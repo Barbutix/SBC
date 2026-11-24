@@ -38,6 +38,18 @@
 
     <section class="event-section" id="tournois">
       <div class="section-top"><div><span class="section-kicker">OFFICIEL, CLUBS ET RÉSEAUX SOCIAUX</span><h2>Calendriers & annonces, <em>près de chez vous.</em></h2></div><span class="big-dept">FR / 101</span></div>
+      <section class="nearby-tournaments" id="nearby-tournaments" role="region" aria-roledescription="carrousel" aria-labelledby="nearby-title">
+        <div class="nearby-heading"><h3 id="nearby-title">Les tournois près de Viglain</h3><span class="nearby-radius">100 km</span></div>
+        <p class="nearby-status" data-nearby-status role="status">Chargement des annonces à venir…</p>
+        <div data-nearby-slides aria-live="off"></div>
+        <div class="nearby-controls" data-nearby-controls hidden>
+          <button type="button" data-nearby-previous aria-label="Tournoi précédent">‹</button>
+          <button type="button" data-nearby-pause aria-pressed="false">Pause</button>
+          <span data-nearby-count aria-label="Tournoi affiché"></span>
+          <button type="button" data-nearby-next aria-label="Tournoi suivant">›</button>
+        </div>
+        <p class="nearby-footnote">Annonces datées et sourcées, jusqu’à 10 tournois · distances indicatives à vol d’oiseau · confirme les conditions auprès de l’organisateur.</p>
+      </section>
       <div class="tournament-search" id="tournament-search">
         <h3>Chercher un tournoi</h3>
         <div class="tournament-search-fields">
@@ -130,6 +142,7 @@
   <script src="./product-carousel.js"></script>
   <script src="./product-refresh.js"></script>
   <script src="./tournament-search.js"></script>
+  <script src="./tournament-carousel.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>

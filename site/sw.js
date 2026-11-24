@@ -1,5 +1,5 @@
-const CACHE_NAME = 'sullias-bull-club-shell-v19';
-const APP_SHELL = ['./', './index.html', './styles.css', './app.js', './products.js', './product-carousel.js', './product-refresh.js', './tournament-search.js', './clubs.json', './manifest.webmanifest', './assets/sbc-app-192.png', './assets/sbc-app-512.png', './assets/sbc-logo.png', './assets/sbc-background.jpg', './sources.html'];
+const CACHE_NAME = 'sullias-bull-club-shell-v20';
+const APP_SHELL = ['./', './index.html', './styles.css', './app.js', './products.js', './product-carousel.js', './product-refresh.js', './tournament-search.js', './tournament-carousel.js', './local-tournaments.json', './clubs.json', './manifest.webmanifest', './assets/sbc-app-192.png', './assets/sbc-app-512.png', './assets/sbc-logo.png', './assets/sbc-background.jpg', './sources.html'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)));
   self.skipWaiting();
@@ -12,7 +12,7 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   if (request.method !== 'GET' || new URL(request.url).origin !== self.location.origin) return;
   const path = new URL(request.url).pathname;
-  if (path.endsWith('/event-candidates.json') || path.endsWith('/equipment.json')) {
+  if (path.endsWith('/event-candidates.json') || path.endsWith('/equipment.json') || path.endsWith('/local-tournaments.json')) {
     event.respondWith((async () => {
       try {
         const response = await fetch(request, {cache:'no-store'});
