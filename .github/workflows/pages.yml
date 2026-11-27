@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
   pages: write
   id-token: write
 
@@ -27,8 +28,50 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Préparer le site
         uses: actions/upload-pages-artifact@v4
+        id: pages_artifact
         with:
           path: site
+      - name: Attendre la disponibilité du site à publier
+        uses: actions/github-script@v8
+        timeout-minutes: 2
+        env:
+          PAGES_ARTIFACT_ID: ${{ steps.pages_artifact.outputs.artifact_id }}
+        with:
+          script: |
+            const expectedId = process.env.PAGES_ARTIFACT_ID;
+            if (!expectedId) {
+              throw new Error("L’envoi du site n’a pas fourni d’identifiant de fichier.");
+            }
+            const attempts = 12;
+            for (let attempt = 1; attempt <= attempts; attempt++) {
+              try {
+                const { data } = await github.rest.actions.listWorkflowRunArtifacts({
+                  ...context.repo,
+                  run_id: context.runId,
+                  name: 'github-pages',
+                  per_page: 100,
+                  headers: { 'cache-control': 'no-cache' }
+                });
+                const artifact = data.artifacts.find(item =>
+                  item.name === 'github-pages' &&
+                  String(item.id) === expectedId && !item.expired
+                );
+                if (artifact) {
+                  // Pages uses a separate artifact service: allow it to catch up too.
+                  await new Promise(resolve => setTimeout(resolve, 5000));
+                  core.info(`Site disponible pour publication (fichier ${expectedId}).`);
+                  return;
+                }
+              } catch (error) {
+                if (![429, 500, 502, 503, 504].includes(error.status)) throw error;
+                core.warning(`Service de fichiers temporairement indisponible (${error.status}).`);
+              }
+              if (attempt < attempts) {
+                core.info(`Attente du fichier à publier (${attempt}/${attempts})…`);
+                await new Promise(resolve => setTimeout(resolve, 5000));
+              }
+            }
+            throw new Error("Le fichier du site reste introuvable après plusieurs vérifications. Relancer la publication GitHub Pages.");
       - name: Publier le site
         id: deployment
         uses: actions/deploy-pages@v4
