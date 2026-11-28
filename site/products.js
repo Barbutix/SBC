@@ -16,7 +16,7 @@ const equipmentShops = [
           "priceSource": "https://www.olies-darts.com/cibles-de-flechettes-pointe-acier/6666-cible-gladiator-iii-pro.html",
           "priceTaxIncluded": true,
           "family": "cible",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Cible électronique lit board V2",
@@ -28,7 +28,7 @@ const equipmentShops = [
           "priceSource": "https://www.olies-darts.com/cible-electronique-connectee/5867-cible-electronique-lit-board-v2.html",
           "priceTaxIncluded": true,
           "family": "cible",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Gran Eye 2026 Scoreur Automatique",
@@ -41,7 +41,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 29900,
           "family": "cible",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Cible électronique connectée GranBoard 132 blanche",
@@ -54,7 +54,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 26880,
           "family": "cible",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Camera Fliq pour Scolia",
@@ -67,7 +67,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 14900,
           "family": "cible",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Cible Winmau Blade X",
@@ -80,7 +80,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 15000,
           "family": "cible",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Cible Winmau Equalizer",
@@ -93,7 +93,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 9000,
           "family": "cible",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Cible Winmau Blade 360",
@@ -106,7 +106,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 11000,
           "family": "cible",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         }
       ],
       "flechettes": [
@@ -121,7 +121,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 7150,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Strike X SX04 elek one80 en 18g",
@@ -134,7 +134,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 5990,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Mobilizer I one80 en 20g",
@@ -146,7 +146,7 @@ const equipmentShops = [
           "priceSource": "https://www.olies-darts.com/jeux-one80/6675-mobilizer-i-one80-en-20g.html",
           "priceTaxIncluded": true,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Strike X SX03 elek one80 en 18g",
@@ -159,7 +159,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 5990,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Panther N one80 en 23g",
@@ -171,7 +171,7 @@ const equipmentShops = [
           "priceSource": "https://www.olies-darts.com/jeux-one80/6674-panther-n-one80-en-23g.html",
           "priceTaxIncluded": true,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Strike X SX02 elek one80 en 18g",
@@ -184,7 +184,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 5990,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Charlie Manby Champagne SP Target en 25g",
@@ -196,7 +196,7 @@ const equipmentShops = [
           "priceSource": "https://www.olies-darts.com/jeux-target/6673-charlie-manby-champagne-sp-target-en-25g.html",
           "priceTaxIncluded": true,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Strike X SX01 elek one80 en 18g",
@@ -209,7 +209,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 5990,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Charlie Manby Champagne SP Target en 23g",
@@ -221,7 +221,7 @@ const equipmentShops = [
           "priceSource": "https://www.olies-darts.com/jeux-target/6672-charlie-manby-champagne-sp-target-en-23g.html",
           "priceTaxIncluded": true,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "T-Core TC2 one80 elek en 20g",
@@ -234,7 +234,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 2990,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         }
       ],
       "pack": [
@@ -249,7 +249,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 13990,
           "family": "pack",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "coffret winmau motorhead ace of spades et cible blade 6",
@@ -262,7 +262,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 13990,
           "family": "pack",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "coffret winmau blade 6 et cible blade 6",
@@ -275,7 +275,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 13190,
           "family": "pack",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "coffret winmau biere et cible blade 6",
@@ -288,7 +288,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 13190,
           "family": "pack",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "coffret winmau pro line et cible blade 6",
@@ -301,7 +301,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 13190,
           "family": "pack",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "coffret winmau rosewood et cible blade 6",
@@ -314,7 +314,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 12790,
           "family": "pack",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "coffret winmau man cave et cible blade 6",
@@ -327,7 +327,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 13190,
           "family": "pack",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "coffret winmau noir et cible blade 6",
@@ -340,7 +340,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 12790,
           "family": "pack",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "professional darts set noir",
@@ -353,7 +353,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 9095,
           "family": "pack",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         }
       ],
       "promo": [
@@ -368,7 +368,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 650,
           "family": "accessoires",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "8 flight ailette fine rouge",
@@ -381,7 +381,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 650,
           "family": "accessoires",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "8 flight ailette poire blanc",
@@ -394,7 +394,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 650,
           "family": "accessoires",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "8 flight ailette poire bleu",
@@ -407,7 +407,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 650,
           "family": "accessoires",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "8 flight ailette poire rouge",
@@ -420,7 +420,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 650,
           "family": "accessoires",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "8 flight tige nylon blanc fixe",
@@ -433,7 +433,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 650,
           "family": "accessoires",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "8 flight tige slim titanium fixe",
@@ -446,7 +446,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 2395,
           "family": "accessoires",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Adrenalin Michael Van Gerwen elek en 22g",
@@ -459,7 +459,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 10495,
           "family": "accessoires",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Adrenalin Michael Van Gerwen en 22g",
@@ -472,7 +472,7 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 10495,
           "family": "accessoires",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Adrenalin Michael Van Gerwen en 23g",
@@ -485,16 +485,16 @@ const equipmentShops = [
           "priceTaxIncluded": true,
           "previousPriceCents": 10495,
           "family": "accessoires",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         }
       ]
     },
     "familyErrors": {},
     "familyUpdatedAt": {
-      "cible": "2026-11-27T20:17:12+00:00",
-      "flechettes": "2026-11-27T20:17:12+00:00",
-      "pack": "2026-11-27T20:17:12+00:00",
-      "promo": "2026-11-27T20:17:12+00:00"
+      "cible": "2026-11-28T02:57:00+00:00",
+      "flechettes": "2026-11-28T02:57:00+00:00",
+      "pack": "2026-11-28T02:57:00+00:00",
+      "promo": "2026-11-28T02:57:00+00:00"
     },
     "familyUrls": {
       "cible": "https://www.olies-darts.com/54-cibles-de-flechettes-pointe-acier",
@@ -514,7 +514,7 @@ const equipmentShops = [
         "priceTaxIncluded": true,
         "previousPriceCents": 650,
         "family": "accessoires",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       },
       {
         "name": "8 flight ailette fine rouge",
@@ -527,7 +527,7 @@ const equipmentShops = [
         "priceTaxIncluded": true,
         "previousPriceCents": 650,
         "family": "accessoires",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       },
       {
         "name": "8 flight ailette poire blanc",
@@ -540,7 +540,7 @@ const equipmentShops = [
         "priceTaxIncluded": true,
         "previousPriceCents": 650,
         "family": "accessoires",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       },
       {
         "name": "8 flight ailette poire bleu",
@@ -553,7 +553,7 @@ const equipmentShops = [
         "priceTaxIncluded": true,
         "previousPriceCents": 650,
         "family": "accessoires",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       },
       {
         "name": "8 flight ailette poire rouge",
@@ -566,7 +566,7 @@ const equipmentShops = [
         "priceTaxIncluded": true,
         "previousPriceCents": 650,
         "family": "accessoires",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       },
       {
         "name": "8 flight tige nylon blanc fixe",
@@ -579,7 +579,7 @@ const equipmentShops = [
         "priceTaxIncluded": true,
         "previousPriceCents": 650,
         "family": "accessoires",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       },
       {
         "name": "8 flight tige slim titanium fixe",
@@ -592,7 +592,7 @@ const equipmentShops = [
         "priceTaxIncluded": true,
         "previousPriceCents": 2395,
         "family": "accessoires",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       },
       {
         "name": "Adrenalin Michael Van Gerwen elek en 22g",
@@ -605,7 +605,7 @@ const equipmentShops = [
         "priceTaxIncluded": true,
         "previousPriceCents": 10495,
         "family": "accessoires",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       },
       {
         "name": "Adrenalin Michael Van Gerwen en 22g",
@@ -618,7 +618,7 @@ const equipmentShops = [
         "priceTaxIncluded": true,
         "previousPriceCents": 10495,
         "family": "accessoires",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       },
       {
         "name": "Adrenalin Michael Van Gerwen en 23g",
@@ -631,10 +631,10 @@ const equipmentShops = [
         "priceTaxIncluded": true,
         "previousPriceCents": 10495,
         "family": "accessoires",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       }
     ],
-    "updatedAt": "2026-11-27T20:17:12+00:00",
+    "updatedAt": "2026-11-28T02:57:00+00:00",
     "promotion": null,
     "promoKind": "article",
     "warning": null,
@@ -656,7 +656,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/cible-unicorn-eclipse-ultra-2-0?variant=53007228403978",
           "priceTaxIncluded": true,
           "family": "cible",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "GranBoard 3S LED Vert",
@@ -668,7 +668,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/cible-electronique-granboard-3s-vert?variant=53007247278346",
           "priceTaxIncluded": true,
           "family": "cible",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Cible Winmau Blade 6 Triple Core Carbon",
@@ -680,7 +680,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/cible-winmau-blade-6-triple-core-carbon?variant=53007246622986",
           "priceTaxIncluded": true,
           "family": "cible",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "GranBoard 3S LED Bleu",
@@ -692,7 +692,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/cible-electronique-granboard-3s-bleu?variant=53007247343882",
           "priceTaxIncluded": true,
           "family": "cible",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Cible fléchettes Unicorn Eclipse Pro 2",
@@ -704,7 +704,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/cible-unicorn-eclipse-pro-2?variant=53007228502282",
           "priceTaxIncluded": true,
           "family": "cible",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Cible électronique GRANBOARD 132 - Blanc",
@@ -716,7 +716,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/cible-electronique-granboard-blanc-132?variant=53007217492234",
           "priceTaxIncluded": true,
           "family": "cible",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Cible Mission Samurai 4 - Spider Blanc",
@@ -728,19 +728,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/mission-samurai-4-spider-blanc?variant=53525745205514",
           "priceTaxIncluded": true,
           "family": "cible",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
-        },
-        {
-          "name": "Cible Bull's Advantage 8 - Sisal Africain",
-          "kind": "Matériel de fléchettes",
-          "url": "https://pleinebull.fr/products/cible-bulls-advantage-8-sisal-africain?variant=53503226282250",
-          "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/cible-bulls-advantage-8-sisal-africain.webp?v=1786434273",
-          "priceCents": 7295,
-          "priceCurrency": "EUR",
-          "priceSource": "https://pleinebull.fr/products/cible-bulls-advantage-8-sisal-africain?variant=53503226282250",
-          "priceTaxIncluded": true,
-          "family": "cible",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Cible Mission Samurai 4 - Graphite",
@@ -752,7 +740,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/mission-samurai-4-graphite?variant=53007217426698",
           "priceTaxIncluded": true,
           "family": "cible",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Cible Bull's Advantage Black - Sisal Africain",
@@ -764,7 +752,19 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/cible-bulls-advantage-black-sisal-africain?variant=54028369002762",
           "priceTaxIncluded": true,
           "family": "cible",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
+        },
+        {
+          "name": "Cible Bull's Advantage 8 - Sisal Africain",
+          "kind": "Matériel de fléchettes",
+          "url": "https://pleinebull.fr/products/cible-bulls-advantage-8-sisal-africain?variant=53503226282250",
+          "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/cible-bulls-advantage-8-sisal-africain.webp?v=1786434273",
+          "priceCents": 7295,
+          "priceCurrency": "EUR",
+          "priceSource": "https://pleinebull.fr/products/cible-bulls-advantage-8-sisal-africain?variant=53503226282250",
+          "priceTaxIncluded": true,
+          "family": "cible",
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         }
       ],
       "flechettes": [
@@ -778,7 +778,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/flechettes-acier-target-luke-littler-loadout-90-swiss-point-24g?variant=54189330891018",
           "priceTaxIncluded": true,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Fléchettes Soft MVG Signature Edition 90 % Tungstène 18 g",
@@ -790,7 +790,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/flechettes-soft-mvg-signature-edition-90-tungstene-18g?variant=53183989776650",
           "priceTaxIncluded": true,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Fléchettes acier Target Buzz SP02 Swiss Point 90% Noir et jaune - 24g",
@@ -802,7 +802,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/flechettes-acier-target-buzz-sp02-swiss-point-90-tungstene-24g?variant=54046385406218",
           "priceTaxIncluded": true,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Fléchettes soft Target Luke Littler LOADOUT 90% 19g",
@@ -814,7 +814,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/flechettes-soft-target-luke-littler-loadout-90-19g?variant=53007249178890",
           "priceTaxIncluded": true,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Fléchettes acier Target Buzz SP03 Swiss Point 90% Noir et jaune - 23g",
@@ -826,7 +826,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/flechettes-acier-target-buzz-sp03-swiss-point-90-tungstene-23g?variant=54046386094346",
           "priceTaxIncluded": true,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Fléchettes Soft MVG Aspire 80 % Tungstène 20 g",
@@ -838,7 +838,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/flechettes-soft-mvg-aspire-80-tungstene-20g?variant=53183989580042",
           "priceTaxIncluded": true,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Winmau MvG Signature Edition 90% Switch Point - 23g",
@@ -850,7 +850,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/winmau-mvg-signature-edition-90-switch-point-23g?variant=53528296358154",
           "priceTaxIncluded": true,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Fléchettes Soft Gerwyn Price Iceman 90 % Tungstène 20 g",
@@ -862,7 +862,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/flechettes-soft-gerwyn-price-iceman-90-tungstene-20g?variant=53183988793610",
           "priceTaxIncluded": true,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Fléchettes acier Mission Horus 97,5% tungstène - Noir et Bronze 21g",
@@ -874,7 +874,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/flechettes-acier-mission-horus-97-5-tungstene-21g?variant=54005002633482",
           "priceTaxIncluded": true,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Fléchettes Soft Peter Wright Snakebite Corra 90 % Tungstène 20 g",
@@ -886,7 +886,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/flechettes-soft-peter-wright-snakebite-corra-90-tungstene-20g?variant=53183988302090",
           "priceTaxIncluded": true,
           "family": "flechettes",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         }
       ],
       "pack": [
@@ -900,7 +900,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/pack-winmau-blade6-cible-flechettes?variant=53007247376650",
           "priceTaxIncluded": true,
           "family": "pack",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Pack Unicorn cible, protection rouge et 6 fléchettes",
@@ -912,7 +912,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/pack-unicorn-hdc-rouge-striker?variant=53007229288714",
           "priceTaxIncluded": true,
           "family": "pack",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Pack fléchettes Bull's Cella Starter",
@@ -924,7 +924,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/set-flechettes-bulls-cella-starter?variant=53007243968778",
           "priceTaxIncluded": true,
           "family": "pack",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Kit test tiges nylon Bull's (4 sets)",
@@ -936,7 +936,7 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/accessoire-bulls-kit-test-tiges?variant=53007243542794",
           "priceTaxIncluded": true,
           "family": "pack",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         },
         {
           "name": "Kit test formes d’ailettes fléchettes Bull's",
@@ -948,17 +948,17 @@ const equipmentShops = [
           "priceSource": "https://pleinebull.fr/products/accessoire-bulls-kit-test-ailettes?variant=53007233024266",
           "priceTaxIncluded": true,
           "family": "pack",
-          "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+          "priceCheckedAt": "2026-11-28T02:57:00+00:00"
         }
       ],
       "promo": []
     },
     "familyErrors": {},
     "familyUpdatedAt": {
-      "cible": "2026-11-27T20:17:12+00:00",
-      "flechettes": "2026-11-27T20:17:12+00:00",
-      "pack": "2026-11-27T20:17:12+00:00",
-      "promo": "2026-11-27T20:17:12+00:00"
+      "cible": "2026-11-28T02:57:00+00:00",
+      "flechettes": "2026-11-28T02:57:00+00:00",
+      "pack": "2026-11-28T02:57:00+00:00",
+      "promo": "2026-11-28T02:57:00+00:00"
     },
     "familyUrls": {
       "cible": "https://pleinebull.fr/collections/cibles-sisal",
@@ -977,7 +977,7 @@ const equipmentShops = [
         "priceSource": "https://pleinebull.fr/products/cible-unicorn-eclipse-ultra-2-0?variant=53007228403978",
         "priceTaxIncluded": true,
         "family": "cible",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       },
       {
         "name": "GranBoard 3S LED Vert",
@@ -989,7 +989,7 @@ const equipmentShops = [
         "priceSource": "https://pleinebull.fr/products/cible-electronique-granboard-3s-vert?variant=53007247278346",
         "priceTaxIncluded": true,
         "family": "cible",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       },
       {
         "name": "Cible Winmau Blade 6 Triple Core Carbon",
@@ -1001,7 +1001,7 @@ const equipmentShops = [
         "priceSource": "https://pleinebull.fr/products/cible-winmau-blade-6-triple-core-carbon?variant=53007246622986",
         "priceTaxIncluded": true,
         "family": "cible",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       },
       {
         "name": "GranBoard 3S LED Bleu",
@@ -1013,7 +1013,7 @@ const equipmentShops = [
         "priceSource": "https://pleinebull.fr/products/cible-electronique-granboard-3s-bleu?variant=53007247343882",
         "priceTaxIncluded": true,
         "family": "cible",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       },
       {
         "name": "Cible fléchettes Unicorn Eclipse Pro 2",
@@ -1025,7 +1025,7 @@ const equipmentShops = [
         "priceSource": "https://pleinebull.fr/products/cible-unicorn-eclipse-pro-2?variant=53007228502282",
         "priceTaxIncluded": true,
         "family": "cible",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       },
       {
         "name": "Cible électronique GRANBOARD 132 - Blanc",
@@ -1037,7 +1037,7 @@ const equipmentShops = [
         "priceSource": "https://pleinebull.fr/products/cible-electronique-granboard-blanc-132?variant=53007217492234",
         "priceTaxIncluded": true,
         "family": "cible",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       },
       {
         "name": "Cible Mission Samurai 4 - Spider Blanc",
@@ -1049,19 +1049,7 @@ const equipmentShops = [
         "priceSource": "https://pleinebull.fr/products/mission-samurai-4-spider-blanc?variant=53525745205514",
         "priceTaxIncluded": true,
         "family": "cible",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
-      },
-      {
-        "name": "Cible Bull's Advantage 8 - Sisal Africain",
-        "kind": "Matériel de fléchettes",
-        "url": "https://pleinebull.fr/products/cible-bulls-advantage-8-sisal-africain?variant=53503226282250",
-        "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/cible-bulls-advantage-8-sisal-africain.webp?v=1786434273",
-        "priceCents": 7295,
-        "priceCurrency": "EUR",
-        "priceSource": "https://pleinebull.fr/products/cible-bulls-advantage-8-sisal-africain?variant=53503226282250",
-        "priceTaxIncluded": true,
-        "family": "cible",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       },
       {
         "name": "Cible Mission Samurai 4 - Graphite",
@@ -1073,7 +1061,7 @@ const equipmentShops = [
         "priceSource": "https://pleinebull.fr/products/mission-samurai-4-graphite?variant=53007217426698",
         "priceTaxIncluded": true,
         "family": "cible",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       },
       {
         "name": "Cible Bull's Advantage Black - Sisal Africain",
@@ -1085,10 +1073,22 @@ const equipmentShops = [
         "priceSource": "https://pleinebull.fr/products/cible-bulls-advantage-black-sisal-africain?variant=54028369002762",
         "priceTaxIncluded": true,
         "family": "cible",
-        "priceCheckedAt": "2026-11-27T20:17:12+00:00"
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
+      },
+      {
+        "name": "Cible Bull's Advantage 8 - Sisal Africain",
+        "kind": "Matériel de fléchettes",
+        "url": "https://pleinebull.fr/products/cible-bulls-advantage-8-sisal-africain?variant=53503226282250",
+        "image": "https://cdn.shopify.com/s/files/1/0934/1992/9866/files/cible-bulls-advantage-8-sisal-africain.webp?v=1786434273",
+        "priceCents": 7295,
+        "priceCurrency": "EUR",
+        "priceSource": "https://pleinebull.fr/products/cible-bulls-advantage-8-sisal-africain?variant=53503226282250",
+        "priceTaxIncluded": true,
+        "family": "cible",
+        "priceCheckedAt": "2026-11-28T02:57:00+00:00"
       }
     ],
-    "updatedAt": "2026-11-27T20:17:12+00:00",
+    "updatedAt": "2026-11-28T02:57:00+00:00",
     "promotion": null,
     "promoKind": "article",
     "warning": null,
